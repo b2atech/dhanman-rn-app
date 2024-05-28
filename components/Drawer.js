@@ -23,7 +23,7 @@ class DrawerItem extends React.Component {
         return (
           <Icon
             size={16}
-            name="md-woman"
+            name="woman"
             family="ionicon"
             color={focused ? "white" : materialTheme.COLORS.MUTED}
           />
@@ -77,7 +77,7 @@ class DrawerItem extends React.Component {
         return (
           <Icon
             size={17}
-            name="md-triangle"
+            name="triangle"
             family="ionicon"
             color={focused ? "white" : materialTheme.COLORS.MUTED}
           />
@@ -86,7 +86,7 @@ class DrawerItem extends React.Component {
         return (
           <Icon
             size={15}
-            name="ios-log-in"
+            name="log-in"
             family="ionicon"
             color={focused ? "white" : materialTheme.COLORS.MUTED}
           />
@@ -95,7 +95,7 @@ class DrawerItem extends React.Component {
         return (
           <Icon
             size={15}
-            name="md-person-add"
+            name="person-add"
             family="ionicon"
             color={focused ? "white" : materialTheme.COLORS.MUTED}
           />
