@@ -304,12 +304,12 @@ function WomanStack(props) {
         component={CategoryScreen}
         options={{
           header: ({ navigation, scene }) => {
-            const { params } = scene.descriptor;
-            const title = (params && params.headerTitle) || "Category";
+            // const { params } = scene.descriptor;
+            // const title = (params && params.headerTitle) || "Category";
             return (
               <Header
                 back
-                title={title}
+                title='Category'
                 navigation={navigation}
                 scene={scene}
               />
@@ -447,12 +447,12 @@ function ManStack(props) {
         component={CategoryScreen}
         options={{
           header: ({ navigation, scene }) => {
-            const { params } = scene.descriptor;
-            const title = (params && params.headerTitle) || "Category";
+            // const { params } = scene.descriptor;
+            // const title = (params && params.headerTitle) || "Category";
             return (
               <Header
                 back
-                title={title}
+                title='Category'
                 navigation={navigation}
                 scene={scene}
               />
@@ -595,12 +595,12 @@ function KidsStack(props) {
         component={CategoryScreen}
         options={{
           header: ({ navigation, scene }) => {
-            const { params } = scene.descriptor;
-            const title = (params && params.headerTitle) || "Category";
+            // const { params } = scene.descriptor;
+            // const title = (params && params.headerTitle) || "Category";
             return (
               <Header
                 back
-                title={title}
+                title='Category'
                 navigation={navigation}
                 scene={scene}
               />
@@ -743,12 +743,12 @@ function NewCollectionStack(props) {
         component={CategoryScreen}
         options={{
           header: ({ navigation, scene }) => {
-            const { params } = scene.descriptor;
-            const title = (params && params.headerTitle) || "Category";
+            // const { params } = scene.descriptor;
+            // const title = (params && params.headerTitle) || "Category";
             return (
               <Header
                 back
-                title={title}
+                title='Category'
                 navigation={navigation}
                 scene={scene}
               />
@@ -892,12 +892,12 @@ function HomeStack(props) {
         component={CategoryScreen}
         options={{
           header: ({ navigation, scene }) => {
-            const { params } = scene.descriptor;
-            const title = (params && params.headerTitle) || "Category";
+            // const { params } = scene.descriptor;
+            // const title = (params && params.headerTitle) || "Category";
             return (
               <Header
                 back
-                title={title}
+                title='Category'
                 navigation={navigation}
                 scene={scene}
               />
@@ -1143,7 +1143,7 @@ function AppStack(props) {
           drawerIcon: ({ focused }) => (
             <Icon
               size={16}
-              name="ios-log-in"
+              name="ios-log"
               family="ionicon"
               color={focused ? "white" : materialTheme.COLORS.MUTED}
             />
@@ -1158,7 +1158,7 @@ function AppStack(props) {
           drawerIcon: ({ focused }) => (
             <Icon
               size={16}
-              name="md-person-add"
+              name="md-person"
               family="ionicon"
               color={focused ? "white" : materialTheme.COLORS.MUTED}
             />

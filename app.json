@@ -25,13 +25,13 @@
     "ios": {
       "supportsTablet": true
     },
-    "extra": {
-      "eas": {
-        "projectId": "7466ee22-a2fc-4b2c-b742-a55bef2c98a6"
-      }
-    },
     "android": {
       "package": "com.bharatmane.dhanman"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1babbec7-c5ba-4642-8bb9-7bd324a076b3"
+      }
     }
   }
 }
