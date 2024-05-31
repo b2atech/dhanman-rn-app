@@ -1,6 +1,6 @@
-import { Dimensions, Easing } from "react-native";
+import { Dimensions } from "react-native";
 import { Header, Icon } from "../components/";
-import { Images, materialTheme } from "../constants/";
+import { Images } from "../constants/";
 
 import AboutScreen from "../screens/About";
 import AgreementScreen from "../screens/Agreement";
@@ -9,7 +9,6 @@ import CategoriesScreen from "../screens/Categories";
 import CategoryScreen from "../screens/Category";
 import ChatScreen from "../screens/Chat";
 import ComponentsScreen from "../screens/Components";
-import CustomDrawerContent from "./Menu";
 import DealsScreen from "../screens/Deals";
 import GalleryScreen from "../screens/Gallery";
 import HomeScreen from "../screens/Home";
@@ -25,17 +24,18 @@ import ProfileScreen from "../screens/Profile";
 import React from "react";
 import SearchScreen from "../screens/Search";
 import SettingsScreen from "../screens/Settings";
-import SignInScreen from "../screens/SignIn";
-import SignUpScreen from "../screens/SignUp";
 import WomanScreen from "../screens/Woman";
+import SocialScreen from "../screens/Social"
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabs } from "../constants/";
 
 const { width } = Dimensions.get("screen");
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const BottomTab = createBottomTabNavigator();
 
 const profile = {
   avatar: Images.Profile,
@@ -224,22 +224,24 @@ function ComponentsStack(props) {
   );
 }
 
-export default function OnboardingStack(props) {
+function SocialStack(props) {
   return (
     <Stack.Navigator
+      initialRouteName="Social"
       screenOptions={{
         mode: "card",
-        headerShown: false,
+        headerShown: "screen",
       }}
     >
       <Stack.Screen
-        name="Onboarding"
-        component={OnboardingScreen}
-        option={{
-          headerTransparent: true,
+        name="Social"
+        component={SocialScreen}
+        options={{
+          header: ({ navigation }) => (
+            <Header title="Social" navigation={navigation} />
+          ),
         }}
       />
-      <Stack.Screen name="App" component={AppStack} />
     </Stack.Navigator>
   );
 }
@@ -831,6 +833,26 @@ function NewCollectionStack(props) {
   );
 }
 
+export default function OnboardingStack(props) {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        mode: "card",
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen
+        name="Onboarding"
+        component={OnboardingScreen}
+        option={{
+          headerTransparent: true,
+        }}
+      />
+      <Stack.Screen name="App" component={AppStack} />
+    </Stack.Navigator>
+  );
+}
+
 function HomeStack(props) {
   return (
     <Stack.Navigator
@@ -855,7 +877,7 @@ function HomeStack(props) {
           ),
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Deals"
         component={DealsScreen}
         options={{
@@ -966,7 +988,7 @@ function HomeStack(props) {
             />
           ),
         }}
-      />
+      /> */}
       <Stack.Screen
         name="Search"
         component={SearchScreen}
@@ -980,9 +1002,91 @@ function HomeStack(props) {
   );
 }
 
+function MainTabs() {
+  return (
+    <BottomTab.Navigator>
+      <BottomTab.Screen
+        name="Home"
+        component={HomeStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="home" family="font-awesome" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Community"
+        component={ComponentsStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="apartment" family="material" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Social"
+        component={SocialStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="groups" family="material" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Buy & Sell"
+        component={ProfileStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="handshake" family="material" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Services"
+        component={SettingsStack}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Icon name="handyman" family="material" color={color} />
+          ),
+        }}
+      />
+    </BottomTab.Navigator>
+  );
+}
+
 function AppStack(props) {
   return (
-    <Drawer.Navigator
+    <>
+      <Stack.Navigator
+        initialRouteName="MainTabs"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="MainTabs" component={MainTabs}>
+        {/* <BottomTab.Navigator>
+          <BottomTab.Screen
+            name="Social"
+            component={SocialStack}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Icon name="groups" family="material" color={color} />
+              ),
+            }}
+          />
+          <BottomTab.Screen
+            name="Community"
+            component={ComponentsStack}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Icon name="apartment" family="material" color={color} />
+              ),
+            }}
+          />
+          </BottomTab.Navigator> */}
+        </Stack.Screen>
+      </Stack.Navigator>
+    {/* <Drawer.Navigator
       style={{ flex: 1 }}
       drawerContent={(props) => (
         <CustomDrawerContent {...props} profile={profile} />
@@ -1013,158 +1117,181 @@ function AppStack(props) {
       initialRouteName="HomeDrawer"
     >
       <Drawer.Screen
-        name="HomeDrawer"
-        component={HomeStack}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="shop"
-              family="GalioExtra"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          ),
-        }}
+        name="DrawerAppStack"
+        component={DrawerAppStack}
       />
-      <Drawer.Screen
-        name="WomanDrawer"
-        component={WomanStack}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="md-woman"
-              family="ionicon"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-              style={{ marginLeft: 4, marginRight: 4 }}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="ManDrawer"
-        component={ManStack}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="man"
-              family="entypo"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="KidsDrawer"
-        component={KidsStack}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="baby"
-              family="GalioExtra"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="New Collection"
-        component={NewCollectionStack}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="grid-on"
-              family="material"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="ProfileDrawer"
-        component={ProfileStack}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="circle-10"
-              family="GalioExtra"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="SettingsDrawer"
-        component={SettingsStack}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="gears"
-              family="font-awesome"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-              style={{ marginRight: -3 }}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="ComponentsDrawer"
-        component={ComponentsStack}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="md-switch"
-              family="ionicon"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-              style={{ marginRight: 2, marginLeft: 2 }}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Sign In"
-        component={SignInScreen}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="ios-log"
-              family="ionicon"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Sign Up"
-        component={SignUpScreen}
-        options={{
-          headerShown: false,
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="md-person"
-              family="ionicon"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          ),
-        }}
-      />
-    </Drawer.Navigator>
+     </Drawer.Navigator> */}
+    </>
+    
   );
 }
+
+
+// function DrawerAppStack(props) {
+//   return (
+//     <>
+    
+//         <Drawer.Screen
+//         name={'BottomTabNavigator'}
+//         component={MainTabs}
+//         options={{
+//           drawerLabel: 'Home Screen',
+          
+//         }}
+//       />
+//         <Drawer.Screen
+//           name="HomeDrawer"
+//           component={HomeStack}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="shop"
+//                 family="GalioExtra"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//               />
+//             ),
+//           }}
+//         />
+//         <Drawer.Screen
+//           name="WomanDrawer"
+//           component={WomanStack}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="md-woman"
+//                 family="ionicon"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//                 style={{ marginLeft: 4, marginRight: 4 }}
+//               />
+//             ),
+//           }}
+//         />
+//         <Drawer.Screen
+//           name="ManDrawer"
+//           component={ManStack}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="man"
+//                 family="entypo"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//               />
+//             ),
+//           }}
+//         />
+//         <Drawer.Screen
+//           name="KidsDrawer"
+//           component={KidsStack}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="baby"
+//                 family="GalioExtra"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//               />
+//             ),
+//           }}
+//         />
+//         <Drawer.Screen
+//           name="New Collection"
+//           component={NewCollectionStack}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="grid-on"
+//                 family="material"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//               />
+//             ),
+//           }}
+//         />
+//         <Drawer.Screen
+//           name="ProfileDrawer"
+//           component={ProfileStack}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="circle-10"
+//                 family="GalioExtra"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//               />
+//             ),
+//           }}
+//         />
+//         <Drawer.Screen
+//           name="SettingsDrawer"
+//           component={SettingsStack}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="gears"
+//                 family="font-awesome"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//                 style={{ marginRight: -3 }}
+//               />
+//             ),
+//           }}
+//         />
+//         <Drawer.Screen
+//           name="ComponentsDrawer"
+//           component={ComponentsStack}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="md-switch"
+//                 family="ionicon"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//                 style={{ marginRight: 2, marginLeft: 2 }}
+//               />
+//             ),
+//           }}
+//         />
+//         <Drawer.Screen
+//           name="Sign In"
+//           component={SignInScreen}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="ios-log"
+//                 family="ionicon"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//               />
+//             ),
+//           }}
+//         />
+//         <Drawer.Screen
+//           name="Sign Up"
+//           component={SignUpScreen}
+//           options={{
+//             headerShown: false,
+//             drawerIcon: ({ focused }) => (
+//               <Icon
+//                 size={16}
+//                 name="md-person"
+//                 family="ionicon"
+//                 color={focused ? "white" : materialTheme.COLORS.MUTED}
+//               />
+//             ),
+//           }}
+//         />
+//     </>
+//   );
+// }
