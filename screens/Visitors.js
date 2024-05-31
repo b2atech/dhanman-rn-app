@@ -1,31 +1,29 @@
 import React from 'react';
-import { StyleSheet, Image, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Text, Block, Icon } from 'galio-framework';
 
-const Visitors = ({ name, imageSource, icon }) => {
+const Visitors = () => {
   return (
     <Block style={styles.userAction}>
       <View style={styles.avatarContainer}>
-        {imageSource ? (
-          <Image source={imageSource} style={styles.avatar} />
-        ) : (
-          <Icon name={icon} family="material" style={styles.icon} />
-        )}
-        <Icon name="add-circle" family="material" style={styles.addIcon} />
+          <Icon name='group' family="material" style={styles.icon} />
+          <Text size={18}>Visitors</Text>
       </View>
-      <Text size={12}>{name}</Text>
+      
     </Block>
   );
 };
 
 const styles = StyleSheet.create({
   userAction: {
-    alignItems: 'center',
+    alignItems: 'left',
     marginVertical: 10,
+    marginHorizontal: 10
   },
   avatarContainer: {
-    position: 'relative',
+    flexDirection: 'row',
     marginBottom: 2,
+    alignItems: 'left',
   },
   avatar: {
     width: 10,
@@ -33,14 +31,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   icon: {
-    fontSize: 50,
-    color: '#CCCBCB',
-  },
-  addIcon: {
-    position: 'absolute',
-    right: -5,
-    bottom: -5,
-    fontSize: 20,
+    fontSize: 25,
+    alignItems: 'left',
     color: '#007AFF',
   },
 });

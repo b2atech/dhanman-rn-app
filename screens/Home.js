@@ -2,10 +2,12 @@ import React from 'react';
 import { StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
-import { Icon, Product } from '../components/';
+import { Icon } from '../components/';
 const { width } = Dimensions.get('screen');
-import homeImages from '../constants/images/home';
 import HelpersList from './HelpersList';
+import Payments from './Payments';
+import Notifications from './Notifications';
+import Visitors from './Visitors';
 
 export default class Home extends React.Component {
   renderSearch = () => {
@@ -53,6 +55,15 @@ export default class Home extends React.Component {
         <Block flex  style={styles.container}>
           <HelpersList />
         </Block>
+        <Block flex  style={styles.container}>
+          <Payments />
+        </Block>
+        <Block flex  style={styles.container}>
+          <Notifications />
+        </Block>
+        <Block flex  style={styles.container}>
+          <Visitors />
+        </Block>
       </ScrollView>
     )
   }
@@ -73,7 +84,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#D7DBDD',
-    marginBottom: 5,
+    marginBottom: 10,
     borderRadius: 15
   },
   search: {

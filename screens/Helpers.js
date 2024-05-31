@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     marginRight:10
   },
   avatar: {
-    width: 10,
+    width: 50,
     height: 50,
     borderRadius: 25,
   },

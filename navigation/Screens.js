@@ -15,7 +15,7 @@ import HomeScreen from "../screens/Home";
 import KidsScreen from "../screens/Kids";
 import ManScreen from "../screens/Man";
 import NewCollectionScreen from "../screens/NewCollection";
-import NotificationsScreen from "../screens/Notifications";
+import NotificationsScreen from "../screens/NotificationSettings";
 // screens
 import OnboardingScreen from "../screens/Onboarding";
 import PrivacyScreen from "../screens/Privacy";
@@ -30,6 +30,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabs } from "../constants/";
+import ViewAllScreen from "../screens/ViewAll";
 
 const { width } = Dimensions.get("screen");
 
@@ -877,22 +878,7 @@ function HomeStack(props) {
           ),
         }}
       />
-      {/* <Stack.Screen
-        name="Deals"
-        component={DealsScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              tabs={tabs.deals}
-              title="Best Deals"
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
+      {/*<Stack.Screen
         name="Categories"
         component={CategoriesScreen}
         options={{
@@ -1085,6 +1071,8 @@ function AppStack(props) {
           />
           </BottomTab.Navigator> */}
         </Stack.Screen>
+        <Stack.Screen name="ViewAll" component={ViewAllScreen} />
+
       </Stack.Navigator>
     {/* <Drawer.Navigator
       style={{ flex: 1 }}
