@@ -50,9 +50,7 @@ class Header extends React.Component {
     const { back, navigation } = this.props;
     if (back)
       navigation.goBack();
-      else
-        navigation.openDrawer();
-    // return (back ? navigation.goBack() : navigation.openDrawer());
+      
   }
 
   renderRight = () => {
@@ -85,8 +83,8 @@ class Header extends React.Component {
       case 'Search':
       case 'Settings':
         return ([
-          <ChatButton key='chat-search' navigation={navigation} isWhite={white} />,
-          <BasketButton key='basket-search' navigation={navigation} isWhite={white} />
+          // <ChatButton key='chat-search' navigation={navigation} isWhite={white} />,
+          // <BasketButton key='basket-search' navigation={navigation} isWhite={white} />
         ]);
       case 'Product':
         return ([
@@ -136,7 +134,7 @@ class Header extends React.Component {
   renderTabs = () => {
     const { tabs, tabIndex, navigation } = this.props;
     const defaultTab = tabs && tabs[0] && tabs[0].id;
-    
+
     if (!tabs) return null;
 
     return (
@@ -152,8 +150,8 @@ class Header extends React.Component {
     if (search || tabs || options) {
       return (
         <Block center>
-          {search ? this.renderSearch() : null}
-          {options ? this.renderOptions() : null}
+          {/* {search ? this.renderSearch() : null}
+          {options ? this.renderOptions() : null} */}
           {tabs ? this.renderTabs() : null}
         </Block>
       )
