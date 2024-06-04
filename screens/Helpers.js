@@ -1,20 +1,23 @@
 import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Text, Block, Icon } from 'galio-framework';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const Helpers = ({ name, imageSource, icon }) => {
+const Helpers = ({ name, imageSource, icon, handleViewAllPress }) => {
   return (
-    <Block style={styles.userAction}>
-      <View style={styles.avatarContainer}>
-        {imageSource ? (
-          <Image source={imageSource} style={styles.avatar} />
-        ) : (
-          <Icon name={icon} family="material" style={styles.icon} />
-        )}
-        <Icon name="add-circle" family="material" style={styles.addIcon} />
-      </View>
-      <Text size={12}>{name}</Text>
-    </Block>
+    <TouchableOpacity onPress={handleViewAllPress}>
+      <Block style={styles.userAction}>
+        <View style={styles.avatarContainer}>
+          {imageSource ? (
+            <Image source={imageSource} style={styles.avatar} />
+          ) : (
+            <Icon name={icon} family="material" style={styles.icon} />
+          )}
+          <Icon name="add-circle" family="material" style={styles.addIcon} />
+        </View>
+        <Text size={12}>{name}</Text>
+      </Block>
+    </TouchableOpacity>
   );
 };
 
@@ -27,7 +30,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     marginBottom: 2,
     color: '#F8F9F9',
-    marginRight:10
+    marginRight: 10,
   },
   avatar: {
     width: 50,

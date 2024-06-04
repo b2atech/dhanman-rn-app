@@ -31,6 +31,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabs } from "../constants/";
 import ViewAllScreen from "../screens/ViewAll";
+import MaidProfileScreen from "../screens/MaidProfile";
 
 const { width } = Dimensions.get("screen");
 
@@ -1072,7 +1073,7 @@ function AppStack(props) {
           </BottomTab.Navigator> */}
         </Stack.Screen>
         <Stack.Screen name="ViewAll" component={ViewAllScreen} />
-
+        <Stack.Screen name="MaidProfile" component={MaidProfileScreen} />
       </Stack.Navigator>
     {/* <Drawer.Navigator
       style={{ flex: 1 }}
