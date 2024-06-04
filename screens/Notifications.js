@@ -1,18 +1,19 @@
 import React from 'react';
-import { StyleSheet, Image, View } from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import { Text, Block, Icon } from 'galio-framework';
 
 const Notifications = ({ name, imageSource, icon }) => {
   return (
     <Block style={styles.userAction}>
+      <TouchableOpacity onPress={() => navigation.navigate('NoticeList')}>
       <View style={styles.avatarContainer}>
         <Icon name='notifications-outline' family="ionicon" style={styles.icon} />
-        <Text size={18}>Notifications</Text>
+        <Text size={16}>NOTICE BOARD</Text>
       </View>
       <View style={styles.avatarContainer}>
         <Text size={15}>You have 6 new notifications</Text>
       </View>
-      
+      </TouchableOpacity>
     </Block>
   );
 };

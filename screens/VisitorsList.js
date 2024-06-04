@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Image, Dimensions } from 'react-nat
 import { Icon, Block, theme } from 'galio-framework';
 
 const { width } = Dimensions.get('screen');
-const ViewAllScreen = ({ route }) => {
+const VisitorsListScreen = ({ route }) => {
   const { helpers } = route.params;
 
   return (
@@ -59,11 +59,6 @@ const styles = StyleSheet.create({
       marginHorizontal: 10,
       alignItems: 'center'
     },
-    imageContainer: {
-      position: 'relative',
-      borderRadius: 100,
-      overflow: 'hidden'
-    },
     image: {
       width: 100,
       height: 100,
@@ -104,4 +99,4 @@ const styles = StyleSheet.create({
       },
   });
 
-export default ViewAllScreen;
+export default VisitorsListScreen;

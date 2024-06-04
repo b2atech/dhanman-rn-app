@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Image, Dimensions } from 'react-nat
 import { Icon, Block, theme } from 'galio-framework';
 
 const { width } = Dimensions.get('screen');
-const ViewAllScreen = ({ route }) => {
+const NoticeScreen = ({ route }) => {
   const { helpers } = route.params;
 
   return (
@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
       },
   });
 
-export default ViewAllScreen;
+export default NoticeScreen;

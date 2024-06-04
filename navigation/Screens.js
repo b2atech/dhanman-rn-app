@@ -12,6 +12,7 @@ import ComponentsScreen from "../screens/Components";
 import DealsScreen from "../screens/Deals";
 import GalleryScreen from "../screens/Gallery";
 import HomeScreen from "../screens/Home";
+import ServiceScreen from "../screens/Service";
 import KidsScreen from "../screens/Kids";
 import ManScreen from "../screens/Man";
 import NewCollectionScreen from "../screens/NewCollection";
@@ -31,6 +32,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { tabs } from "../constants/";
 import ViewAllScreen from "../screens/ViewAll";
+import VisitorsListScreen from "../screens/VisitorsList";
 
 const { width } = Dimensions.get("screen");
 
@@ -863,7 +865,7 @@ function HomeStack(props) {
       }}
     >
       <Stack.Screen
-        name="Home"
+        name="House"
         headerShown={false}
         component={HomeScreen}
         options={{
@@ -871,9 +873,10 @@ function HomeStack(props) {
             <Header
               search
               options
-              title="Home"
+              title="A 101"
               navigation={navigation}
               scene={scene}
+              transparent={true}
             />
           ),
         }}
@@ -988,6 +991,35 @@ function HomeStack(props) {
   );
 }
 
+function ServiceStack(props) {
+  return (
+    <Stack.Navigator
+      initialRouteName="Service"
+      screenOptions={{
+        mode: "card",
+        headerShown: "screen",
+      }}
+    >
+      <Stack.Screen
+        name="Service"
+        headerShown={false}
+        component={ServiceScreen}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header 
+            search
+            options 
+            title="Services" 
+            scene={scene} 
+            navigation={navigation} 
+            back={true}
+            transparent={true}/>
+          ),
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
 function MainTabs() {
   return (
     <BottomTab.Navigator>
@@ -1029,7 +1061,7 @@ function MainTabs() {
       />
       <BottomTab.Screen
         name="Services"
-        component={SettingsStack}
+        component={ServiceStack}
         options={{
           tabBarIcon: ({ color }) => (
             <Icon name="handyman" family="material" color={color} />
@@ -1049,29 +1081,23 @@ function AppStack(props) {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="MainTabs" component={MainTabs}>
-        {/* <BottomTab.Navigator>
-          <BottomTab.Screen
-            name="Social"
-            component={SocialStack}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Icon name="groups" family="material" color={color} />
-              ),
-            }}
-          />
-          <BottomTab.Screen
-            name="Community"
-            component={ComponentsStack}
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Icon name="apartment" family="material" color={color} />
-              ),
-            }}
-          />
-          </BottomTab.Navigator> */}
-        </Stack.Screen>
-        <Stack.Screen name="ViewAll" component={ViewAllScreen} />
+        <Stack.Screen name="MainTabs" component={MainTabs}/>
+        <Stack.Screen 
+          name="ViewAll" 
+          component={ViewAllScreen} 
+          options={{
+            header: ({ navigation, scene }) => (
+              <Header
+                search
+                options
+                title="A 101"
+                navigation={navigation}
+                scene={scene}
+                transparent={true}
+              />
+            ),
+          }}/>
+        <Stack.Screen name="VisitorsList" component={VisitorsListScreen} />
 
       </Stack.Navigator>
     {/* <Drawer.Navigator
