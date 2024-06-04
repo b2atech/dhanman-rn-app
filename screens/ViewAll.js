@@ -15,7 +15,7 @@ const ViewAllScreen = ({ route }) => {
                 <View style={styles.container}>
                     <ScrollView vertical contentContainerStyle={styles.scrollView}>
                         
-                        <View key={index} >
+                        <View key={user.id} >
                             {user.imageSource ? (
                             <Image source={user.imageSource} style={styles.image} />
                             ) : (
