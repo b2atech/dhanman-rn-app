@@ -1,47 +1,55 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Icon, Block, theme } from 'galio-framework';
+import { useNavigation } from "@react-navigation/native";
 
 const { width } = Dimensions.get('screen');
 const ViewAllScreen = ({ route }) => {
   const { helpers } = route.params;
+  const navigation = useNavigation();
+
+  const handleProfilePress = (user) => {
+    navigation.navigate("MaidProfile", { userProfile: user });
+  };
 
   return (
     <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.products}>
             {helpers.map((user, index) => (
-            <Block flex  style={styles.card}>
-                <View style={styles.container}>
-                    <ScrollView vertical contentContainerStyle={styles.scrollView}>
-                        
-                        <View key={user.id} >
-                            {user.imageSource ? (
-                            <Image source={user.imageSource} style={styles.image} />
-                            ) : (
-                                <View style={styles.dotCircle}>
-                                <Icon
-                                  name={user.icon}
-                                  family='material'
-                                  size={70}
-                                  color="#fff" // Set white color for icon within dot
-                                  style={styles.profileicon}
-                                />
-                              </View>
-                            )}
-                            <View style={styles.infoContainer}>
-                                <Text size={20} style={styles.name}>{user.name}</Text>
-                                <Text size={14} style={styles.name}>{user.work}</Text>
-                                <View style={styles.iconRow}>
-                                    <Icon name="phone" family="material-community" size={20} style={styles.icon} />
-                                    <Icon name="bell" family="material-community" size={20} style={styles.icon} />
-                                    <Icon name="star" family="material-community" size={20} style={styles.icon} />
+            <Block flex style={styles.card} key={user.id}>
+                <TouchableOpacity onPress={() => handleProfilePress(user)}>
+                  <View style={styles.container}>
+                      <ScrollView vertical contentContainerStyle={styles.scrollView}>
+                          
+                          <View>
+                              {user.imageSource ? (
+                              <Image source={user.imageSource} style={styles.image} />
+                              ) : (
+                                  <View style={styles.dotCircle}>
+                                  <Icon
+                                    name={user.icon}
+                                    family='material'
+                                    size={70}
+                                    color="#fff"
+                                    style={styles.profileicon}
+                                  />
                                 </View>
-                            </View>
-                        </View>
-                        
-                    </ScrollView>
-                </View>
+                              )}
+                              <View style={styles.infoContainer}>
+                                  <Text size={20} style={styles.name}>{user.name}</Text>
+                                  <Text size={14} style={styles.name}>{user.work}</Text>
+                                  <View style={styles.iconRow}>
+                                      <Icon name="phone" family="material-community" size={20} style={styles.icon} />
+                                      <Icon name="bell" family="material-community" size={20} style={styles.icon} />
+                                      <Icon name="star" family="material-community" size={20} style={styles.icon} />
+                                  </View>
+                              </View>
+                          </View>
+                          
+                      </ScrollView>
+                  </View>
+                </TouchableOpacity>
             </Block>
         ))}
     </ScrollView>

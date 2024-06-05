@@ -1,21 +1,31 @@
 import React from 'react';
 import { View, Image, StyleSheet, ScrollView, Text, Button } from 'react-native';
-import { Card } from 'react-native-paper'; 
+import { Card } from 'react-native-paper';
 
 const MaidProfileScreen = ({ route }) => {
-  const { userProfile } = route.params;
+  const { userProfile } = route.params || {};
+
+  const {
+    name = 'Default Name',
+    imageSource = require('../assets/images/default.jpg'), 
+    work = 'Default Work',
+    contact = 'Default Contact'
+  } = userProfile || {};
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Card style={styles.profileCard}>
         <View style={styles.profileHeader}>
-          <Image
-            style={styles.profileImage}
-            source={userProfile.imageSource}
-          />
+          {imageSource && (
+            <Image
+              style={styles.profileImage}
+              source={userProfile.imageSource}
+            />
+          )}
           <View style={styles.profileInfo}>
             <Text style={styles.name}>{userProfile.name}</Text>
-            <Text style={styles.contact}>6230316165</Text>
+            <Text style={styles.work}>{work}</Text>
+            <Text style={styles.contact}>{contact}</Text>
             <Button title="Verify/Edit Contact Number" color="#1e88e5" />
           </View>
         </View>
@@ -81,6 +91,10 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  work: {
+    fontSize: 16,
+    color: 'gray',
   },
   contact: {
     fontSize: 16,

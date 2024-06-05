@@ -1,18 +1,18 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
-
 import { Icon } from '../components/';
-const { width } = Dimensions.get('screen');
 import HelpersList from './HelpersList';
 import Payments from './Payments';
 import Notifications from './Notifications';
 import Visitors from './Visitors';
 
+const { width } = Dimensions.get('screen');
+
 export default class Home extends React.Component {
   renderSearch = () => {
     const { navigation } = this.props;
-    const iconContent = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
+    const iconContent = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />;
 
     return (
       <Input
@@ -23,9 +23,9 @@ export default class Home extends React.Component {
         placeholder="What are you looking for?"
         onFocus={() => navigation.navigate('Search')}
       />
-    )
+    );
   }
-  
+
   renderTabs = () => {
     const { navigation } = this.props;
 
@@ -44,7 +44,7 @@ export default class Home extends React.Component {
           </Block>
         </Button>
       </Block>
-    )
+    );
   }
 
   renderProducts = () => {
@@ -52,25 +52,27 @@ export default class Home extends React.Component {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.products}>
-        <Block flex  style={styles.container}>
+        <Block flex style={styles.container}>
           <HelpersList />
         </Block>
-        <Block flex  style={styles.container}>
+        <Block flex style={styles.container}>
           <Payments />
         </Block>
-        <Block flex  style={styles.container}>
+        <Block flex style={styles.container}>
           <Notifications />
         </Block>
-        <Block flex  style={styles.container}>
+        <Block flex style={styles.container}>
           <Visitors />
         </Block>
       </ScrollView>
-    )
+    );
   }
 
   render() {
     return (
       <Block flex center style={styles.home}>
+        {this.renderSearch()}
+        {this.renderTabs()}
         {this.renderProducts()}
       </Block>
     );
@@ -79,13 +81,13 @@ export default class Home extends React.Component {
 
 const styles = StyleSheet.create({
   home: {
-    width: width,    
+    width: width,
   },
   container: {
     flex: 1,
     backgroundColor: '#D7DBDD',
     marginBottom: 10,
-    borderRadius: 15
+    borderRadius: 15,
   },
   search: {
     height: 48,
@@ -93,18 +95,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderWidth: 1,
     borderRadius: 3,
-  },
-  header: {
-    backgroundColor: theme.COLORS.WHITE,
-    shadowColor: theme.COLORS.BLACK,
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowRadius: 8,
-    shadowOpacity: 0.2,
-    elevation: 4,
-    zIndex: 2,
   },
   tabs: {
     marginBottom: 24,
@@ -121,7 +111,7 @@ const styles = StyleSheet.create({
   },
   tabTitle: {
     lineHeight: 19,
-    fontWeight: '300'
+    fontWeight: '300',
   },
   divider: {
     borderRightWidth: 0.3,
@@ -132,3 +122,4 @@ const styles = StyleSheet.create({
     paddingVertical: theme.SIZES.BASE * 2,
   },
 });
+
