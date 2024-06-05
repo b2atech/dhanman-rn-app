@@ -866,20 +866,10 @@ function HomeStack(props) {
       }}
     >
       <Stack.Screen
-        name="House"
-        headerShown={false}
+        name="Home"
         component={HomeScreen}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              search
-              options
-              title="A 101"
-              navigation={navigation}
-              scene={scene}
-              transparent={true}
-            />
-          ),
+          headerShown: false, 
         }}
       />
       {/*<Stack.Screen
