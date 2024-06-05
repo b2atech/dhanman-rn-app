@@ -34,6 +34,30 @@ const BasketButton = ({isWhite, style, navigation}) => (
   </TouchableOpacity>
 );
 
+const ProfileButton = ({isWhite, style, navigation}) => (
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Chat')}>
+    <Icon
+      family="material"
+      size={20}
+      name="account-circle"
+      color='white'
+    />
+    <Block middle style={styles.notify} />
+  </TouchableOpacity>
+);
+
+const SettingButton = ({isWhite, style, navigation}) => (
+  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Cart')}>
+    <Icon
+      family="material"
+      size={20}
+      name="settings"
+      color='white'
+    />
+    <Block middle style={styles.notify} />
+  </TouchableOpacity>
+);
+
 const SearchButton = ({isWhite, style, navigation}) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Search')}>
     <Icon
@@ -72,7 +96,7 @@ class Header extends React.Component {
       case 'Categories':
       case 'Category':
       case 'Deals':
-      case 'Home':
+      case 'House':
       case 'Woman':
       case 'Man':
       case 'Kids':
@@ -82,9 +106,10 @@ class Header extends React.Component {
       case 'Profile':
       case 'Search':
       case 'Settings':
+      case 'A 101':
         return ([
-          // <ChatButton key='chat-search' navigation={navigation} isWhite={white} />,
-          // <BasketButton key='basket-search' navigation={navigation} isWhite={white} />
+          <ProfileButton key='chat-search' navigation={navigation} isWhite={white} />,
+          <SettingButton key='basket-search' navigation={navigation} isWhite={white} />
         ]);
       case 'Product':
         return ([
@@ -167,7 +192,7 @@ class Header extends React.Component {
     const noShadow = ["Search", "Profile"].includes(title);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
-      transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null,
+      transparent ? { backgroundColor: '#d0b8ac' } : null,
     ];
 
     return (
@@ -179,13 +204,13 @@ class Header extends React.Component {
           transparent={transparent}
           right={this.renderRight()}
           rightStyle={{ alignItems: 'center' }}
-          leftStyle={{ paddingTop: 3, flex: 0.3 }}
-          leftIconName={back ? null : "navicon"}
+          leftStyle={{ paddingTop: 3, flex: 0.1 }}
+          // leftIconName={back ? null : "navicon"}
           // leftIconFamily="font-awesome"
           leftIconColor={white ? theme.COLORS.WHITE : theme.COLORS.ICON}
           titleStyle={[
             styles.title,
-            { color: theme.COLORS[white ? 'WHITE' : 'ICON'] },
+            { color: 'white'},
           ]}
           onLeftPress={this.handleLeftPress}
         />
@@ -204,7 +229,7 @@ const styles = StyleSheet.create({
   },
   title: {
     width: '100%',
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   navbar: {
