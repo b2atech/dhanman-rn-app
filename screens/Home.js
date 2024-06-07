@@ -57,27 +57,27 @@ export default class Home extends React.Component {
         <View style={styles.scrollhorizontal}>
           <ScrollView horizontal contentContainerStyle={styles.scrollView}>
             <Block flex style={styles.displaycontainer}>
-              <DisplayCards name='Stay Safe' color='black' description="check your society's health status" icon='masks'/>
+              <DisplayCards name='Events' color='black' description="check your society's events" icon='event' family='material'/>
             </Block>
             <Block flex style={styles.displaycontainer}>
-              <DisplayCards name='Pay Now' color='black' description='Offers on home rent' icon='currency-rupee'/>
+              <DisplayCards name='Pay Rent' color='black' description='Pay your rent/maintainance' icon='currency-rupee' family='material'/>
             </Block>
             <Block flex style={styles.displaycontainer}>
-              <DisplayCards name='Hungry?' color='black' description='Order food from your trusted food app' icon='fastfood'/>
+              <DisplayCards name='Book Slot' color='black' description='Book your next indoor game slot' icon='sports-tennis' family='material'/>
             </Block>
           </ScrollView>
         </View>
         <Block flex style={styles.container}>
-          <HelpersList />
+          <Payments  />
         </Block>
         <Block flex style={styles.container}>
-          <Payments />
+          <Visitors/>
         </Block>
         <Block flex style={styles.container}>
           <Notifications />
         </Block>
         <Block flex style={styles.container}>
-          <Visitors />
+          <HelpersList />
         </Block>
         <View style={styles.scrollhorizontal}>
           <ScrollView horizontal>
@@ -105,8 +105,8 @@ export default class Home extends React.Component {
   render() {
     return (
       <Block flex center style={styles.home}>
-        {this.renderSearch()}
-        {this.renderTabs()}
+        {/* {this.renderSearch()}
+        {this.renderTabs()} */}
         {this.renderProducts()}
       </Block>
     );
