@@ -8,6 +8,7 @@ import Notifications from './Notifications';
 import Visitors from './Visitors';
 import DisplayCards from './DisplayCards';
 import SocietyCard from './SocietyCards';
+import commonStyles from '../style/CommonStyles';
 
 const { width } = Dimensions.get('screen');
 
@@ -53,16 +54,16 @@ export default class Home extends React.Component {
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.products}>
-        <View style={styles.scrollhorizontal}>
+        contentContainerStyle={commonStyles.home}>
+        <View style={commonStyles.flexDirectionRow}>
           <ScrollView horizontal contentContainerStyle={styles.scrollView}>
-            <Block flex style={styles.displaycontainer}>
+            <Block flex style={[styles.displaycontainer, styles.container]}>
               <DisplayCards name='Stay Safe' color='black' description="check your society's health status" icon='masks'/>
             </Block>
-            <Block flex style={styles.displaycontainer}>
+            <Block flex style={[styles.displaycontainer, styles.container]}>
               <DisplayCards name='Pay Now' color='black' description='Offers on home rent' icon='currency-rupee'/>
             </Block>
-            <Block flex style={styles.displaycontainer}>
+            <Block flex style={[styles.displaycontainer, styles.container]}>
               <DisplayCards name='Hungry?' color='black' description='Order food from your trusted food app' icon='fastfood'/>
             </Block>
           </ScrollView>
@@ -79,7 +80,7 @@ export default class Home extends React.Component {
         <Block flex style={styles.container}>
           <Visitors />
         </Block>
-        <View style={styles.scrollhorizontal}>
+        <View style={commonStyles.flexDirectionRow}>
           <ScrollView horizontal>
             <Block flex>
               <SocietyCard imageSource={require('../assets/images/covid.jpg')} name='Covid Care'/>
@@ -104,7 +105,7 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <Block flex center style={styles.home}>
+      <Block flex center style={commonStyles.mainPage}>
         {this.renderSearch()}
         {this.renderTabs()}
         {this.renderProducts()}
@@ -114,26 +115,17 @@ export default class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  home: {
-    width: width,
-  },
-  scrollhorizontal:{
-    flexDirection: 'row'
-  },
   displaycontainer: {
-    flex: 1,
-    backgroundColor: '#d5bdaf',
-    marginBottom: 10,
     marginRight: 10,
-    borderRadius: 15,
     width: 150,
     height: 120,
   },
   container: {
     flex: 1,
-    backgroundColor: '#d6ccc2',
+    backgroundColor: '#ffff',
     marginBottom: 10,
     borderRadius: 15,
+    marginHorizontal: 10
   },
   search: {
     height: 48,
@@ -162,10 +154,6 @@ const styles = StyleSheet.create({
   divider: {
     borderRightWidth: 0.3,
     borderRightColor: theme.COLORS.MUTED,
-  },
-  products: {
-    width: width - theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE * 2,
   },
 });
 

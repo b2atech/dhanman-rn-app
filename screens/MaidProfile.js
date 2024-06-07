@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet, ScrollView, Text, Button } from 'react-native';
 import { Card } from 'react-native-paper';
+import commonStyles from '../style/CommonStyles';
 
 const MaidProfileScreen = ({ route }) => {
   const { userProfile } = route.params || {};
@@ -15,7 +16,7 @@ const MaidProfileScreen = ({ route }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Card style={styles.profileCard}>
-        <View style={styles.profileHeader}>
+        <View style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
           {imageSource && (
             <Image
               style={styles.profileImage}
@@ -35,21 +36,21 @@ const MaidProfileScreen = ({ route }) => {
           <Button title="Message" color="#e0e0e0" />
         </View>
       </Card>
-      <Card style={styles.attendanceCard}>
-        <View style={styles.attendanceHeader}>
+      <Card style={[styles.attendanceCard, commonStyles.alignItemCenter]}>
+        <View style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
           <Text style={styles.attendanceText}>Attendance</Text>
           <Text style={styles.attendanceCount}>24/30</Text>
         </View>
         <Button title="Record Payment" color="#ffeb3b" />
       </Card>
-      <Card style={styles.ratingCard}>
+      <Card style={[styles.ratingCard, commonStyles.alignItemCenter]}>
         <Text style={styles.ratingText}>4.0</Text>
         <Text style={styles.ratingLabel}>Rate Now</Text>
         <View style={styles.ratingIcons}>
-          <Image style={styles.ratingIcon} source={{ uri: 'https://via.placeholder.com/50' }} />
-          <Image style={styles.ratingIcon} source={{ uri: 'https://via.placeholder.com/50' }} />
-          <Image style={styles.ratingIcon} source={{ uri: 'https://via.placeholder.com/50' }} />
-          <Image style={styles.ratingIcon} source={{ uri: 'https://via.placeholder.com/50' }} />
+          <Image style={[styles.ratingIcon, commonStyles.widthHeight]} source={{ uri: 'https://via.placeholder.com/50' }} />
+          <Image style={[styles.ratingIcon, commonStyles.widthHeight]} source={{ uri: 'https://via.placeholder.com/50' }} />
+          <Image style={[styles.ratingIcon, commonStyles.widthHeight]} source={{ uri: 'https://via.placeholder.com/50' }} />
+          <Image style={[styles.ratingIcon, commonStyles.widthHeight]} source={{ uri: 'https://via.placeholder.com/50' }} />
         </View>
       </Card>
       <Card style={styles.infoCard}>
@@ -58,7 +59,7 @@ const MaidProfileScreen = ({ route }) => {
       <Card style={styles.infoCard}>
         <Text style={styles.infoText}>Free Time Slots: 6-7 am</Text>
       </Card>
-      <View style={styles.footer}>
+      <View style={[styles.footer, commonStyles.alignItemCenter]}>
         <Text style={styles.footerText}>ADDED BY SHUBHANGI ON 30 JAN 2023</Text>
         <Button title="Remove" color="#f44336" />
       </View>
@@ -75,10 +76,6 @@ const styles = StyleSheet.create({
   profileCard: {
     padding: 16,
     marginBottom: 16,
-  },
-  profileHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   profileImage: {
     width: 100,
@@ -110,11 +107,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  attendanceHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   attendanceText: {
     fontSize: 16,
@@ -127,7 +119,6 @@ const styles = StyleSheet.create({
   ratingCard: {
     padding: 16,
     marginBottom: 16,
-    alignItems: 'center',
   },
   ratingText: {
     fontSize: 24,
@@ -143,8 +134,6 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   ratingIcon: {
-    width: 50,
-    height: 50,
     margin: 4,
   },
   infoCard: {
@@ -155,7 +144,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   footer: {
-    alignItems: 'center',
     marginTop: 16,
   },
   footerText: {

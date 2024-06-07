@@ -969,7 +969,7 @@ function HomeStack(props) {
           ),
         }}
       /> */}
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Search"
         component={SearchScreen}
         options={{
@@ -977,7 +977,7 @@ function HomeStack(props) {
             <Header back title="Search" navigation={navigation} scene={scene} />
           ),
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

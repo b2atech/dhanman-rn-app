@@ -3,6 +3,7 @@ import { StyleSheet, ScrollView, View } from 'react-native';
 import { Text, Icon, Block } from 'galio-framework';
 import Helpers from './Helpers';
 import { useNavigation } from '@react-navigation/native';
+import commonStyles from '../style/CommonStyles';
 
 const Visitors = () => {
   const users = [
@@ -21,11 +22,11 @@ const Visitors = () => {
   return (
     <Block>
       <View style={styles.container}>
-        <Icon name='group' family="material" style={styles.icon} />
+        <Icon name='group' family="material" style={commonStyles.icon} />
         <Text size={16}>VISITORS</Text>
       </View>
       <View style={styles.container}>
-        <ScrollView horizontal contentContainerStyle={styles.scrollView}>
+        <ScrollView horizontal contentContainerStyle={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
           {users.map((user, index) => (
             <Helpers key={index} name={user.name} imageSource={user.imageSource} icon={user.icon} />
           ))}
@@ -46,19 +47,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginRight: 20
   },
-  scrollView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   viewAllContainer: {
     flexDirection: 'column',
     alignItems: 'center',
     marginLeft: 10,
-  },
-  icon: {
-    fontSize: 25,
-    alignItems: 'left',
-    color: '#007AFF',
   },
 });
 

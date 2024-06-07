@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
   },
   padded: {
-    // paddingHorizontal: theme.SIZES.BASE * 2,
     position: 'relative',
     bottom: theme.SIZES.BASE,
   },

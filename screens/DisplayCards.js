@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Text, Block, Icon } from 'galio-framework';
+import commonStyles from '../style/CommonStyles';
 
 const DisplayCards = ({ name, imageSource, icon, description, color }) => {
   return (
@@ -9,7 +10,7 @@ const DisplayCards = ({ name, imageSource, icon, description, color }) => {
         {imageSource ? (
           <Image source={imageSource} style={styles.avatar} />
         ) : (
-          <View style={styles.container}>
+          <View style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
             <Text style={styles.text}>{name}</Text>
             <Icon name={icon} family="material" style={styles.icon} />
           </View>
@@ -21,10 +22,6 @@ const DisplayCards = ({ name, imageSource, icon, description, color }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   blockContainer: {
     marginBottom: 5,
     marginRight:10,

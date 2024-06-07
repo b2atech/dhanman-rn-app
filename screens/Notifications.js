@@ -1,16 +1,17 @@
 import React from 'react';
 import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
 import { Text, Block, Icon } from 'galio-framework';
+import commonStyles from '../style/CommonStyles';
 
-const Notifications = ({ name, imageSource, icon }) => {
+const Notifications = () => {
   return (
     <Block style={styles.userAction}>
       <TouchableOpacity onPress={() => navigation.navigate('NoticeList')}>
-      <View style={styles.avatarContainer}>
-        <Icon name='notifications-outline' family="ionicon" style={styles.icon} />
+      <View style={[styles.avatarContainer, commonStyles.flexDirectionRow, commonStyles.alignItemLeft]}>
+        <Icon name='notifications-outline' family="ionicon" style={commonStyles.icon} />
         <Text size={16}>NOTICE BOARD</Text>
       </View>
-      <View style={styles.avatarContainer}>
+      <View style={[commonStyles.marginBottom2, commonStyles.flexDirectionRow, commonStyles.alignItemLeft]}>
         <Text size={15}>You have 6 new notifications</Text>
       </View>
       </TouchableOpacity>
@@ -24,20 +25,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 10
   },
-  avatarContainer: {
-    flexDirection: 'row',
-    marginBottom: 2,
-    alignItems: 'left',
-  },
   avatar: {
     width: 10,
     height: 50,
     borderRadius: 25,
-  },
-  icon: {
-    fontSize: 25,
-    alignItems: 'left',
-    color: '#007AFF',
   },
 });
 
