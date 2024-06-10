@@ -19,8 +19,9 @@ const commonStyles = StyleSheet.create({
     home: {
       width: width,
       paddingVertical: 20,
-      backgroundColor: '#d6ccc2',
-      justifyContent: 'center'
+      backgroundColor: '#F8F9F9',
+      justifyContent: 'center',
+      borderRadius: 50,
     },
     mainPage: {
       width: width,    
@@ -44,6 +45,13 @@ const commonStyles = StyleSheet.create({
       backgroundColor: '#F8F9F9',
       justifyContent: 'center',
     },
+    shadow:{
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+    }
     
 });
 

@@ -15,7 +15,7 @@ export default class Service extends React.Component {
             <Block flex style={styles.titleBlock}>
               <Text style={styles.title}>Trending Services</Text>
             </Block>
-            <Block flex style={styles.container}>
+            <Block flex style={[styles.container, commonStyles.shadow]}>
               <Services name='Appliance Repair' imageSource={require('../assets/images/washing.jpg')}/>
               <Services name='Cabs' imageSource={require('../assets/images/taxi.jpg')}/>
               <Services name='Health Hubs' imageSource={require('../assets/images/health.jpg')}/>
@@ -23,7 +23,7 @@ export default class Service extends React.Component {
             <Block flex style={styles.titleBlock}>
               <Text style={styles.title}>Services by Urban Company</Text>
             </Block>
-            <Block flex style={styles.container}>
+            <Block flex style={[styles.container, commonStyles.shadow]}>
               <Services name='Pest Control' imageSource={require('../assets/images/pest.jpg')}/>
               <Services name='Carpenters' imageSource={require('../assets/images/carpenter.jpg')}/>
               <Services name='Plumbers' imageSource={require('../assets/images/tap.jpg')}/>
