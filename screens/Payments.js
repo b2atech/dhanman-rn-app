@@ -10,9 +10,8 @@ const Payments = ({ name, imageSource, icon }) => {
 
   return (
     <Block style={styles.userAction}>
-      <View style={[commonStyles.flexDirectionRow, commonStyles.alignItemLeft, commonStyles.marginBottom2]}>
+      <View style={[commonStyles.flexDirectionRow, styles.avatarContainer]}>
         <View style={styles.iconAndText}>
-          <Icon name='attach-money' family="material" style={commonStyles.icon} />
           <Text size={18}>Payments</Text>
         </View>
         <View style={styles.paymentAndDropdown}>
@@ -33,7 +32,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   avatarContainer: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
