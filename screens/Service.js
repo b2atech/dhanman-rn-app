@@ -4,13 +4,14 @@ import { Block } from 'galio-framework';
 
 const { width } = Dimensions.get('screen');
 import Services from './Services';
+import commonStyles from '../style/CommonStyles';
 
 export default class Service extends React.Component {
     renderProducts = () => {
         return (
           <ScrollView 
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.products}>
+            contentContainerStyle={commonStyles.home}>
             <Block flex style={styles.titleBlock}>
               <Text style={styles.title}>Trending Services</Text>
             </Block>
@@ -36,7 +37,7 @@ export default class Service extends React.Component {
     
       render() {
         return (
-          <Block flex center style={styles.home}>
+          <Block flex center style={commonStyles.mainPage}>
             {this.renderProducts()}
           </Block>
         );
@@ -44,9 +45,6 @@ export default class Service extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    home: {
-      width: width,    
-    },
     container: {
       flex: 1,
       flexDirection: 'row',
@@ -68,10 +66,4 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 5,
       },
-    products: {
-      width: width,
-      paddingVertical: 20,
-      backgroundColor: '#d6ccc2',
-      justifyContent: 'center'
-    },
 });

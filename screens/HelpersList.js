@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Text, Icon } from "galio-framework";
 import { useNavigation } from "@react-navigation/native";
+import commonStyles from "../style/CommonStyles";
 
 const HelpersList = () => {
   const users = [
@@ -53,20 +54,21 @@ const HelpersList = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView horizontal contentContainerStyle={styles.scrollView}>
+    <View style={[styles.container, commonStyles.alignItemCenter]}>
+      <ScrollView horizontal contentContainerStyle={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
         {users.map((user) => (
           <TouchableOpacity
             key={user.id}
             onPress={() => handleProfilePress(user)}
-            style={styles.helperContainer}
+            style={[styles.helperContainer, commonStyles.alignItemCenter]}
           >
-            <Image source={user.imageSource} style={styles.image} />
+            <Image source={user.imageSource} style={[styles.image, commonStyles.widthHeight]} />
+
             <Text style={styles.helperName}>{user.name}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
-      <View style={styles.viewAllContainer}>
+      <View style={[styles.viewAllContainer, commonStyles.alignItemCenter]}>
         <TouchableOpacity onPress={handleViewAllPress} style={styles.viewAllButton}>
           <Icon name="chevron-right" family="material" size={30} />
           <Text size={14} style={styles.viewAllText}>
@@ -81,21 +83,13 @@ const HelpersList = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
     marginHorizontal: 10,
     marginRight: 20,
   },
-  scrollView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   helperContainer: {
     margin: 10,
-    alignItems: 'center',
   },
   image: {
-    width: 50,
-    height: 50,
     borderRadius: 25,
   },
   helperName: {

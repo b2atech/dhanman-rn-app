@@ -2,14 +2,15 @@ import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
 import { Text, Block, Icon } from 'galio-framework';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import commonStyles from '../style/CommonStyles';
 
 const Helpers = ({ name, imageSource, icon, handleViewAllPress }) => {
   return (
     <TouchableOpacity onPress={handleViewAllPress}>
-      <Block style={styles.userAction}>
+      <Block style={[styles.userAction, commonStyles.alignItemCenter]}>
         <View style={styles.avatarContainer}>
           {imageSource ? (
-            <Image source={imageSource} style={styles.avatar} />
+            <Image source={imageSource} style={[styles.avatar, commonStyles.widthHeight]} />
           ) : (
             <Icon name={icon} family="material" style={styles.icon} />
           )}
@@ -23,7 +24,6 @@ const Helpers = ({ name, imageSource, icon, handleViewAllPress }) => {
 
 const styles = StyleSheet.create({
   userAction: {
-    alignItems: 'center',
     marginVertical: 10,
   },
   avatarContainer: {
@@ -33,8 +33,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   avatar: {
-    width: 50,
-    height: 50,
     borderRadius: 25,
   },
   icon: {

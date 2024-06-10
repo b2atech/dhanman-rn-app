@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Alert, TouchableOpacity } from 'react-native';
 import { Text, Block, Icon } from 'galio-framework';
+import commonStyles from '../style/CommonStyles';
 
 const Payments = ({ name, imageSource, icon }) => {
   const handleDropdownClick = () => {
@@ -9,9 +10,8 @@ const Payments = ({ name, imageSource, icon }) => {
 
   return (
     <Block style={styles.userAction}>
-      <View style={styles.avatarContainer}>
+      <View style={[commonStyles.flexDirectionRow, styles.avatarContainer]}>
         <View style={styles.iconAndText}>
-          <Icon name='attach-money' family="material" style={styles.icon} />
           <Text size={18}>Payments</Text>
         </View>
         <View style={styles.paymentAndDropdown}>
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   avatarContainer: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
