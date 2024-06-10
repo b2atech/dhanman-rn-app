@@ -20,6 +20,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ViewAllScreen from "../screens/ViewAll";
 import MaidProfileScreen from "../screens/MaidProfile";
 import VisitorsListScreen from "../screens/VisitorsList";
+import PaymentListScreen from "../screens/PaymentList";
 import CustomHeader from "../screens/CustomerHeader";
 
 const { width } = Dimensions.get("screen");
@@ -497,6 +498,7 @@ function AppStack(props) {
           }}/>
         <Stack.Screen name="VisitorsList" component={VisitorsListScreen} />
         <Stack.Screen name="MaidProfile" component={MaidProfileScreen} />
+        <Stack.Screen name="PaymentList" component={PaymentListScreen} />
       </Stack.Navigator>
     
   );
