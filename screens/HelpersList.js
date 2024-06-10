@@ -64,27 +64,23 @@ const HelpersList = () => {
           >
             <Image source={user.imageSource} style={[styles.image, commonStyles.widthHeight]} />
 
-            <Text>{user.name}</Text>
+            <Text style={styles.helperName}>{user.name}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
       <View style={[styles.viewAllContainer, commonStyles.alignItemCenter]}>
-        <Icon
-          name="chevron-right"
-          family="material"
-          size={30}
-          onPress={handleViewAllPress}
-        />
-        <Text size={14} onPress={handleViewAllPress}>
-          View All
-        </Text>
+        <TouchableOpacity onPress={handleViewAllPress} style={styles.viewAllButton}>
+          <Icon name="chevron-right" family="material" size={30} />
+          <Text size={14} style={styles.viewAllText}>
+            View All
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-
   container: {
     flexDirection: 'row',
     marginHorizontal: 10,
@@ -96,12 +92,22 @@ const styles = StyleSheet.create({
   image: {
     borderRadius: 25,
   },
+  helperName: {
+    marginTop: 5,
+    textAlign: 'center',
+  },
   viewAllContainer: {
-    flexDirection: 'column',
+    flexDirection: 'row',
+    alignItems: 'center',
     marginLeft: 10,
   },
-
+  viewAllButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  viewAllText: {
+    marginLeft: 5,
+  },
 });
-
 
 export default HelpersList;
