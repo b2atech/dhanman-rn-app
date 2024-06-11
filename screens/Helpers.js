@@ -15,7 +15,7 @@ const Helpers = ({ name, imageSource, icon, handleViewAllPress }) => {
             <Icon name={icon} family="material" style={styles.icon} />
           )}
         </View>
-        <Text size={12}>{name}</Text>
+        <Text style={commonStyles.descriptionText}>{name}</Text>
       </Block>
     </TouchableOpacity>
   );
@@ -37,13 +37,6 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: 50,
     color: '#F7F5F5',
-  },
-  addIcon: {
-    position: 'absolute',
-    right: -5,
-    bottom: -5,
-    fontSize: 20,
-    color: '#007AFF',
   },
 });
 
