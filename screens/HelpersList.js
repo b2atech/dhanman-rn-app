@@ -18,6 +18,7 @@ const HelpersList = () => {
       imageSource: require("../assets/images/ratna.jpg"),
       work: "maid",
       contact: "8876543210",
+      insideApartment: true,
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ const HelpersList = () => {
       imageSource: require("../assets/images/balraj.jpg"),
       work: "cleaner",
       contact: "9872943210",
+      insideApartment: true,
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ const HelpersList = () => {
       imageSource: require("../assets/images/sham.jpg"),
       work: "watchman",
       contact: "7876583216",
+      insideApartment: false,
     },
     {
       id: 4,
@@ -39,6 +42,7 @@ const HelpersList = () => {
       imageSource: require("../assets/images/kapil.jpg"),
       work: "carpenter",
       contact: "6878452539",
+      insideApartment: false,
     },
     { id: 5, name: "Daily Help", imageSource: require("../assets/images/default.jpg")},
   ];
@@ -62,8 +66,13 @@ const HelpersList = () => {
             onPress={() => handleProfilePress(user)}
             style={[styles.helperContainer, commonStyles.alignItemCenter]}
           >
-            <Image source={user.imageSource} style={[styles.image, commonStyles.widthHeight]} />
-
+            <View style={styles.imageContainer}>
+              <Image source={user.imageSource} style={[styles.image, commonStyles.widthHeight]} />
+              <View style={[
+                styles.statusCircle,
+                { backgroundColor: user.insideApartment ? 'green' : 'red' }
+              ]} />
+            </View>
             <Text style={styles.helperName}>{user.name}</Text>
           </TouchableOpacity>
         ))}
@@ -81,6 +90,19 @@ const HelpersList = () => {
 };
 
 const styles = StyleSheet.create({
+  imageContainer: {
+    position: 'relative',
+  },
+  statusCircle: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 15,
+    height: 15,
+    borderRadius: 7.5,
+    borderColor: '#fff',
+    borderWidth: 2,
+  },
   container: {
     flexDirection: 'row',
     marginHorizontal: 10,
@@ -102,7 +124,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   viewAllButton: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
   },
   viewAllText: {

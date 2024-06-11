@@ -1,11 +1,25 @@
-import React from 'react';
-import { StyleSheet, View, Alert, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, View, Alert, TouchableOpacity, FlatList, Modal } from 'react-native';
 import { Text, Block, Icon } from 'galio-framework';
+import { useNavigation } from '@react-navigation/native';
 import commonStyles from '../style/CommonStyles';
 
-const Payments = ({ name, imageSource, icon }) => {
-  const handleDropdownClick = () => {
-    Alert.alert("Payment Status", "₹ 5000 maintenance pending");
+const Payments = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation();
+
+  const menuOptions = [
+    { id: '1', description: 'paid to maid Ratna', amount: 2000 },
+    { id: '2', description: 'pending building maintenance', amount: 1000 },
+  ];
+
+  const handleMenuPress = () => {
+    setModalVisible(!modalVisible);
+  };
+  const handleOptionPress = (option) => {
+    navigation.navigate('PaymentList', { helpers: option });
+    console.log(option);
+    setModalVisible(false);
   };
 
   return (
@@ -15,10 +29,38 @@ const Payments = ({ name, imageSource, icon }) => {
           <Text size={18}>Payments</Text>
         </View>
         <View style={styles.paymentAndDropdown}>
-          <Text style={styles.duePayment}>₹ 5000</Text>
-          <TouchableOpacity onPress={handleDropdownClick} style={styles.dropdown}>
-            <Text style={styles.dropdownText}>Show Details</Text>
+          <Text style={styles.duePayment}>₹ 2000</Text>
+          <TouchableOpacity onPress={handleMenuPress} >
+          <Icon name={modalVisible ? "keyboard-arrow-up" : "keyboard-arrow-down"}  family='material' size={24} />
           </TouchableOpacity>
+          {modalVisible && (
+            <Modal
+              transparent={true}
+              animationType="fade"
+              visible={modalVisible}
+              onRequestClose={() => setModalVisible(false)}
+            >
+              <TouchableOpacity
+                style={styles.modalOverlay}
+                onPress={() => setModalVisible(false)}
+              >
+                <View style={styles.modalContainer}>
+                  <FlatList
+                    data={menuOptions}
+                    renderItem={({ item }) => (
+                      <TouchableOpacity style={styles.option} onPress={() => handleOptionPress(item)}>
+                        <Text style={styles.optionText}>{item.description}</Text>
+                        <Text style={[styles.optionAmount, { color: item.amount === 2000 ? 'green' : 'red' }]}>
+                          {`₹ ${item.amount}`}
+                        </Text>
+                      </TouchableOpacity>
+                    )}
+                    keyExtractor={(item) => item.id}
+                  />
+                </View>
+              </TouchableOpacity>
+            </Modal>
+          )}
         </View>
       </View>
     </Block>
@@ -46,7 +88,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   duePayment: {
-    color: 'red',
+    color: 'green',
     fontSize: 18,
   },
   paymentAndDropdown: {
@@ -60,9 +102,42 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     borderRadius: 5,
   },
-  dropdownText: {
-    color: '#007AFF',
-    fontSize: 8,
+  dropdown: {
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: '#f0f0f0',
+    borderRadius: 5,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 10,
+    width: 330,
+    top: 150,
+    right: 10,
+    position: 'absolute',
+  },
+  option: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+  },
+  optionIcon: {
+    marginRight: 10,
+  },
+  optionText: {
+    fontSize: 16,
+    flex: 1,
+  },
+  optionAmount: {
+    fontSize: 16,
+    textAlign: 'right',
   },
 });
 

@@ -14,7 +14,6 @@ const Helpers = ({ name, imageSource, icon, handleViewAllPress }) => {
           ) : (
             <Icon name={icon} family="material" style={styles.icon} />
           )}
-          <Icon name="add-circle" family="material" style={styles.addIcon} />
         </View>
         <Text size={12}>{name}</Text>
       </Block>

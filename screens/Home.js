@@ -18,34 +18,34 @@ export default class Home extends React.Component {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={commonStyles.home}
       >
-        <View style={[commonStyles.flexDirectionRow, styles.scrollhorizontal]}>
+        <Block flex style={[styles.container, commonStyles.shadow]}>
+          <Payments />
+        </Block>
+        <Block flex style={[styles.container, commonStyles.shadow]}>
+          <Visitors />
+        </Block>
+        <Block flex style={[styles.container, commonStyles.shadow]}>
+          <Notifications />
+        </Block>
+        <Block flex style={[styles.container, commonStyles.shadow]}>
+          <HelpersList />
+        </Block>
+        <View style={commonStyles.flexDirectionRow}>
           <ScrollView horizontal contentContainerStyle={styles.scrollView}>
-            <Block flex style={[styles.displaycontainer, styles.container]}>
+            <Block flex style={[styles.displaycontainer, styles.container, commonStyles.shadow]}>
               <DisplayCards name="Events" color="black" description="check your society's events" icon="event" family="material" />
             </Block>
-            <Block flex style={[styles.displaycontainer, styles.container]}>
+            <Block flex style={[styles.displaycontainer, styles.container, commonStyles.shadow]}>
               <DisplayCards name="Pay Rent" color="black" description="Pay your rent/maintainance" icon="currency-rupee" family="material" />
             </Block>
-            <Block flex style={[styles.displaycontainer, styles.container]}>
+            <Block flex style={[styles.displaycontainer, styles.container, commonStyles.shadow]}>
               <DisplayCards name="Book Slot" color="black" description="Book your next indoor game slot" icon="sports-tennis" family="material" />
             </Block>
           </ScrollView>
         </View>
-        <Block flex style={styles.container}>
-          <Payments />
-        </Block>
-        <Block flex style={styles.container}>
-          <Visitors />
-        </Block>
-        <Block flex style={styles.container}>
-          <Notifications />
-        </Block>
-        <Block flex style={styles.container}>
-          <HelpersList />
-        </Block>
-        <View style={commonStyles.flexDirectionRow}>
+        {/* <View style={commonStyles.flexDirectionRow}>
           <ScrollView horizontal>
-            <Block flex>
+            <Block flex style={[styles.displaycontainer, styles.container, commonStyles.shadow]}>
               <SocietyCard imageSource={require('../assets/images/covid.jpg')} name="Covid Care" />
             </Block>
             <Block flex>
@@ -58,14 +58,14 @@ export default class Home extends React.Component {
               <SocietyCard imageSource={require('../assets/images/homedecor.jpg')} name="Home Decor" />
             </Block>
           </ScrollView>
-        </View>
+        </View> */}
       </ScrollView>
     );
   };
 
   render() {
     return (
-      <Block flex center style={styles.home}>
+      <Block flex center style={commonStyles.home}>
         {this.renderProducts()}
       </Block>
     );
@@ -73,12 +73,6 @@ export default class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  home: {
-    width: width,
-  },
-  scrollhorizontal: {
-    flexDirection: 'row',
-  },
   displaycontainer: {
     marginRight: 10,
     width: 150,
@@ -89,8 +83,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffff',
     marginBottom: 10,
     borderRadius: 15,
-    marginHorizontal: 10
-  },
+    marginHorizontal: 20,
+  },  
   search: {
     height: 48,
     width: width - 32,
