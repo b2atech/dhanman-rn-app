@@ -58,5 +58,4 @@ const commonStyles = StyleSheet.create({
     color: 'grey'
   }
 });
-
 export default commonStyles;
