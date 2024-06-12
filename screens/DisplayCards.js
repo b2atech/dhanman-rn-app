@@ -5,13 +5,13 @@ import commonStyles from '../style/CommonStyles';
 
 const DisplayCards = ({ name, imageSource, icon, description, color }) => {
   return (
-    <Block>
+    <Block style={[styles.card, { backgroundColor: color }]}>
       <View style={styles.blockContainer}>
         {imageSource ? (
           <Image source={imageSource} style={styles.avatar} />
         ) : (
           <View style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
-            <Text style={styles.text}>{name}</Text>
+            <Text style={[styles.text, commonStyles.headerText]}>{name}</Text>
             <Icon name={icon} family="material" style={styles.icon} />
           </View>
         )}
@@ -22,9 +22,11 @@ const DisplayCards = ({ name, imageSource, icon, description, color }) => {
 };
 
 const styles = StyleSheet.create({
+  card: {
+    borderRadius: 10,
+  },
   blockContainer: {
     marginBottom: 5,
-    marginRight:10,
   },
   avatar: {
     width: 150,
@@ -33,20 +35,20 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 25,
-    color: 'black',
+    color: 'white',
     marginLeft: 40
   },
   text: {
-    fontSize: 18,
-    fontWeight: 'bold',
     marginVertical: 10,
     marginBottom: 8,
-    marginLeft: 5
+    marginLeft: 5,
+    color: 'white',
   },
   description: {
-    fontSize: 14,
     marginBottom: 8,
-    marginLeft: 5
+    marginLeft: 5,
+    color: 'white',
+    fontSize: 14
   },
 })
 

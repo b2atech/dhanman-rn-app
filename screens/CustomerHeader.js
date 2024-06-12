@@ -1,102 +1,102 @@
-import React, {useState} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Modal, FlatList } from 'react-native';
-import { Icon } from 'galio-framework';
-import commonStyles from '../style/CommonStyles';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const CustomHeader = () => {
-    const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const menuOptions = [
-    { id: '1', title: 'Profile', icon: 'person' },
-    { id: '2', title: 'Inbox', icon: 'inbox' },
-    { id: '3', title: 'Settings', icon: 'settings' },
+    { id: '1', title: 'Profile', icon: 'account-circle', color: '#007bff' },
+    { id: '2', title: 'Inbox', icon: 'inbox', color: '#1ab394' },
+    { id: '3', title: 'Settings', icon: 'settings', color: '#28a745' },
   ];
 
-  const handleMenuPress = () => {
-    setModalVisible(!modalVisible);
-  };
-  const handleOptionPress = (option) => {
-    console.log(option);
-    setModalVisible(false);
+  const handleIconPress = () => {
+    setModalVisible(true);
   };
 
   return (
     <View style={styles.headerContainer}>
-      <View style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
+      <View>
         <Text style={styles.greeting}>Arun Patil, A101</Text>
-        <TouchableOpacity onPress={handleMenuPress}>
-        <Icon name={modalVisible ? "keyboard-arrow-up" : "keyboard-arrow-down"}  family='material' size={24} />
-        </TouchableOpacity>
+        <Text style={styles.apartment}>Aspen Woods Apartments</Text>
       </View>
-      <Text style={styles.apartment}>Aspen Woods Apartments</Text>
+      <TouchableOpacity onPress={handleIconPress} style={styles.iconContainer}>
+        <Icon name="settings" size={24} color="#FFFFFF" />
+      </TouchableOpacity>
 
-      {modalVisible && (
-        <View style={styles.dropdownMenu}>
-          <FlatList
-            data={menuOptions}
-            renderItem={({ item }) => (
-              <TouchableOpacity style={styles.option} onPress={() => handleOptionPress(item)}>
-                <Icon name={item.icon} family='material' size={24} style={styles.optionIcon} />
-                <Text style={styles.optionText}>{item.title}</Text>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.drawerContainer}>
+          <View style={styles.drawerContent}>
+            <Text style={styles.drawerHeader}>Configuration</Text>
+            {menuOptions.map((option) => (
+              <TouchableOpacity key={option.id} style={styles.option}>
+                <Icon name={option.icon} size={24} color={option.color} style={styles.optionIcon} />
+                <Text style={styles.optionText}>{option.title}</Text>
               </TouchableOpacity>
-            )}
-            keyExtractor={(item) => item.id}
-          />
+            ))}
+          </View>
         </View>
-      )}
-
+      </Modal>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    headerContainer: {
-      padding: 10,
-    },
-    row: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    greeting: {
-      fontSize: 18,
-      fontWeight: 'bold',
-    },
-    apartment: {
-      fontSize: 14,
-    },
-    dropdown: {
-      marginLeft: 10,
-      paddingVertical: 5,
-      paddingHorizontal: 10,
-      backgroundColor: '#f0f0f0',
-      borderRadius: 5,
-    },
-    dropdownMenu: {
-      position: 'absolute',
-      top: 60,
-      right: 10,
-      width: 150,
-      backgroundColor: 'white',
-      borderRadius: 5,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.2,
-      shadowRadius: 2,
-      elevation: 2,
-      zIndex: 1000,
-    },
-    option: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      paddingVertical: 10,
-      paddingHorizontal: 15,
-    },
-    optionIcon: {
-      marginRight: 10,
-    },
-    optionText: {
-      fontSize: 16,
-    },
-  });
+  headerContainer: {
+    padding: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  greeting: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  apartment: {
+    fontSize: 14,
+  },
+  iconContainer: {
+    padding: 5,
+    backgroundColor: '#1ab394',
+    borderRadius: 100,
+    marginLeft: 140,
+    width: 80,
+  },
+  drawerContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  drawerContent: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  drawerHeader: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  option: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+  },
+  optionIcon: {
+    marginRight: 10,
+  },
+  optionText: {
+    fontSize: 16,
+  },
+});
 
 export default CustomHeader;

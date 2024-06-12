@@ -18,28 +18,25 @@ export default class Home extends React.Component {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={commonStyles.home}
       >
-        <Block flex style={[styles.container, commonStyles.shadow]}>
+        <Block flex style={[styles.container]}>
           <Payments />
         </Block>
-        <Block flex style={[styles.container, commonStyles.shadow]}>
-          <Visitors />
-        </Block>
-        <Block flex style={[styles.container, commonStyles.shadow]}>
-          <Notifications />
-        </Block>
-        <Block flex style={[styles.container, commonStyles.shadow]}>
+        <Block flex style={[styles.helperContainer]}>
           <HelpersList />
+        </Block>
+        <Block flex style={[styles.container]}>
+          <Notifications />
         </Block>
         <View style={commonStyles.flexDirectionRow}>
           <ScrollView horizontal contentContainerStyle={styles.scrollView}>
-            <Block flex style={[styles.displaycontainer, styles.container, commonStyles.shadow]}>
-              <DisplayCards name="Events" color="black" description="check your society's events" icon="event" family="material" />
+            <Block flex style={[styles.displaycontainer, styles.container]}>
+              <DisplayCards name="Events" color="#23c6c8" description="check your society's events" icon="event" family="material" />
             </Block>
-            <Block flex style={[styles.displaycontainer, styles.container, commonStyles.shadow]}>
-              <DisplayCards name="Pay Rent" color="black" description="Pay your rent/maintainance" icon="currency-rupee" family="material" />
+            <Block flex style={[styles.displaycontainer, styles.container]}>
+              <DisplayCards name="Pay Rent" color="#ED5565" description="Pay your rent/maintainance" icon="currency-rupee" family="material" />
             </Block>
-            <Block flex style={[styles.displaycontainer, styles.container, commonStyles.shadow]}>
-              <DisplayCards name="Book Slot" color="black" description="Book your next indoor game slot" icon="sports-tennis" family="material" />
+            <Block flex style={[styles.displaycontainer, styles.container]}>
+              <DisplayCards name="Book Slot" color="#f8ac59" description="Book your next indoor game slot" icon="sports-tennis" family="material" />
             </Block>
           </ScrollView>
         </View>
@@ -76,41 +73,18 @@ const styles = StyleSheet.create({
   displaycontainer: {
     marginRight: 10,
     width: 150,
-    height: 120,
+    height: 90,
+  },
+  helperContainer: {
+    marginBottom: 10,
+    borderRadius: 10,
+    marginRight: 10,
   },
   container: {
     flex: 1,
     backgroundColor: '#ffff',
     marginBottom: 10,
-    borderRadius: 15,
+    borderRadius: 10,
     marginHorizontal: 20,
-  },  
-  search: {
-    height: 48,
-    width: width - 32,
-    marginHorizontal: 16,
-    borderWidth: 1,
-    borderRadius: 3,
-  },
-  tabs: {
-    marginBottom: 24,
-    marginTop: 10,
-    elevation: 4,
-  },
-  tab: {
-    backgroundColor: theme.COLORS.TRANSPARENT,
-    width: width * 0.50,
-    borderRadius: 0,
-    borderWidth: 0,
-    height: 24,
-    elevation: 0,
-  },
-  tabTitle: {
-    lineHeight: 19,
-    fontWeight: '300',
-  },
-  divider: {
-    borderRightWidth: 0.3,
-    borderRightColor: theme.COLORS.MUTED,
   },
 });
