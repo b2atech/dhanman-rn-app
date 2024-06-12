@@ -22,8 +22,7 @@ const Visitors = () => {
   return (
     <Block>
       <View style={styles.container}>
-        <Icon name='group' family="material" style={commonStyles.icon} />
-        <Text size={16}>VISITORS</Text>
+        <Text style={commonStyles.headerText}>Visitors Updates</Text>
       </View>
       <View style={styles.container}>
         <ScrollView horizontal contentContainerStyle={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>

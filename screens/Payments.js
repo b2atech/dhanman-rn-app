@@ -26,7 +26,7 @@ const Payments = () => {
     <Block style={styles.userAction}>
       <View style={[commonStyles.flexDirectionRow, styles.avatarContainer]}>
         <View style={styles.iconAndText}>
-          <Text size={18}>Payments</Text>
+          <Text style={commonStyles.headerText}>Payments</Text>
         </View>
         <View style={styles.paymentAndDropdown}>
           <Text style={styles.duePayment}>₹ 2000</Text>
@@ -82,13 +82,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  icon: {
-    fontSize: 25,
-    color: '#007AFF',
-    marginRight: 5,
-  },
   duePayment: {
-    color: 'green',
+    color: '#1ab394',
     fontSize: 18,
   },
   paymentAndDropdown: {
@@ -127,9 +122,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 10,
-  },
-  optionIcon: {
-    marginRight: 10,
   },
   optionText: {
     fontSize: 16,

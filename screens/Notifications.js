@@ -8,11 +8,10 @@ const Notifications = () => {
     <Block style={styles.userAction}>
       <TouchableOpacity onPress={() => navigation.navigate('NoticeList')}>
       <View style={[styles.avatarContainer, commonStyles.flexDirectionRow, commonStyles.alignItemLeft]}>
-        <Icon name='notifications-outline' family="ionicon" style={commonStyles.icon} />
-        <Text size={16}>NOTICE BOARD</Text>
+        <Text style={commonStyles.headerText}>Notice Board</Text>
       </View>
       <View style={[commonStyles.marginBottom2, commonStyles.flexDirectionRow, commonStyles.alignItemLeft]}>
-        <Text size={15}>You have 6 new notifications</Text>
+        <Text style={commonStyles.descriptionText}>You have 6 new notifications</Text>
       </View>
       </TouchableOpacity>
     </Block>
