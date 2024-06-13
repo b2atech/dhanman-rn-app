@@ -205,8 +205,8 @@ class Header extends React.Component {
           right={this.renderRight()}
           rightStyle={{ alignItems: 'center' }}
           leftStyle={{ paddingTop: 3, flex: 0.1 }}
-          // leftIconName={back ? null : "navicon"}
-          // leftIconFamily="font-awesome"
+          leftIconName={back ? null : "navicon"}
+          leftIconFamily="font-awesome"
           leftIconColor={white ? theme.COLORS.WHITE : theme.COLORS.ICON}
           titleStyle={[
             styles.title,

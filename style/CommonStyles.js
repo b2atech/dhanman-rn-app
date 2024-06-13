@@ -48,14 +48,12 @@ const commonStyles = StyleSheet.create({
   },
   headerText: {
     fontSize: 18,
-    fontWeight: 100,
-    fontFamily: "sans-serif"
+    fontFamily: "sans-serif",
   },
   descriptionText: {
     fontSize: 14,
-    fontWeight: 600,
     fontFamily: "sans-serif",
-    color: 'grey'
+    color: 'rgb(103, 106, 108)'
   }
 });
 

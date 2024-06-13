@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -9,8 +9,10 @@ import {
 import { Text, Icon } from "galio-framework";
 import { useNavigation } from "@react-navigation/native";
 import commonStyles from "../style/CommonStyles";
+import { getServiceProviders } from "../api/apiService";
 
 const HelpersList = () => {
+  const [data, setData] = useState([]);
   const users = [
     {
       id: 1,
@@ -99,6 +101,18 @@ const HelpersList = () => {
     navigation.navigate("ViewAll", { helpers: users });
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const serviceProviders = await getServiceProviders();
+        setData(serviceProviders);
+      } catch (error) {
+        console.error('Error fetching data', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <View style={styles.container}>
       <View style={commonStyles.flexDirectionRow}>
@@ -108,21 +122,21 @@ const HelpersList = () => {
         </TouchableOpacity>
       </View>
       <ScrollView horizontal contentContainerStyle={styles.scrollViewContent}>
-        {users.map((user) => (
+        {data.map((user) => (
           <TouchableOpacity
             key={user.id}
             onPress={() => handleProfilePress(user)}
             style={styles.helperContainer}
           >
             <View style={styles.card}>
-              <View style={[styles.header, { backgroundColor: user.tag === 'Visitor' ? '#00AEEF' : '#f8ac59' }]}>
-                <Text style={styles.tag}>{user.tag}</Text>
+              <View style={[styles.header, { backgroundColor: '#f8ac59' }]}>
+                <Text style={styles.tag}>{user.serviceProviderType}</Text>
               </View>
               <View style={styles.cardContent}>
                 <Image source={user.imageSource} style={styles.image} />
                 <View style={styles.textContainer}>
-                  <Text style={styles.helperName}>{user.name}</Text>
-                  <Text style={styles.helperRole}>{user.work}</Text>
+                  <Text style={styles.helperName}>{user.firstName}</Text>
+                  <Text style={styles.helperRole}>{user.lastName}</Text>
                   <View style={styles.timeContainer}>
                     <Icon name="access-time" family="material" size={14} color="#888" />
                     <Text style={styles.timeText}>{user.time}</Text>
@@ -144,6 +158,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: 'auto'
   },
   viewAllButton: {
     flexDirection: 'row',
@@ -159,7 +174,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    width: 190,
+    width: 200,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -167,15 +182,14 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   header: {
-    borderRadius: 20,
+    borderRadius: 10,
     padding: 5,
-    width: 70,
+    width: '50%',
   },
   tag: {
-    color: '#fff',
+    color: '#fffF',
     fontSize: 12,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
   },
   cardContent: {
     flexDirection: 'row',
