@@ -1,11 +1,20 @@
 import React from 'react';
-import { StyleSheet, Image, View } from 'react-native';
+import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Text, Block, Icon } from 'galio-framework';
 import commonStyles from '../style/CommonStyles';
 
 const DisplayCards = ({ name, imageSource, icon, description, color }) => {
+  const navigation = useNavigation();
+
+  const handleViewPress = () => {
+    if (name === 'Events') {
+      navigation.navigate("Events");
+    }
+  };
+
   return (
-    <Block style={[styles.card, { backgroundColor: color }]}>
+    <TouchableOpacity style={[styles.card, { backgroundColor: color }]} onPress={handleViewPress}>
       <View style={styles.blockContainer}>
         {imageSource ? (
           <Image source={imageSource} style={styles.avatar} />
@@ -17,7 +26,7 @@ const DisplayCards = ({ name, imageSource, icon, description, color }) => {
         )}
       </View>
       <Text style={styles.description}>{description}</Text>
-    </Block>
+    </TouchableOpacity>
   );
 };
 

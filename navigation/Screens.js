@@ -21,6 +21,7 @@ import ViewAllScreen from "../screens/ViewAll";
 import MaidProfileScreen from "../screens/MaidProfile";
 import VisitorsListScreen from "../screens/VisitorsList";
 import PaymentListScreen from "../screens/PaymentList";
+import EventsScreen from "../screens/Events";
 import CustomHeader from "../screens/CustomerHeader";
 
 const { width } = Dimensions.get("screen");
@@ -242,112 +243,6 @@ function HomeStack(props) {
           headerShown: false, 
         }}
       />
-      {/*<Stack.Screen
-        name="Categories"
-        component={CategoriesScreen}
-        options={{
-          header: ({ navigation, scene, route }) => (
-            <Header
-              back
-              tabs={tabs.categories}
-              tabIndex={tabs.categories[1].id}
-              title="Categories"
-              navigation={navigation}
-              route={route}
-              scene={scene}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Category"
-        component={CategoryScreen}
-        options={{
-          header: ({ navigation, scene }) => {
-            // const { params } = scene.descriptor;
-            // const title = (params && params.headerTitle) || "Category";
-            return (
-              <Header
-                back
-                title='Category'
-                navigation={navigation}
-                scene={scene}
-              />
-            );
-          },
-        }}
-      />
-      <Stack.Screen
-        name="Product"
-        component={ProductScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              white
-              transparent
-              title=""
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true,
-        }}
-      />
-      <Stack.Screen
-        name="Gallery"
-        component={GalleryScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              white
-              transparent
-              title=""
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-          headerTransparent: true,
-        }}
-      />
-      <Stack.Screen
-        name="Chat"
-        component={ChatScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              title="Rachel Brown"
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Cart"
-        component={CartScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              title="Shopping Cart"
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-        }}
-      /> */}
-      {/* <Stack.Screen
-        name="Search"
-        component={SearchScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header back title="Search" navigation={navigation} scene={scene} />
-          ),
-        }}
-      /> */}
     </Stack.Navigator>
   );
 }
@@ -393,7 +288,13 @@ function MainTabs() {
             <Icon name="home" family="font-awesome" color={color} />
           ),
           tabBarLabel: 'Home',
-          headerTitle: () => <CustomHeader />,
+          headerTitle: () => 
+          <CustomHeader 
+          name={'Arun Patil, A101'} 
+          description={'Aspen woods Apartment'} 
+          showBackButton={false} 
+          showSettings={true}
+          />,
         }}
       />
       <BottomTab.Screen
@@ -474,33 +375,45 @@ function MainTabs() {
 
 function AppStack(props) {
   return (
-      <Stack.Navigator
-        initialRouteName="MainTabs"
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="MainTabs" component={MainTabs}/>
-        <Stack.Screen 
-          name="ViewAll" 
-          component={ViewAllScreen} 
-          options={{
-            header: ({ navigation, scene }) => (
-              <Header
-                search
-                options
-                title="A 101"
-                navigation={navigation}
-                scene={scene}
-                transparent={true}
-              />
-            ),
-          }}/>
-        <Stack.Screen name="VisitorsList" component={VisitorsListScreen} />
-        <Stack.Screen name="MaidProfile" component={MaidProfileScreen} />
-        <Stack.Screen name="PaymentList" component={PaymentListScreen} />
-      </Stack.Navigator>
-    
+    <Stack.Navigator
+      initialRouteName="MainTabs"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="MainTabs" component={MainTabs}/>
+      <Stack.Screen 
+        name="ViewAll" 
+        component={ViewAllScreen} 
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              search
+              options
+              title="A 101"
+              navigation={navigation}
+              scene={scene}
+              transparent={true}
+            />
+          ),
+      }}/>
+      <Stack.Screen name="VisitorsList" component={VisitorsListScreen} />
+      <Stack.Screen name="MaidProfile" component={MaidProfileScreen} />
+      <Stack.Screen name="PaymentList" component={PaymentListScreen} />
+      <Stack.Screen 
+      name="Events" 
+      component={EventsScreen} 
+      options={{
+        headerShown: true,
+        header: () => 
+        <CustomHeader 
+        name={'Events'} 
+        description={'check your events here...'} 
+        showBackButton={true} 
+        showSettings={false}
+        />,
+      }}/>
+    </Stack.Navigator>
   );
 }
 

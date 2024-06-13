@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
 
-const CustomHeader = () => {
+const CustomHeader = ({ name, description, showBackButton, showSettings }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation();
 
   const menuOptions = [
     { id: '1', title: 'Profile', icon: 'account-circle', color: '#007bff' },
@@ -17,14 +19,20 @@ const CustomHeader = () => {
 
   return (
     <View style={styles.headerContainer}>
-      <View>
-        <Text style={styles.greeting}>Arun Patil, A101</Text>
-        <Text style={styles.apartment}>Aspen Woods Apartments</Text>
+      {showBackButton && (
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Icon name="arrow-back" size={24} />
+      </TouchableOpacity>
+      )}
+      <View style={styles.nameContainer}>
+        <Text style={styles.greeting}>{name}</Text>
+        <Text style={styles.description}>{description}</Text>
       </View>
+      {showSettings && (
       <TouchableOpacity onPress={handleIconPress} style={styles.iconContainer}>
         <Icon name="settings" size={24} color="#FFFFFF" />
       </TouchableOpacity>
-
+      )}
       <Modal
         animationType="slide"
         transparent={true}
@@ -51,17 +59,18 @@ const CustomHeader = () => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    padding: 0,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
   },
   greeting: {
     fontSize: 18,
     fontWeight: 'bold',
   },
-  apartment: {
+  description: {
     fontSize: 14,
+  },
+  nameContainer: {
+    padding: 5,
   },
   iconContainer: {
     padding: 5,
