@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Block } from 'galio-framework';
 import HelpersList from './HelpersList';
-import Visitors from './Visitors';
-import Delivery from './Delivery';
+import Visitors from './gateUpdatesComponents/GateVisitors';
+import Delivery from './gateUpdatesComponents/GateDelivery';
 
 const ViewAllScreen = () => {
   const [activeTab, setActiveTab] = useState('Helpers');

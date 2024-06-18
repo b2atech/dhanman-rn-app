@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Block } from 'galio-framework';
-import HelpersList from '../HelpersList';
-import Visitors from '../Visitors';
-import Delivery from '../Delivery';
+import GateVisitors from './GateVisitors';
+import GateDelivery from './GateDelivery';
+import GateHelpers from './GateHelpers';
 
 const GateUpdates = () => {
   const [activeTab, setActiveTab] = useState('Helpers');
@@ -11,21 +11,21 @@ const GateUpdates = () => {
   const renderContent = () => {
     switch (activeTab) {
       case 'Visitors':
-        return <Visitors />;
+        return <GateVisitors />;
       case 'HelpersList':
-      return <HelpersList />;
+      return <GateHelpers />;
       case 'Delivery':
-      return <Delivery />;
+      return <GateDelivery />;
       default:
-        return <HelpersList />;
+        return <GateHelpers />;
     }
   };
 
   return (
-    <Block safe flex>
-      <View style={styles.header}>
+    <Block flex>
+      {/* <View style={styles.header}>
         <Text style={styles.headerTitle}>Gate Updates</Text>
-      </View>
+      </View> */}
       <View style={styles.tabContainer}>
         <TouchableOpacity onPress={() => setActiveTab('Visitors')} style={styles.tab}>
           <Text style={[styles.tabText, activeTab === 'Visitors' && styles.activeTabText]}>Visitors</Text>

@@ -9,88 +9,11 @@ import {
 import { Text, Icon } from "galio-framework";
 import { useNavigation } from "@react-navigation/native";
 import commonStyles from "../style/CommonStyles";
-import { getServiceProviders } from "../api/apiService";
+import { getServiceProviders } from "../api/serviceProvider";
 
 const HelpersList = () => {
   const [data, setData] = useState([]);
-  const users = [
-    {
-      id: 1,
-      name: "Ratna",
-      imageSource: require("../assets/images/ratna.jpg"),
-      work: "maid",
-      contact: "8876543210",
-      insideApartment: true,
-      tag: 'Helper',
-      time: '10.00 AM, Today'
-    },
-    {
-      id: 2,
-      name: 'Rahul', 
-      imageSource: require('../assets/images/visitor_men.png'), 
-      tag: 'Visitor', 
-      work: 'Guest',
-      insideApartment: true,
-      time: '3:08 PM, Today'
-    },
-    {
-      id: 3,
-      name: "Sham",
-      imageSource: require("../assets/images/sham.jpg"),
-      work: "watchman",
-      contact: "7876583216",
-      insideApartment: false,
-      tag: 'Helper',
-      time: '11:08 AM, Today'
-    },
-    {
-      id: 4,
-      name: "Kapil",
-      imageSource: require("../assets/images/kapil.jpg"),
-      work: "carpenter",
-      contact: "6878452539",
-      insideApartment: false,
-      tag: 'Helper',
-      time: '1:00 PM, Today'
-    },
-    { id: 5, 
-      name: "Daily Help", 
-      imageSource: require("../assets/images/default.jpg"), 
-      tag: 'Helper',
-      time: '5:00 AM, Yesterday'
-    },
-    { id: 6, 
-      name: "Balraj",
-      imageSource: require("../assets/images/balraj.jpg"),
-      work: "cleaner",
-      contact: "9872943210",
-      insideApartment: true,
-      tag: 'Helper',
-      time: '3:08 PM, Yesterday'
-    },
-    { id: 7, 
-      name: 'Kavita', 
-      imageSource: require('../assets/images/visitor_women.png'), 
-      tag: 'Visitor',
-      work: 'Guest',
-      time: '3:08 PM, Yesterday'
-    },
-    { id: 8, 
-      name: 'Karan K', 
-      imageSource: require('../assets/images/karan.jpg'), 
-      tag: 'Visitor',
-      work: 'Guest',
-      time: '3:08 PM, Yesterday'
-    },
-    { id: 9, 
-      name: 'Roshan', 
-      imageSource: require('../assets/images/visitors_men.png'), 
-      tag: 'Visitor',
-      work: 'Guest',
-      time: '3:08 PM, Yesterday'
-    },
-  ];
-
+ 
   const navigation = useNavigation();
 
   const handleProfilePress = (user) => {
@@ -98,7 +21,7 @@ const HelpersList = () => {
   };
 
   const handleViewAllPress = () => {
-    navigation.navigate("ViewAllScreen", { initialTab: 'user' });
+    navigation.navigate('GateUpdates');
   };
 
   useEffect(() => {

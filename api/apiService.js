@@ -8,25 +8,6 @@ const apiClient = axios.create({
   },
 });
 
-export const getServiceProviders = async () => {
-  try {
-    const response = await apiClient.get('v1/serviceProviders');
-    return response.data.items;
-  } catch (error) {
-    console.error('Error fetching service providers', error);
-    throw error;
-  }
-};
 
-export const getEvents = async (companyId, bookingFacilityId) => {
-  try {
-    const url = `v1/events/${companyId}/${bookingFacilityId}`;
-
-    const response = await apiClient.get(url);
-    return response.data.items;
-  } catch (error) {
-    console.error('Error fetching events', error);
-    throw error;
-  }
-};
+export default apiClient;
 

@@ -399,11 +399,13 @@ function AppStack(props) {
             />
           ),
       }}/>
-          <Stack.Screen name="MyHelps" component={MyHelps} />
-          <Stack.Screen name="GateUpdates" component={GateUpdates} />
+      
+      <Stack.Screen name="MyHelps" component={MyHelps} />
+      <Stack.Screen name="GateUpdates" component={GateUpdates} />
       <Stack.Screen name="VisitorsList" component={VisitorsListScreen} />
       <Stack.Screen name="MaidProfile" component={MaidProfileScreen} />
       <Stack.Screen name="PaymentList" component={PaymentListScreen} />
+
       <Stack.Screen 
       name="Events" 
       component={EventsScreen} 
