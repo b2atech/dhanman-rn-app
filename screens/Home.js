@@ -4,10 +4,11 @@ import { Block, theme } from 'galio-framework';
 import HelpersList from './HelpersList';
 import Payments from './Payments';
 import Notifications from './Notifications';
-import Visitors from './Visitors';
+import Visitors from './gateUpdatesComponents/GateVisitors';
 import DisplayCards from './DisplayCards';
 import SocietyCard from './SocietyCards';
 import commonStyles from '../style/CommonStyles';
+import MyHelps from './MyHelps';
 
 const { width } = Dimensions.get('screen');
 
@@ -27,6 +28,9 @@ export default class Home extends React.Component {
         <Block flex style={[styles.container]}>
           <Notifications />
         </Block>
+        {/* <Block flex style={[styles.container]}>
+          <MyHelps />
+        </Block> */}
         <View style={commonStyles.flexDirectionRow}>
           <ScrollView horizontal contentContainerStyle={styles.scrollView}>
             <Block flex style={[styles.displaycontainer, styles.container]}>

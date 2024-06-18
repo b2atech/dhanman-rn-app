@@ -23,6 +23,8 @@ import VisitorsListScreen from "../screens/VisitorsList";
 import PaymentListScreen from "../screens/PaymentList";
 import EventsScreen from "../screens/Events";
 import CustomHeader from "../screens/CustomerHeader";
+import GateUpdates from "../screens/gateUpdatesComponents/GateUpdates";
+import MyHelps from "../screens/MyHelps";
 
 const { width } = Dimensions.get("screen");
 
@@ -397,9 +399,13 @@ function AppStack(props) {
             />
           ),
       }}/>
+      
+      <Stack.Screen name="MyHelps" component={MyHelps} />
+      <Stack.Screen name="GateUpdates" component={GateUpdates} />
       <Stack.Screen name="VisitorsList" component={VisitorsListScreen} />
       <Stack.Screen name="MaidProfile" component={MaidProfileScreen} />
       <Stack.Screen name="PaymentList" component={PaymentListScreen} />
+
       <Stack.Screen 
       name="Events" 
       component={EventsScreen} 

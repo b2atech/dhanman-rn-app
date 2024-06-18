@@ -21,7 +21,7 @@ const commonStyles = StyleSheet.create({
   },
   home: {
     width: width,
-    paddingVertical: 20,
+    paddingVertical: '10%',
     justifyContent: 'center',
   },
   mainPage: {

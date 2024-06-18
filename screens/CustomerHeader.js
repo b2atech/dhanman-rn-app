@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Modal, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -59,8 +59,12 @@ const CustomHeader = ({ name, description, showBackButton, showSettings }) => {
 
 const styles = StyleSheet.create({
   headerContainer: {
+    padding: '5%',
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#23c6c8',
+    width: Dimensions.get('window').width,
+    height: '300%',
   },
   greeting: {
     fontSize: 18,
@@ -76,8 +80,8 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: '#1ab394',
     borderRadius: 100,
-    marginLeft: 140,
-    width: 80,
+    marginLeft: '50%',
+    width: '20%',
   },
   drawerContainer: {
     flex: 1,
