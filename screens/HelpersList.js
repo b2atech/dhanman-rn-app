@@ -98,7 +98,7 @@ const HelpersList = () => {
   };
 
   const handleViewAllPress = () => {
-    navigation.navigate("ViewAll", { helpers: users });
+    navigation.navigate("ViewAllScreen", { initialTab: 'user' });
   };
 
   useEffect(() => {
@@ -116,8 +116,9 @@ const HelpersList = () => {
   return (
     <View style={styles.container}>
       <View style={commonStyles.flexDirectionRow}>
-        <Text style={commonStyles.headerText}>Helpers and Visitors</Text>
+        <Text style={[commonStyles.headerText, styles.headerTextMargin]}>Helpers and Visitors</Text>
         <TouchableOpacity onPress={handleViewAllPress} style={styles.viewAllButton}>
+          <Text style={styles.viewAllText}>See All</Text>
           <Icon name="keyboard-arrow-right" family="material" size={24} />
         </TouchableOpacity>
       </View>
@@ -154,6 +155,7 @@ const HelpersList = () => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 10,
+    marginBottom: 10,
   },
   header: {
     flexDirection: 'row',
@@ -163,6 +165,11 @@ const styles = StyleSheet.create({
   viewAllButton: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: '5%',
+    marginLeft: '40%',
+  },
+  headerTextMargin: {
+    marginLeft: 10, 
   },
   scrollViewContent: {
     flexDirection: 'row',

@@ -8,6 +8,7 @@ import Visitors from './Visitors';
 import DisplayCards from './DisplayCards';
 import SocietyCard from './SocietyCards';
 import commonStyles from '../style/CommonStyles';
+import MyHelps from './MyHelps';
 
 const { width } = Dimensions.get('screen');
 
@@ -26,6 +27,9 @@ export default class Home extends React.Component {
         </Block>
         <Block flex style={[styles.container]}>
           <Notifications />
+        </Block>
+        <Block flex style={[styles.container]}>
+          <MyHelps />
         </Block>
         <View style={commonStyles.flexDirectionRow}>
           <ScrollView horizontal contentContainerStyle={styles.scrollView}>

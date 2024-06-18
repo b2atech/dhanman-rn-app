@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Block } from 'galio-framework';
-import HelpersList from './HelpersList';
-import Visitors from './Visitors';
-import Delivery from './Delivery';
+import HelpersList from '../HelpersList';
+import Visitors from '../Visitors';
+import Delivery from '../Delivery';
 
-const ViewAllScreen = () => {
+const GateUpdates = () => {
   const [activeTab, setActiveTab] = useState('Helpers');
 
   const renderContent = () => {
     switch (activeTab) {
       case 'Visitors':
         return <Visitors />;
-      case 'Helpers':
-        return <HelpersList />;
-        case 'Delivery':
-        return <Delivery />;
+      case 'HelpersList':
+      return <HelpersList />;
+      case 'Delivery':
+      return <Delivery />;
       default:
-        return <Visitors />;
+        return <HelpersList />;
     }
   };
 
@@ -30,8 +30,8 @@ const ViewAllScreen = () => {
         <TouchableOpacity onPress={() => setActiveTab('Visitors')} style={styles.tab}>
           <Text style={[styles.tabText, activeTab === 'Visitors' && styles.activeTabText]}>Visitors</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setActiveTab('Parcels')} style={styles.tab}>
-          <Text style={[styles.tabText, activeTab === 'Parcels' && styles.activeTabText]}>Parcels</Text>
+        <TouchableOpacity onPress={() => setActiveTab('Delivery')} style={styles.tab}>
+          <Text style={[styles.tabText, activeTab === 'Delivery' && styles.activeTabText]}>Delivery</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setActiveTab('Helpers')} style={styles.tab}>
           <Text style={[styles.tabText, activeTab === 'Helpers' && styles.activeTabText]}>Helpers</Text>
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ViewAllScreen;
+export default GateUpdates;
