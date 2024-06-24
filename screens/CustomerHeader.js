@@ -64,14 +64,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#23c6c8',
     width: Dimensions.get('window').width,
-    height: '300%',
   },
   greeting: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: 'white'
   },
   description: {
     fontSize: 14,
+    color: 'white'
   },
   nameContainer: {
     padding: 5,
