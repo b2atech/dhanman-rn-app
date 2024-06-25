@@ -9,3 +9,13 @@ export const getVisitors = async () => {
     throw error;
   }
 };
+
+export const addVisitor = async (visitor) => {
+  try {
+    const response = await apiClient.post('v1/visitor', visitor);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding visitor', error);
+    throw error;
+  }
+};
