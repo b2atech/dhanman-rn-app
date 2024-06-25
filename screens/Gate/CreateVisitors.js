@@ -3,9 +3,9 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 
 import commonStyles from '../../style/CommonStyles';
 import { addVisitor } from '../../api/visitors';
 import { Dropdown } from 'react-native-element-dropdown';
-import { sendOtp, verifyOtp } from '../../api/otp'; // Assuming you have these API functions
 import { getOTP } from '../../api/otp';
 import SubmitButton from '../../components/SubmitButton';
+import { SuccessToastMessage } from '../../utils/toastUtil';
 
 export default function AddVisitors({ navigation }) {
   const [firstName, setFirstName] = useState('');
@@ -68,6 +68,7 @@ export default function AddVisitors({ navigation }) {
     };
     try {
       await addVisitor(newVisitor);
+      SuccessToastMessage('Visitors added successfully')
       navigation.goBack();
     } catch (error) {
       console.error('Error adding visitor:', error);
