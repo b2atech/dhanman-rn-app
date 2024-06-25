@@ -32,7 +32,7 @@ export default function GateVisitorsScreen() {
 
   const handleContactNumberChange = (input) => {
     setContactNumber(input);
-    if (input.length === 10) { // Assuming contact number is 10 digits
+    if (input.length === 10) {
       const filteredItems = allItems.filter(item => item.contactNumber === input);
       setItems(filteredItems);
     } else {
