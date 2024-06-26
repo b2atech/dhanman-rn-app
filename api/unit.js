@@ -1,7 +1,8 @@
 import apiClient from "./ApiServices/apiService";
-export const getEvents = async (companyId, bookingFacilityId) => {
+
+export const getUnitNames = async (apartmentId, buildingId, floorId) => {
     try {
-      const url = `v1/events/${companyId}/${bookingFacilityId}`;
+      const url = `v1/unitNames/${apartmentId}/${buildingId}/${floorId}`;
   
       const response = await apiClient.get(url);
       return response.data.items;

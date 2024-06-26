@@ -1,4 +1,4 @@
-import apiClient from "./communicationApiService";
+import apiClient from "./ApiServices/communicationApiService";
 
 export const getOTP = async (otpService) => {
   try {

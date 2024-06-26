@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import { getEvents } from '../api/apiService';
 import { format } from 'date-fns';
 import commonStyles from '../style/CommonStyles';
+import { getEvents } from '../api/event';
 
 const EventsScreen = () => {
     const [data, setData] = useState([]);
