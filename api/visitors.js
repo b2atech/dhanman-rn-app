@@ -1,4 +1,4 @@
-import apiClient from "./apiService";
+import apiClient from "./ApiServices/apiService";
 
 export const getVisitors = async () => {
   try {
