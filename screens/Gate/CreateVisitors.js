@@ -1,45 +1,52 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import commonStyles from '../../style/CommonStyles';
-import { addVisitor } from '../../api/visitors';
-import { Dropdown } from 'react-native-element-dropdown';
-import { getOTP } from '../../api/otp';
-import SubmitButton from '../../components/SubmitButton';
-import { SuccessToastMessage } from '../../utils/toastUtil';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import commonStyles from "../../style/CommonStyles";
+import { addVisitor } from "../../api/visitors";
+import { Dropdown } from "react-native-element-dropdown";
+import { getOTP } from "../../api/otp";
+import SubmitButton from "../../components/SubmitButton";
+import { SuccessToastMessage } from "../../utils/toastUtil";
 
 export default function AddVisitors({ navigation }) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [contactNumber, setContactNumber] = useState('');
-  const [otp, setOtp] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+  const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
 
-  const [email, setEmail] = useState('');
-  const [visitingFrom, setVisitingFrom] = useState('');
+  const [email, setEmail] = useState("");
+  const [visitingFrom, setVisitingFrom] = useState("");
   const [visitorTypeId, setVisitorTypeId] = useState(null);
-  const [vehicleNumber, setVehicleNumber] = useState('');
+  const [vehicleNumber, setVehicleNumber] = useState("");
   const [identityTypeId, setIdentityTypeId] = useState(null);
-  const [identityNumber, setIdentityNumber] = useState('');
+  const [identityNumber, setIdentityNumber] = useState("");
 
   const visitorTypes = [
-    { label: 'Guest', value: '0' },
-    { label: 'Teacher', value: '1' },
-    { label: 'Relatives', value: '2' },
-    { label: 'Friends', value: '3' },
-    { label: 'Others', value: '4' }
+    { label: "Guest", value: "0" },
+    { label: "Teacher", value: "1" },
+    { label: "Relatives", value: "2" },
+    { label: "Friends", value: "3" },
+    { label: "Others", value: "4" },
   ];
-  
+
   const identityTypes = [
-    { label: 'Aadhar', value: '0' },
-    { label: 'VoterId', value: '1' },
-    { label: 'Passport', value: '2' }
+    { label: "Aadhar", value: "0" },
+    { label: "VoterId", value: "1" },
+    { label: "Passport", value: "2" },
   ];
 
   const handleSendOtp = async () => {
     const otpService = {
       phoneNumber: `+91${contactNumber}`,
-      message: 'Welcome Code'
+      message: "Welcome Code",
     };
 
     try {
@@ -51,7 +58,7 @@ export default function AddVisitors({ navigation }) {
   };
 
   const handleVerifyOtp = async () => {
-     contactNumber? setIsOtpVerified(true) : setIsOtpVerified(false);
+    contactNumber ? setIsOtpVerified(true) : setIsOtpVerified(false);
   };
 
   const handleSubmit = async () => {
@@ -68,10 +75,10 @@ export default function AddVisitors({ navigation }) {
     };
     try {
       await addVisitor(newVisitor);
-      SuccessToastMessage('Visitors added successfully')
+      SuccessToastMessage("Visitors added successfully");
       navigation.goBack();
     } catch (error) {
-      console.error('Error adding visitor:', error);
+      console.error("Error adding visitor:", error);
     }
   };
 
@@ -79,49 +86,61 @@ export default function AddVisitors({ navigation }) {
     <ScrollView contentContainerStyle={styles.container}>
       {!isOtpVerified && (
         <>
-      <Text style={[styles.label, commonStyles.headerText]}>First Name</Text>
-      <TextInput
-        style={styles.input}
-        value={firstName}
-        onChangeText={setFirstName}
-      />
-
-      <Text style={[styles.label, commonStyles.headerText]}>Last Name</Text>
-      <TextInput
-        style={styles.input}
-        value={lastName}
-        onChangeText={setLastName}
-      />
-
-      <Text style={[styles.label, commonStyles.headerText]}>Contact Number</Text>
-      <TextInput
-        style={styles.input}
-        value={contactNumber}
-        onChangeText={setContactNumber}
-        keyboardType="phone-pad"
-        maxLength={10}
-      />
-
-      {!isOtpSent ? (
-        <TouchableOpacity style={styles.sendOtpButton} onPress={handleSendOtp}>
-          <Text style={styles.sendOtpButtonText}>Send OTP</Text>
-        </TouchableOpacity>
-      ) : (
-        <>
-          <Text style={[styles.label, commonStyles.headerText]}>Enter OTP</Text>
+          <Text style={[styles.label, commonStyles.headerText]}>
+            First Name
+          </Text>
           <TextInput
             style={styles.input}
-            value={otp}
-            onChangeText={setOtp}
-            keyboardType="numeric"
-            maxLength={6}
+            value={firstName}
+            onChangeText={setFirstName}
           />
-          <TouchableOpacity style={styles.sendOtpButton} onPress={handleVerifyOtp}>
-            <Text style={styles.sendOtpButtonText}>Verify OTP</Text>
-          </TouchableOpacity>
+
+          <Text style={[styles.label, commonStyles.headerText]}>Last Name</Text>
+          <TextInput
+            style={styles.input}
+            value={lastName}
+            onChangeText={setLastName}
+          />
+
+          <Text style={[styles.label, commonStyles.headerText]}>
+            Contact Number
+          </Text>
+          <TextInput
+            style={styles.input}
+            value={contactNumber}
+            onChangeText={setContactNumber}
+            keyboardType="phone-pad"
+            maxLength={10}
+          />
+
+          {!isOtpSent ? (
+            <TouchableOpacity
+              style={styles.sendOtpButton}
+              onPress={handleSendOtp}
+            >
+              <Text style={styles.sendOtpButtonText}>Send OTP</Text>
+            </TouchableOpacity>
+          ) : (
+            <>
+              <Text style={[styles.label, commonStyles.headerText]}>
+                Enter OTP
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={otp}
+                onChangeText={setOtp}
+                keyboardType="numeric"
+                maxLength={6}
+              />
+              <TouchableOpacity
+                style={styles.sendOtpButton}
+                onPress={handleVerifyOtp}
+              >
+                <Text style={styles.sendOtpButtonText}>Verify OTP</Text>
+              </TouchableOpacity>
+            </>
+          )}
         </>
-      )}
-      </>
       )}
 
       {isOtpVerified && (
@@ -134,14 +153,18 @@ export default function AddVisitors({ navigation }) {
             keyboardType="email-address"
           />
 
-          <Text style={[styles.label, commonStyles.headerText]}>Visiting From</Text>
+          <Text style={[styles.label, commonStyles.headerText]}>
+            Visiting From
+          </Text>
           <TextInput
             style={styles.input}
             value={visitingFrom}
             onChangeText={setVisitingFrom}
           />
 
-          <Text style={[styles.label, commonStyles.headerText]}>Visitor Type</Text>
+          <Text style={[styles.label, commonStyles.headerText]}>
+            Visitor Type
+          </Text>
           <Dropdown
             style={styles.dropdown}
             data={visitorTypes}
@@ -149,19 +172,23 @@ export default function AddVisitors({ navigation }) {
             valueField="value"
             placeholder="Select visitor type"
             value={visitorTypeId}
-            onChange={item => {
+            onChange={(item) => {
               setVisitorTypeId(item.value);
             }}
           />
 
-          <Text style={[styles.label, commonStyles.headerText]}>Vehicle Number</Text>
+          <Text style={[styles.label, commonStyles.headerText]}>
+            Vehicle Number
+          </Text>
           <TextInput
             style={styles.input}
             value={vehicleNumber}
             onChangeText={setVehicleNumber}
           />
 
-          <Text style={[styles.label, commonStyles.headerText]}>Identity Type</Text>
+          <Text style={[styles.label, commonStyles.headerText]}>
+            Identity Type
+          </Text>
           <Dropdown
             style={styles.dropdown}
             data={identityTypes}
@@ -169,12 +196,14 @@ export default function AddVisitors({ navigation }) {
             valueField="value"
             placeholder="Select identity type"
             value={identityTypeId}
-            onChange={item => {
+            onChange={(item) => {
               setIdentityTypeId(item.value);
             }}
           />
 
-          <Text style={[styles.label, commonStyles.headerText]}>Identity Number</Text>
+          <Text style={[styles.label, commonStyles.headerText]}>
+            Identity Number
+          </Text>
           <TextInput
             style={styles.input}
             value={identityNumber}
@@ -191,41 +220,41 @@ export default function AddVisitors({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   label: {
     marginBottom: 5,
   },
   input: {
     height: 40,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderWidth: 1,
     paddingHorizontal: 10,
     marginBottom: 15,
     borderRadius: 5,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: "#f9f9f9",
   },
   dropdown: {
     height: 40,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderWidth: 1,
     paddingHorizontal: 10,
     marginBottom: 15,
     borderRadius: 5,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: "#f9f9f9",
   },
   sendOtpButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: "#007BFF",
     paddingVertical: 10,
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     elevation: 3,
     marginTop: 20,
   },
   sendOtpButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
