@@ -1,3 +1,4 @@
+// src/AddVisitors.js
 import React, { useState } from "react";
 import {
   View,
@@ -13,6 +14,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import { getOTP } from "../../api/otp";
 import SubmitButton from "../../components/SubmitButton";
 import { SuccessToastMessage } from "../../utils/toastUtil";
+import UnitSelection from "../common/UnitSelection";
 
 export default function AddVisitors({ navigation }) {
   const [firstName, setFirstName] = useState("");
@@ -28,6 +30,10 @@ export default function AddVisitors({ navigation }) {
   const [vehicleNumber, setVehicleNumber] = useState("");
   const [identityTypeId, setIdentityTypeId] = useState(null);
   const [identityNumber, setIdentityNumber] = useState("");
+
+  const [selectedBuilding, setSelectedBuilding] = useState("");
+  const [selectedFloor, setSelectedFloor] = useState("");
+  const [selectedUnit, setSelectedUnit] = useState("");
 
   const visitorTypes = [
     { label: "Guest", value: "0" },
@@ -82,135 +88,160 @@ export default function AddVisitors({ navigation }) {
     }
   };
 
+  const handleSelectionComplete = (building, floor, unit) => {
+    setSelectedBuilding(building);
+    setSelectedFloor(floor);
+    setSelectedUnit(unit);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {!isOtpVerified && (
+      {!selectedUnit && (
+        <UnitSelection onSelectionComplete={handleSelectionComplete} />
+      )}
+      {selectedUnit && (
         <>
           <Text style={[styles.label, commonStyles.headerText]}>
-            First Name
+            Building: {selectedBuilding}
           </Text>
-          <TextInput
-            style={styles.input}
-            value={firstName}
-            onChangeText={setFirstName}
-          />
-
-          <Text style={[styles.label, commonStyles.headerText]}>Last Name</Text>
-          <TextInput
-            style={styles.input}
-            value={lastName}
-            onChangeText={setLastName}
-          />
-
           <Text style={[styles.label, commonStyles.headerText]}>
-            Contact Number
+            Floor: {selectedFloor}
           </Text>
-          <TextInput
-            style={styles.input}
-            value={contactNumber}
-            onChangeText={setContactNumber}
-            keyboardType="phone-pad"
-            maxLength={10}
-          />
+          <Text style={[styles.label, commonStyles.headerText]}>
+            Unit: {selectedUnit}
+          </Text>
 
-          {!isOtpSent ? (
-            <TouchableOpacity
-              style={styles.sendOtpButton}
-              onPress={handleSendOtp}
-            >
-              <Text style={styles.sendOtpButtonText}>Send OTP</Text>
-            </TouchableOpacity>
-          ) : (
+          {!isOtpVerified && (
             <>
               <Text style={[styles.label, commonStyles.headerText]}>
-                Enter OTP
+                First Name
               </Text>
               <TextInput
                 style={styles.input}
-                value={otp}
-                onChangeText={setOtp}
-                keyboardType="numeric"
-                maxLength={6}
+                value={firstName}
+                onChangeText={setFirstName}
               />
-              <TouchableOpacity
-                style={styles.sendOtpButton}
-                onPress={handleVerifyOtp}
-              >
-                <Text style={styles.sendOtpButtonText}>Verify OTP</Text>
-              </TouchableOpacity>
+
+              <Text style={[styles.label, commonStyles.headerText]}>
+                Last Name
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={lastName}
+                onChangeText={setLastName}
+              />
+
+              <Text style={[styles.label, commonStyles.headerText]}>
+                Contact Number
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={contactNumber}
+                onChangeText={setContactNumber}
+                keyboardType="phone-pad"
+                maxLength={10}
+              />
+
+              {!isOtpSent ? (
+                <TouchableOpacity
+                  style={styles.sendOtpButton}
+                  onPress={handleSendOtp}
+                >
+                  <Text style={styles.sendOtpButtonText}>Send OTP</Text>
+                </TouchableOpacity>
+              ) : (
+                <>
+                  <Text style={[styles.label, commonStyles.headerText]}>
+                    Enter OTP
+                  </Text>
+                  <TextInput
+                    style={styles.input}
+                    value={otp}
+                    onChangeText={setOtp}
+                    keyboardType="numeric"
+                    maxLength={6}
+                  />
+                  <TouchableOpacity
+                    style={styles.sendOtpButton}
+                    onPress={handleVerifyOtp}
+                  >
+                    <Text style={styles.sendOtpButtonText}>Verify OTP</Text>
+                  </TouchableOpacity>
+                </>
+              )}
             </>
           )}
-        </>
-      )}
 
-      {isOtpVerified && (
-        <>
-          <Text style={[styles.label, commonStyles.headerText]}>Email</Text>
-          <TextInput
-            style={styles.input}
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-          />
+          {isOtpVerified && (
+            <>
+              <Text style={[styles.label, commonStyles.headerText]}>Email</Text>
+              <TextInput
+                style={styles.input}
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+              />
 
-          <Text style={[styles.label, commonStyles.headerText]}>
-            Visiting From
-          </Text>
-          <TextInput
-            style={styles.input}
-            value={visitingFrom}
-            onChangeText={setVisitingFrom}
-          />
+              <Text style={[styles.label, commonStyles.headerText]}>
+                Visiting From
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={visitingFrom}
+                onChangeText={setVisitingFrom}
+              />
 
-          <Text style={[styles.label, commonStyles.headerText]}>
-            Visitor Type
-          </Text>
-          <Dropdown
-            style={styles.dropdown}
-            data={visitorTypes}
-            labelField="label"
-            valueField="value"
-            placeholder="Select visitor type"
-            value={visitorTypeId}
-            onChange={(item) => {
-              setVisitorTypeId(item.value);
-            }}
-          />
+              <Text style={[styles.label, commonStyles.headerText]}>
+                Visitor Type
+              </Text>
+              <Dropdown
+                style={styles.dropdown}
+                data={visitorTypes}
+                labelField="label"
+                valueField="value"
+                placeholder="Select visitor type"
+                value={visitorTypeId}
+                onChange={(item) => {
+                  setVisitorTypeId(item.value);
+                }}
+              />
 
-          <Text style={[styles.label, commonStyles.headerText]}>
-            Vehicle Number
-          </Text>
-          <TextInput
-            style={styles.input}
-            value={vehicleNumber}
-            onChangeText={setVehicleNumber}
-          />
+              <Text style={[styles.label, commonStyles.headerText]}>
+                Vehicle Number
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={vehicleNumber}
+                onChangeText={setVehicleNumber}
+              />
 
-          <Text style={[styles.label, commonStyles.headerText]}>
-            Identity Type
-          </Text>
-          <Dropdown
-            style={styles.dropdown}
-            data={identityTypes}
-            labelField="label"
-            valueField="value"
-            placeholder="Select identity type"
-            value={identityTypeId}
-            onChange={(item) => {
-              setIdentityTypeId(item.value);
-            }}
-          />
+              <Text style={[styles.label, commonStyles.headerText]}>
+                Identity Type
+              </Text>
+              <Dropdown
+                style={styles.dropdown}
+                data={identityTypes}
+                labelField="label"
+                valueField="value"
+                placeholder="Select identity type"
+                value={identityTypeId}
+                onChange={(item) => {
+                  setIdentityTypeId(item.value);
+                }}
+              />
 
-          <Text style={[styles.label, commonStyles.headerText]}>
-            Identity Number
-          </Text>
-          <TextInput
-            style={styles.input}
-            value={identityNumber}
-            onChangeText={setIdentityNumber}
-          />
+              <Text style={[styles.label, commonStyles.headerText]}>
+                Identity Number
+              </Text>
+              <TextInput
+                style={styles.input}
+                value={identityNumber}
+                onChangeText={setIdentityNumber}
+              />
 
-          <SubmitButton title="Submit" onPress={handleSubmit} />
+              <SubmitButton title="Submit" onPress={handleSubmit} />
+            </>
+          )}
         </>
       )}
     </ScrollView>
