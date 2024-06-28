@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import commonStyles from "../style/CommonStyles";
+import { getCountries, getStates } from "../api/address";
 
 const Addressform = ({ formData, handleInputChange, label, addressType }) => {
   const [countries, setCountries] = useState([]);
@@ -9,10 +10,12 @@ const Addressform = ({ formData, handleInputChange, label, addressType }) => {
 
   useEffect(() => {
     const fetchCountries = async () => {
-      const response = [
-        { id: "686bd9cd-1d2c-441f-b4c4-661ffb556725", name: "India" },
-      ];
-      setCountries(response);
+      try {
+        const response = await getCountries();
+        setCountries(response);
+      } catch (error) {
+        console.error("Error fetching countries", error);
+      }
     };
 
     fetchCountries();
@@ -21,17 +24,14 @@ const Addressform = ({ formData, handleInputChange, label, addressType }) => {
   useEffect(() => {
     if (formData[addressType].countryId) {
       const fetchStates = async () => {
-        let response = [];
-        if (
-          formData[addressType].countryId ===
-          "686bd9cd-1d2c-441f-b4c4-661ffb556725"
-        ) {
-          response = [
-            { id: "a56a7f6e-c0a1-4c66-868b-e1f06e3dc7df", name: "Maharashtra" },
-            { id: "77ecfca9-c41d-47ca-b050-6ddecd6bac2d", name: "Karnataka" },
-          ];
+        try {
+          const response = await getStates({
+            countryId: formData[addressType].countryId,
+          });
+          setStates(response);
+        } catch (error) {
+          console.error("Error fetching states", error);
         }
-        setStates(response);
       };
 
       fetchStates();

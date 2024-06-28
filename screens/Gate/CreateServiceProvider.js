@@ -19,6 +19,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import SubmitButton from "../../components/SubmitButton";
 import commonStyles from "../../style/CommonStyles";
 import Addressform from "../Addressform";
+import PinGenerator from "../PinGenerator";
 
 export default function AddServiceProvider({ navigation }) {
   const [serviceProviderType, setServiceProviderType] = useState([]);
@@ -269,6 +270,8 @@ export default function AddServiceProvider({ navigation }) {
         placeholder="YYYY-MM-DDTHH:MM:SSZ"
       />
 
+      <PinGenerator />
+
       <View style={styles.switchContainer}>
         <Text style={[styles.label, commonStyles.headerText]}>
           Police Verification Status
@@ -338,7 +341,7 @@ const styles = StyleSheet.create({
   switchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 15,
+    marginTop: 10,
   },
   submitButton: {
     backgroundColor: "#007BFF",
