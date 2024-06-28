@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { getServiceProviders } from '../../api/serviceProvider';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
+import { getServiceProviders } from "../../api/serviceProvider";
+import { useNavigation } from "@react-navigation/native";
 
 export default function GateServiceProviderScreen() {
   const navigation = useNavigation();
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState("");
   const [items, setItems] = useState([]);
   const [allItems, setAllItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,8 +39,10 @@ export default function GateServiceProviderScreen() {
 
   const handleCodeChange = (input) => {
     setCode(input);
-    if (input.length === 2) {
-      const filteredItems = allItems.filter(item => item.id.toString() === input);
+    if (input.length > 0) {
+      const filteredItems = allItems.filter(
+        (item) => item.id.toString() === input
+      );
       setItems(filteredItems);
     } else {
       setItems([]);
@@ -80,15 +90,22 @@ export default function GateServiceProviderScreen() {
                 style={styles.pushButton}
                 onPress={() => handlePushNotification(item)}
               >
-                <Text style={styles.pushButtonText}>Notify all unit members</Text>
+                <Text style={styles.pushButtonText}>
+                  Notify all unit members
+                </Text>
               </TouchableOpacity>
             </View>
           )}
-          ListEmptyComponent={() => <Text style={styles.emptyMessage}>No items to display</Text>}
+          ListEmptyComponent={() => (
+            <Text style={styles.emptyMessage}>No items to display</Text>
+          )}
         />
       )}
       {error && <Text style={styles.error}>{error}</Text>}
-      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('CreateServiceProvider')}>
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => navigation.navigate("CreateServiceProvider")}
+      >
         <Text style={styles.addButtonText}>Add New Service Provider</Text>
       </TouchableOpacity>
     </View>
@@ -99,77 +116,77 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   label: {
     fontSize: 18,
     marginBottom: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   input: {
     height: 40,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderWidth: 1,
     paddingHorizontal: 10,
     marginBottom: 20,
     borderRadius: 5,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: "#f9f9f9",
   },
   itemContainer: {
     padding: 15,
     marginVertical: 8,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     borderRadius: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   itemLabel: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
   },
   itemValue: {
     fontSize: 14,
     marginBottom: 15,
-    color: '#555',
+    color: "#555",
   },
   pushButton: {
-    backgroundColor: '#ff5722',
+    backgroundColor: "#ff5722",
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 5,
     marginTop: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
   pushButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   emptyMessage: {
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 20,
     fontSize: 16,
-    color: '#666',
+    color: "#666",
   },
   error: {
-    color: 'red',
+    color: "red",
     marginTop: 10,
   },
   addButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
     left: 20,
     right: 20,
-    backgroundColor: '#007BFF',
+    backgroundColor: "#007BFF",
     paddingVertical: 15,
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     elevation: 3,
   },
   addButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
