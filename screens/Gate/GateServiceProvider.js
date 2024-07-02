@@ -27,7 +27,7 @@ export default function GateServiceProviderScreen() {
         const response = await getServiceProviders();
         setAllItems(response);
       } catch (error) {
-        console.error("ID not found", error);
+        console.error("Error fetching data", error);
         setError("Error fetching data");
       } finally {
         setLoading(false);

@@ -1,4 +1,3 @@
-import { Dimensions } from "react-native";
 import { Icon } from "../components/";
 import ComponentsScreen from "../screens/Components";
 import HomeScreen from "../screens/Home";
@@ -22,8 +21,7 @@ import EventsScreen from "../screens/Events";
 import CustomHeader from "../screens/CustomerHeader";
 import GateUpdates from "../screens/gateUpdatesComponents/GateUpdates";
 import MyHelps from "../screens/MyHelps";
-
-const { width } = Dimensions.get("screen");
+import PropTypes from "prop-types";
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -259,51 +257,6 @@ function MainTabs() {
           ),
         }}
       />
-      {/* <BottomTab.Screen
-        name="Social"
-        component={SocialStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="groups" family="material" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Buy & Sell"
-        component={ProfileStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="handshake" family="material" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Services"
-        component={ServiceStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="handyman" family="material" color={color} />
-          ),
-        }}
-      /> */}
-      {/* <BottomTab.Screen
-        name="Buy & Sell"
-        component={ProfileStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="handshake" family="material" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Services"
-        component={ServiceStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="handyman" family="material" color={color} />
-          ),
-        }}
-      /> */}
     </BottomTab.Navigator>
   );
 }
@@ -415,3 +368,16 @@ function AppStack(props) {
     </Stack.Navigator>
   );
 }
+
+CommonCustomHeader.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  showBackButton: PropTypes.bool,
+  showSettings: PropTypes.bool,
+};
+
+CommonCustomHeader.defaultProps = {
+  description: "",
+  showBackButton: false,
+  showSettings: false,
+};
