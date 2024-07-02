@@ -1,79 +1,92 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import { format } from 'date-fns';
-import commonStyles from '../style/CommonStyles';
-import { getEvents } from '../api/event';
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { format } from "date-fns";
+import commonStyles from "../style/CommonStyles";
+import { getEvents } from "../api/event";
 
 const EventsScreen = () => {
-    const [data, setData] = useState([]);
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const events = await getEvents('12fb50f0-9998-456f-8aee-bb83ab2fbbdb','1');
-            setData(events);
-          } catch (error) {
-            console.error('Error fetching data', error);
-          }
-        };
-    
-        fetchData();
-    }, []);
-console.log('data',data)
-const formatDate = (dateString) => {
-  return format(new Date(dateString), 'dd-MMM-yyyy');
-};
-const formatTime = (dateString) => {
-  return format(new Date(dateString), 'hh:mm a');
-};
-const getDayOfWeek = (dateString) => {
-  return format(new Date(dateString), 'eee');
-};
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const events = await getEvents(
+          "12fb50f0-9998-456f-8aee-bb83ab2fbbdb",
+          "1"
+        );
+        setData(events);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log("data", data);
+  const formatDate = (dateString) => {
+    return format(new Date(dateString), "dd-MMM-yyyy");
+  };
+  const formatTime = (dateString) => {
+    return format(new Date(dateString), "hh:mm a");
+  };
+  const getDayOfWeek = (dateString) => {
+    return format(new Date(dateString), "eee");
+  };
   return (
-    <View >
+    <View>
       {data.map((event) => (
         <ScrollView horizontal style={styles.card} key={event.id}>
-            <View style={styles.dateContainer}>
-              <Text style={[commonStyles.headerText, styles.day]}>{getDayOfWeek(event.reservationDate)}</Text>
-              <Text style={[commonStyles.descriptionText, styles.day]}>{formatDate(event.reservationDate)}</Text>
-            </View>
-            <View style={styles.scheduleContainer}>
-              <Text style={commonStyles.descriptionText}>{formatTime(event.start)}</Text>
-              <Text style={commonStyles.descriptionText}>{formatTime(event.end)}</Text>
-              <Text style={commonStyles.headerText}>{event.title}</Text>
-              <Text style={commonStyles.descriptionText}>{event.description}</Text>
-            </View>
+          <View style={styles.dateContainer}>
+            <Text style={[commonStyles.headerText, styles.day]}>
+              {getDayOfWeek(event.reservationDate)}
+            </Text>
+            <Text style={[commonStyles.descriptionText, styles.day]}>
+              {formatDate(event.reservationDate)}
+            </Text>
+          </View>
+          <View style={styles.scheduleContainer}>
+            <Text style={commonStyles.descriptionText}>
+              {formatTime(event.start)}
+            </Text>
+            <Text style={commonStyles.descriptionText}>
+              {formatTime(event.end)}
+            </Text>
+            <Text style={commonStyles.headerText}>{event.title}</Text>
+            <Text style={commonStyles.descriptionText}>
+              {event.description}
+            </Text>
+          </View>
         </ScrollView>
-        ))}
+      ))}
     </View>
   );
 };
 const styles = StyleSheet.create({
   card: {
-    flexDirection: 'row',
+    flexDirection: "row",
     borderRadius: 10,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     margin: 10,
-    marginTop: 20
+    marginTop: 20,
   },
   headerContainer: {
-    alignItems: 'left',
-    backgroundColor: '#ffff',
+    alignItems: "left",
+    backgroundColor: "#ffff",
     padding: 15,
   },
   dateContainer: {
-    alignItems: 'center',
-    backgroundColor: '#f8ac59',
+    alignItems: "center",
+    backgroundColor: "#f8ac59",
     borderRadius: 10,
-    width: '20%',
+    width: "20%",
   },
   day: {
-    color: '#FFFF',
-    marginVertical: '5%'
+    color: "#FFFF",
+    marginVertical: "5%",
   },
   scheduleContainer: {
     flex: 1,
-    marginHorizontal: '2%',
-    width: 500
+    marginHorizontal: "2%",
+    width: 500,
   },
 });
 

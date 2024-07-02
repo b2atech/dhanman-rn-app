@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import commonStyles from "../style/CommonStyles";
+import PropTypes from "prop-types";
 
 const Addressform = ({ formData, handleInputChange, label, addressType }) => {
   const [countries, setCountries] = useState([]);
@@ -97,6 +98,26 @@ const Addressform = ({ formData, handleInputChange, label, addressType }) => {
       />
     </View>
   );
+};
+
+Addressform.propTypes = {
+  formData: PropTypes.shape({
+    Home: PropTypes.shape({
+      addressLine1: PropTypes.string,
+      addressLine2: PropTypes.string,
+      countryId: PropTypes.string,
+      stateId: PropTypes.string,
+      cityName: PropTypes.string,
+      zipCode: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  addressType: PropTypes.string,
+};
+
+Addressform.defaultProps = {
+  addressType: "Home",
 };
 
 const styles = StyleSheet.create({

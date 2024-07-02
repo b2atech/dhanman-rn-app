@@ -56,7 +56,7 @@ export const Auth0Provider = ({
       if (isLoggedIn) {
         const user = await auth0Client.getUser();
         const token = await auth0Client.getTokenSilently();
-        await AsyncStorage.setItem("serviceToken", token); // Use AsyncStorage for React Native
+        await AsyncStorage.setItem("serviceToken", token);
         setIsAuthenticated(true);
       }
     }

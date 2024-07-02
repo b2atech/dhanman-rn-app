@@ -152,9 +152,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  statusIcon: {
-    marginLeft: 5,
-  },
   tagContainer: {
     borderRadius: 10,
     paddingVertical: 3,

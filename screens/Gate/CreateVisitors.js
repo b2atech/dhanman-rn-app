@@ -1,7 +1,6 @@
 // src/AddVisitors.js
 import React, { useState } from "react";
 import {
-  View,
   Text,
   TextInput,
   StyleSheet,
@@ -15,6 +14,7 @@ import { getOTP } from "../../api/otp";
 import SubmitButton from "../../components/SubmitButton";
 import { SuccessToastMessage } from "../../utils/toastUtil";
 import UnitSelection from "../common/UnitSelection";
+import PropTypes from "prop-types";
 
 export default function AddVisitors({ navigation }) {
   const [firstName, setFirstName] = useState("");
@@ -247,6 +247,12 @@ export default function AddVisitors({ navigation }) {
     </ScrollView>
   );
 }
+
+AddVisitors.propTypes = {
+  navigation: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {

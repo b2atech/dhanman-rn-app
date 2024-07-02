@@ -14,11 +14,11 @@ import {
   getServiceProviderType,
   addServiceProvider,
 } from "../../api/serviceProvider";
-
 import { Dropdown } from "react-native-element-dropdown";
 import SubmitButton from "../../components/SubmitButton";
 import commonStyles from "../../style/CommonStyles";
 import Addressform from "../Addressform";
+import PropTypes from "prop-types";
 
 export default function AddServiceProvider({ navigation }) {
   const [serviceProviderType, setServiceProviderType] = useState([]);
@@ -89,22 +89,18 @@ export default function AddServiceProvider({ navigation }) {
       "serviceProviderTypeId",
       "serviceProviderSubTypeId",
     ];
-
     for (let field of requiredFields) {
       if (!formData[field]) {
         Alert.alert("Validation Error", `Please fill in the ${field} field.`);
         return false;
       }
     }
-
     return true;
   };
 
   const handleSubmit = async () => {
     if (!validateForm()) return;
-
     setIsLoading(true);
-
     try {
       await addServiceProvider(formData);
       Alert.alert("Success", "Service provider added successfully.");
@@ -129,7 +125,6 @@ export default function AddServiceProvider({ navigation }) {
         console.error("Error fetching service provider types:", error);
       }
     };
-
     fetchAllServiceProviderType();
   }, []);
 
@@ -142,7 +137,6 @@ export default function AddServiceProvider({ navigation }) {
         console.error("Error fetching service provider subtypes:", error);
       }
     };
-
     fetchAllServiceProviderSubType();
   }, []);
 
@@ -154,14 +148,12 @@ export default function AddServiceProvider({ navigation }) {
         value={formData.firstName}
         onChangeText={(value) => handleInputChange("firstName", value)}
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>Last Name</Text>
       <TextInput
         style={styles.input}
         value={formData.lastName}
         onChangeText={(value) => handleInputChange("lastName", value)}
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>Email</Text>
       <TextInput
         style={styles.input}
@@ -169,14 +161,12 @@ export default function AddServiceProvider({ navigation }) {
         onChangeText={(value) => handleInputChange("email", value)}
         keyboardType="email-address"
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>Visiting From</Text>
       <TextInput
         style={styles.input}
         value={formData.visitingFrom}
         onChangeText={(value) => handleInputChange("visitingFrom", value)}
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>
         Contact Number
       </Text>
@@ -187,21 +177,18 @@ export default function AddServiceProvider({ navigation }) {
         keyboardType="phone-pad"
         maxLength={10}
       />
-
       <Addressform
         formData={formData}
         handleInputChange={handleInputChange}
         label="Permanent Address"
         addressType={"permanentAddress"}
       />
-
       <Addressform
         formData={formData}
         handleInputChange={handleInputChange}
         label="Present Address"
         addressType={"presentAddress"}
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>
         Service Provider Type
       </Text>
@@ -213,7 +200,6 @@ export default function AddServiceProvider({ navigation }) {
         onChange={(item) => handleInputChange("serviceProviderTypeId", item.id)}
         style={styles.dropdown}
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>
         Service Provider Sub Type
       </Text>
@@ -227,7 +213,6 @@ export default function AddServiceProvider({ navigation }) {
         }
         style={styles.dropdown}
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>
         Vehicle Number
       </Text>
@@ -236,7 +221,6 @@ export default function AddServiceProvider({ navigation }) {
         value={formData.vehicleNumber}
         onChangeText={(value) => handleInputChange("vehicleNumber", value)}
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>
         Identity Type ID
       </Text>
@@ -251,7 +235,6 @@ export default function AddServiceProvider({ navigation }) {
           setIdentityTypeId(item.value);
         }}
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>
         Identity Number
       </Text>
@@ -260,7 +243,6 @@ export default function AddServiceProvider({ navigation }) {
         value={formData.identityNumber}
         onChangeText={(value) => handleInputChange("identityNumber", value)}
       />
-
       <Text style={[styles.label, commonStyles.headerText]}>Validity Date</Text>
       <TextInput
         style={styles.input}
@@ -268,7 +250,6 @@ export default function AddServiceProvider({ navigation }) {
         onChangeText={(value) => handleInputChange("validityDate", value)}
         placeholder="YYYY-MM-DDTHH:MM:SSZ"
       />
-
       <View style={styles.switchContainer}>
         <Text style={[styles.label, commonStyles.headerText]}>
           Police Verification Status
@@ -280,7 +261,6 @@ export default function AddServiceProvider({ navigation }) {
           }
         />
       </View>
-
       <View style={styles.switchContainer}>
         <Text style={[styles.label, commonStyles.headerText]}>Is Hireable</Text>
         <Switch
@@ -288,7 +268,6 @@ export default function AddServiceProvider({ navigation }) {
           onValueChange={(value) => handleInputChange("isHireable", value)}
         />
       </View>
-
       <View style={styles.switchContainer}>
         <Text style={[styles.label, commonStyles.headerText]}>Is Visible</Text>
         <Switch
@@ -296,7 +275,6 @@ export default function AddServiceProvider({ navigation }) {
           onValueChange={(value) => handleInputChange("isVisible", value)}
         />
       </View>
-
       <View style={styles.switchContainer}>
         <Text style={[styles.label, commonStyles.headerText]}>
           Is Frequent Visitor
@@ -308,7 +286,6 @@ export default function AddServiceProvider({ navigation }) {
           }
         />
       </View>
-
       {isLoading ? (
         <ActivityIndicator size="large" color="#007BFF" />
       ) : (
@@ -317,6 +294,12 @@ export default function AddServiceProvider({ navigation }) {
     </ScrollView>
   );
 }
+
+AddServiceProvider.propTypes = {
+  navigation: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {

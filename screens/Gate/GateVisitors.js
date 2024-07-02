@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { getVisitors } from '../../api/visitors';
-import CreateVisitors from '../Gate/CreateVisitors'
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  FlatList,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
+import { getVisitors } from "../../api/visitors";
+import { useNavigation } from "@react-navigation/native";
 
 export default function GateVisitorsScreen() {
   const navigation = useNavigation();
-  const [contactNumber, setContactNumber] = useState('');
+  const [contactNumber, setContactNumber] = useState("");
   const [items, setItems] = useState([]);
   const [allItems, setAllItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -33,7 +40,9 @@ export default function GateVisitorsScreen() {
   const handleContactNumberChange = (input) => {
     setContactNumber(input);
     if (input.length === 10) {
-      const filteredItems = allItems.filter(item => item.contactNumber === input);
+      const filteredItems = allItems.filter(
+        (item) => item.contactNumber === input
+      );
       setItems(filteredItems);
     } else {
       setItems([]);
@@ -41,7 +50,6 @@ export default function GateVisitorsScreen() {
   };
 
   const handlePushNotification = (item) => {
-    // Implement push notification functionality here
     alert(`Push Notification sent to ${item.firstName} ${item.lastName}`);
   };
 
@@ -85,11 +93,16 @@ export default function GateVisitorsScreen() {
               </TouchableOpacity>
             </View>
           )}
-          ListEmptyComponent={() => <Text style={styles.emptyMessage}>No items to display</Text>}
+          ListEmptyComponent={() => (
+            <Text style={styles.emptyMessage}>No items to display</Text>
+          )}
         />
       )}
       {error && <Text style={styles.error}>{error}</Text>}
-      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('CreateVisitors')}>
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => navigation.navigate("CreateVisitors")}
+      >
         <Text style={styles.addButtonText}>Add New Visitor</Text>
       </TouchableOpacity>
     </View>
@@ -100,29 +113,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   label: {
     fontSize: 18,
     marginBottom: 10,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   input: {
     height: 40,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderWidth: 1,
     paddingHorizontal: 10,
     marginBottom: 20,
     borderRadius: 5,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: "#f9f9f9",
   },
   itemContainer: {
     padding: 15,
     marginVertical: 8,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
     borderRadius: 10,
     marginBottom: 20,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
@@ -130,52 +143,52 @@ const styles = StyleSheet.create({
   },
   itemLabel: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#333',
+    fontWeight: "bold",
+    color: "#333",
   },
   itemValue: {
     fontSize: 14,
     marginBottom: 5,
-    color: '#555',
+    color: "#555",
   },
   pushButton: {
-    backgroundColor: '#ff5722',
+    backgroundColor: "#ff5722",
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 5,
     marginTop: 10,
-    alignItems: 'center',
+    alignItems: "center",
   },
   pushButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   emptyMessage: {
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 20,
     fontSize: 16,
-    color: '#666',
+    color: "#666",
   },
   error: {
-    color: 'red',
+    color: "red",
     marginTop: 10,
   },
   addButton: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
     left: 20,
     right: 20,
-    backgroundColor: '#007BFF',
+    backgroundColor: "#007BFF",
     paddingVertical: 15,
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     elevation: 3,
   },
   addButtonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
