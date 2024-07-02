@@ -1,5 +1,4 @@
-import apiClient from "./ApiServices/apiService";
-
+import apiClient from "../utils/axiosCommunity";
 
 export const getServiceProviders = async () => {
   try {
