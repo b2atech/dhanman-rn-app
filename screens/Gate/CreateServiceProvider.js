@@ -59,6 +59,8 @@ export default function AddServiceProvider({ navigation }) {
     isVisible: false,
     isFrequentVisitor: false,
     createdBy: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    apartmentId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    pin: "",
   });
 
   const identityTypes = [
@@ -105,7 +107,6 @@ export default function AddServiceProvider({ navigation }) {
     if (!validateForm()) return;
 
     setIsLoading(true);
-
     try {
       await addServiceProvider(formData);
       Alert.alert("Success", "Service provider added successfully.");
@@ -269,8 +270,6 @@ export default function AddServiceProvider({ navigation }) {
         onChangeText={(value) => handleInputChange("validityDate", value)}
         placeholder="YYYY-MM-DDTHH:MM:SSZ"
       />
-
-      <PinGenerator />
 
       <View style={styles.switchContainer}>
         <Text style={[styles.label, commonStyles.headerText]}>

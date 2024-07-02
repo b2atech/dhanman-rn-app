@@ -1,12 +1,12 @@
 import axios from "axios";
 import { getToken } from "./token";
-const axiosCommonServices = axios.create({
-  baseURL: "https://api-dhanman-myHome-nonprod.azurewebsites.net/api/",
+const axiosCommunityServices = axios.create({
+  baseURL: "https://api-dhanman-myhome-nonprod.azurewebsites.net/api/",
 });
 
 // ==============================|| AXIOS - FOR MOCK SERVICES ||============================== //
 
-axiosCommonServices.interceptors.request.use(
+axiosCommunityServices.interceptors.request.use(
   async (config) => {
     try {
       const accessToken = await getToken();
@@ -14,7 +14,7 @@ axiosCommonServices.interceptors.request.use(
         config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
     } catch (error) {
-      console.error("Error retrieving token", error);
+      console.error("Error retrieving", error);
     }
     return config;
   },
@@ -25,7 +25,7 @@ axiosCommonServices.interceptors.request.use(
   }
 );
 
-axiosCommonServices.interceptors.response.use(
+axiosCommunityServices.interceptors.response.use(
   (response) => response,
   (error) => {
     if (
@@ -35,26 +35,32 @@ axiosCommonServices.interceptors.response.use(
     ) {
       window.location.pathname = "/maintenance/500";
     }
-    return Promise.reject(
-      (error.response && error.response.data) || "Wrong Services"
-    );
+
+    const errorMessage =
+      typeof error?.response?.data === "string"
+        ? error.response.data
+        : "Wrong Services";
+    const errorObject = new Error(errorMessage);
+    return Promise.reject(errorObject);
   }
 );
 
-export default axiosCommonServices;
+export default axiosCommunityServices;
 
-export const fetcher = async (args) => {
-  const [url, config] = Array.isArray(args) ? args : [args];
-
-  const res = await axiosCommonServices.get(url, { ...config });
-
-  return res.data;
+export const fetcher = async (url, config) => {
+  try {
+    const res = await axiosCommunityServices.get(url, { ...config });
+    return res.data;
+  } catch (error) {
+    console.error("Fetcher Error:", error);
+    throw error;
+  }
 };
 
 export const fetcherPost = async (args) => {
   const [url, config] = Array.isArray(args) ? args : [args];
 
-  const res = await axiosCommonServices.post(url, { ...config?.data });
+  const res = await axiosCommunityServices.post(url, { ...config?.data });
 
   return res.data;
 };
@@ -62,7 +68,7 @@ export const fetcherPost = async (args) => {
 export const fetcherPut = async (args) => {
   const [url, config] = Array.isArray(args) ? args : [args];
 
-  const res = await axiosCommonServices.put(url, { ...config?.data });
+  const res = await axiosCommunityServices.put(url, { ...config?.data });
 
   return res.data;
 };

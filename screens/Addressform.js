@@ -25,9 +25,7 @@ const Addressform = ({ formData, handleInputChange, label, addressType }) => {
     if (formData[addressType].countryId) {
       const fetchStates = async () => {
         try {
-          const response = await getStates({
-            countryId: formData[addressType].countryId,
-          });
+          const response = await getStates(formData[addressType].countryId);
           setStates(response);
         } catch (error) {
           console.error("Error fetching states", error);
@@ -36,7 +34,7 @@ const Addressform = ({ formData, handleInputChange, label, addressType }) => {
 
       fetchStates();
     }
-  }, [formData[addressType].countryId]);
+  }, [formData[addressType]?.countryId, formData[addressType]]);
 
   return (
     <View>

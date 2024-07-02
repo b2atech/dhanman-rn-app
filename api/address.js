@@ -1,8 +1,8 @@
-import apiClient from "./ApiServices/commonApiService";
+import { fetcher } from "../utils/axiosCommon";
 export const getCountries = async () => {
   try {
-    const response = await apiClient.get("v1/countries");
-    return response.data.items;
+    const response = await fetcher("v1/countries");
+    return response.items;
   } catch (error) {
     console.error("Error fetching countries", error);
     throw error;
@@ -11,8 +11,8 @@ export const getCountries = async () => {
 
 export const getStates = async (countryId) => {
   try {
-    const response = await apiClient.get("v1/states", countryId);
-    return response.data.items;
+    const response = await fetcher(`v1/states/${countryId}`);
+    return response.items;
   } catch (error) {
     console.error("Error fetching states", error);
     throw error;
