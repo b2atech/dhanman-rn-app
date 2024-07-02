@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import PropTypes from "prop-types";
 import commonStyles from "../style/CommonStyles";
 import { getCountries, getStates } from "../api/address";
 
-const Addressform = ({ formData, handleInputChange, label, addressType }) => {
+const AddressForm = ({ formData, handleInputChange, label, addressType }) => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
 
@@ -97,6 +98,13 @@ const Addressform = ({ formData, handleInputChange, label, addressType }) => {
   );
 };
 
+AddressForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  addressType: PropTypes.string.isRequired,
+};
+
 const styles = StyleSheet.create({
   label: {
     marginBottom: 5,
@@ -112,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Addressform;
+export default AddressForm;

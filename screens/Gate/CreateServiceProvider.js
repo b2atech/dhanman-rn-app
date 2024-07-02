@@ -19,7 +19,6 @@ import { Dropdown } from "react-native-element-dropdown";
 import SubmitButton from "../../components/SubmitButton";
 import commonStyles from "../../style/CommonStyles";
 import Addressform from "../Addressform";
-import PinGenerator from "../PinGenerator";
 
 export default function AddServiceProvider({ navigation }) {
   const [serviceProviderType, setServiceProviderType] = useState([]);
