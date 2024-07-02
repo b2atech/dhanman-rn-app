@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Dimensions, ScrollView, Text } from "react-native";
 import { Block } from "galio-framework";
-import PropTypes from "prop-types";
 import Services from "./Services";
 import commonStyles from "../style/CommonStyles";
 
@@ -71,12 +70,6 @@ export default class Service extends React.Component {
     );
   }
 }
-
-Service.propTypes = {
-  name: PropTypes.string.isRequired,
-  imageSource: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
 
 const styles = StyleSheet.create({
   container: {

@@ -14,6 +14,8 @@ import { Icon } from "../components";
 import materialTheme from "../constants/Theme";
 import Images from "../constants/Images";
 import { iPhoneX, HeaderHeight } from "../constants/utils";
+import PropTypes from "prop-types";
+
 const { height, width } = Dimensions.get("window");
 
 export default class Product extends React.Component {
@@ -261,6 +263,12 @@ export default class Product extends React.Component {
     );
   }
 }
+
+Product.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }),
+};
 
 const styles = StyleSheet.create({
   product: {

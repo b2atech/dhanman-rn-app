@@ -16,8 +16,8 @@ const { width } = Dimensions.get("window");
 
 export default class SignIn extends React.Component {
   state = {
-    email: "-",
-    password: "-",
+    email: "",
+    password: "",
     active: {
       email: false,
       password: false,

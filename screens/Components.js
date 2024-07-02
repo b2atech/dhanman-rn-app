@@ -12,9 +12,9 @@ import { Button, Block, Text, Input, theme } from "galio-framework";
 
 import { materialTheme, products, Images } from "../constants/";
 import { Select, Icon, Header, Product, Switch } from "../components/";
+import PropTypes from "prop-types";
 
 const { width } = Dimensions.get("screen");
-
 const thumbMeasure = (width - 48 - 32) / 3;
 const cardWidth = width - theme.SIZES.BASE * 2;
 const categories = [
@@ -577,6 +577,11 @@ export default class Components extends React.Component {
   }
 }
 
+Components.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }),
+};
 const styles = StyleSheet.create({
   components: {
     paddingTop: theme.SIZES.BASE * 3,

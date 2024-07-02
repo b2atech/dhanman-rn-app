@@ -1,29 +1,25 @@
 import React from "react";
-import { Switch, Platform } from "react-native";
-
+import { Platform, Switch } from "react-native";
+import PropTypes from "prop-types";
 import materialTheme from "../constants/Theme";
 
 export default class MkSwitch extends React.Component {
   render() {
-    const { value: any, ...props } = this.props;
-    const thumbColor =
-      Platform.OS === "ios"
-        ? null
-        : Platform.OS === "android" && value
-        ? materialTheme.COLORS.SWITCH_ON
-        : materialTheme.COLORS.SWITCH_OFF;
+    const { value, ...props } = this.props;
 
-    return (
-      <Switch
-        value={value}
-        thumbColor={thumbColor}
-        ios_backgroundColor={materialTheme.COLORS.SWITCH_OFF}
-        trackColor={{
-          false: materialTheme.COLORS.SWITCH_OFF,
-          true: materialTheme.COLORS.SWITCH_ON,
-        }}
-        {...props}
-      />
-    );
+    let thumbColor;
+    if (Platform.OS === "ios") {
+      thumbColor = null;
+    } else if (Platform.OS === "android" && value) {
+      thumbColor = materialTheme.COLORS.SWITCH_ON;
+    } else {
+      thumbColor = materialTheme.COLORS.SWITCH_OFF;
+    }
+
+    return <Switch value={value} thumbColor={thumbColor} {...props} />;
   }
 }
+
+MkSwitch.propTypes = {
+  value: PropTypes.bool.isRequired,
+};

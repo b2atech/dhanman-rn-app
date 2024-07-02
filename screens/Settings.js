@@ -136,6 +136,7 @@ export default class Settings extends React.Component {
 Settings.propTypes = {
   navigation: PropTypes.string.isRequired,
 };
+
 const styles = StyleSheet.create({
   settings: {
     paddingVertical: theme.SIZES.BASE / 3,

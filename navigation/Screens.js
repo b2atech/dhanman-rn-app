@@ -28,6 +28,20 @@ const { width } = Dimensions.get("screen");
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
+const CommonCustomHeader = ({
+  name,
+  description,
+  showBackButton,
+  showSettings,
+}) => (
+  <CustomHeader
+    name={name}
+    description={description}
+    showBackButton={showBackButton}
+    showSettings={showSettings}
+  />
+);
+
 function ProfileStack(props) {
   return (
     <Stack.Navigator
@@ -42,7 +56,7 @@ function ProfileStack(props) {
         component={ProfileScreen}
         options={{
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={""}
               description={""}
               showBackButton={true}
@@ -57,7 +71,7 @@ function ProfileStack(props) {
         component={ChatScreen}
         options={{
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={""}
               description={""}
               showBackButton={true}
@@ -71,7 +85,7 @@ function ProfileStack(props) {
         component={CartScreen}
         options={{
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={""}
               description={""}
               showBackButton={true}
@@ -98,7 +112,7 @@ function ComponentsStack(props) {
         component={ComponentsScreen}
         options={{
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={""}
               description={""}
               showBackButton={true}
@@ -165,7 +179,7 @@ function ServiceStack(props) {
         component={ServiceScreen}
         options={{
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={""}
               description={""}
               showBackButton={true}
@@ -209,7 +223,7 @@ function MainTabs() {
           ),
           tabBarLabel: "Home",
           headerTitle: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={"Arun Patil, A101"}
               description={"Aspen woods Apartment"}
               showBackButton={false}
@@ -308,7 +322,7 @@ function AppStack(props) {
         component={ViewAllScreen}
         options={{
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={""}
               description={""}
               showBackButton={true}
@@ -329,7 +343,7 @@ function AppStack(props) {
         options={{
           headerShown: true,
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={"Service Provider"}
               description={"check Service Providers"}
               showBackButton={true}
@@ -344,7 +358,7 @@ function AppStack(props) {
         options={{
           headerShown: true,
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={"Visitors"}
               description={"check your Visitors here..."}
               showBackButton={true}
@@ -359,7 +373,7 @@ function AppStack(props) {
         options={{
           headerShown: true,
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={"Visitors"}
               description={"Add your visitors here..."}
               showBackButton={true}
@@ -374,7 +388,7 @@ function AppStack(props) {
         options={{
           headerShown: true,
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={"Service Provider"}
               description={"Add your service provider here..."}
               showBackButton={true}
@@ -389,7 +403,7 @@ function AppStack(props) {
         options={{
           headerShown: true,
           header: () => (
-            <CustomHeader
+            <CommonCustomHeader
               name={"Events"}
               description={"check your events here..."}
               showBackButton={true}
