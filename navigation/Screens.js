@@ -40,6 +40,19 @@ const CommonCustomHeader = ({
   />
 );
 
+CommonCustomHeader.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  showBackButton: PropTypes.bool,
+  showSettings: PropTypes.bool,
+};
+
+CommonCustomHeader.defaultProps = {
+  description: "",
+  showBackButton: false,
+  showSettings: false,
+};
+
 function ProfileStack(props) {
   return (
     <Stack.Navigator
@@ -368,16 +381,3 @@ function AppStack(props) {
     </Stack.Navigator>
   );
 }
-
-CommonCustomHeader.propTypes = {
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  showBackButton: PropTypes.bool,
-  showSettings: PropTypes.bool,
-};
-
-CommonCustomHeader.defaultProps = {
-  description: "",
-  showBackButton: false,
-  showSettings: false,
-};
