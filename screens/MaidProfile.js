@@ -1,22 +1,31 @@
-import React from 'react';
-import { View, Image, StyleSheet, ScrollView, Text, Button } from 'react-native';
-import { Card } from 'react-native-paper';
-import commonStyles from '../style/CommonStyles';
+import React from "react";
+import {
+  View,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Text,
+  Button,
+} from "react-native";
+import { Card } from "react-native-paper";
+import commonStyles from "../style/CommonStyles";
+import PropTypes from "prop-types";
 
 const MaidProfileScreen = ({ route }) => {
   const { userProfile } = route.params || {};
 
   const {
-    name = 'Default Name',
-    imageSource = require('../assets/images/default.jpg'), 
-    work = 'Default Work',
-    contact = 'Default Contact'
+    imageSource = require("../assets/images/default.jpg"),
+    work = "Default Work",
+    contact = "Default Contact",
   } = userProfile || {};
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Card style={styles.profileCard}>
-        <View style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
+        <View
+          style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}
+        >
           {imageSource && (
             <Image
               style={styles.profileImage}
@@ -37,7 +46,9 @@ const MaidProfileScreen = ({ route }) => {
         </View>
       </Card>
       <Card style={[styles.attendanceCard, commonStyles.alignItemCenter]}>
-        <View style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
+        <View
+          style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}
+        >
           <Text style={styles.attendanceText}>Attendance</Text>
           <Text style={styles.attendanceCount}>24/30</Text>
         </View>
@@ -47,10 +58,22 @@ const MaidProfileScreen = ({ route }) => {
         <Text style={styles.ratingText}>4.0</Text>
         <Text style={styles.ratingLabel}>Rate Now</Text>
         <View style={styles.ratingIcons}>
-          <Image style={[styles.ratingIcon, commonStyles.widthHeight]} source={{ uri: 'https://via.placeholder.com/50' }} />
-          <Image style={[styles.ratingIcon, commonStyles.widthHeight]} source={{ uri: 'https://via.placeholder.com/50' }} />
-          <Image style={[styles.ratingIcon, commonStyles.widthHeight]} source={{ uri: 'https://via.placeholder.com/50' }} />
-          <Image style={[styles.ratingIcon, commonStyles.widthHeight]} source={{ uri: 'https://via.placeholder.com/50' }} />
+          <Image
+            style={[styles.ratingIcon, commonStyles.widthHeight]}
+            source={{ uri: "https://via.placeholder.com/50" }}
+          />
+          <Image
+            style={[styles.ratingIcon, commonStyles.widthHeight]}
+            source={{ uri: "https://via.placeholder.com/50" }}
+          />
+          <Image
+            style={[styles.ratingIcon, commonStyles.widthHeight]}
+            source={{ uri: "https://via.placeholder.com/50" }}
+          />
+          <Image
+            style={[styles.ratingIcon, commonStyles.widthHeight]}
+            source={{ uri: "https://via.placeholder.com/50" }}
+          />
         </View>
       </Card>
       <Card style={styles.infoCard}>
@@ -67,11 +90,15 @@ const MaidProfileScreen = ({ route }) => {
   );
 };
 
+MaidProfileScreen.propTypes = {
+  route: PropTypes.array.isRequired,
+};
+
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 16,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#f5f5f5",
   },
   profileCard: {
     padding: 16,
@@ -87,33 +114,33 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   work: {
     fontSize: 16,
-    color: 'gray',
+    color: "gray",
   },
   contact: {
     fontSize: 16,
-    color: 'gray',
+    color: "gray",
   },
   profileActions: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    justifyContent: "space-around",
     marginTop: 16,
   },
   attendanceCard: {
     padding: 16,
     marginBottom: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   attendanceText: {
     fontSize: 16,
   },
   attendanceCount: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginLeft: 8,
   },
   ratingCard: {
@@ -122,15 +149,15 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   ratingLabel: {
     fontSize: 16,
-    color: '#ff9800',
+    color: "#ff9800",
     marginTop: 8,
   },
   ratingIcons: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 16,
   },
   ratingIcon: {
@@ -148,7 +175,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 14,
-    color: 'gray',
+    color: "gray",
   },
 });
 

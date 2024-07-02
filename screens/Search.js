@@ -10,9 +10,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { Block, Text, Input, theme } from "galio-framework";
-
-const { width } = Dimensions.get("screen");
-
+import PropTypes from "prop-types";
 import { products, Images } from "../constants/";
 import { Icon, Product } from "../components/";
 
@@ -21,6 +19,8 @@ const suggestions = [
   { id: "makeup", title: "Makeup", image: Images.Products["Makeup"] },
   { id: "watches", title: "Watches", image: Images.Products["Watches"] },
 ];
+
+const { width } = Dimensions.get("screen");
 
 export default class Search extends React.Component {
   state = {
@@ -105,25 +105,25 @@ export default class Search extends React.Component {
     const { navigation } = this.props;
 
     return (
-        <FlatList
-          data={suggestions}
-          keyExtractor={(item, index) => item.id}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.suggestion}
-              onPress={() => navigation.navigate("Category", { ...item })}
-            >
-              <Block flex row middle space="between">
-                <Text size={14}>{item.title}</Text>
-                <Icon
-                  name="chevron-right"
-                  family="evilicon"
-                  style={{ paddingRight: 5 }}
-                />
-              </Block>
-            </TouchableOpacity>
-          )}
-        />
+      <FlatList
+        data={suggestions}
+        keyExtractor={(item, index) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.suggestion}
+            onPress={() => navigation.navigate("Category", { ...item })}
+          >
+            <Block flex row middle space="between">
+              <Text size={14}>{item.title}</Text>
+              <Icon
+                name="chevron-right"
+                family="evilicon"
+                style={{ paddingRight: 5 }}
+              />
+            </Block>
+          </TouchableOpacity>
+        )}
+      />
     );
   };
 
@@ -199,6 +199,9 @@ export default class Search extends React.Component {
   }
 }
 
+Search.propTypes = {
+  navigation: PropTypes.string.isRequired,
+};
 const styles = StyleSheet.create({
   searchContainer: {
     width: width,

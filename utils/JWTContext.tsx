@@ -148,7 +148,6 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
 
   if (state.isInitialized !== undefined && !state.isInitialized) {
     console.log("loading");
-    // return <Loader />;
   }
 
   return (

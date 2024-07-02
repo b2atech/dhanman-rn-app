@@ -1,25 +1,34 @@
-import React from 'react';
-import { StyleSheet, Image, View, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { Text, Block, Icon } from 'galio-framework';
-import commonStyles from '../style/CommonStyles';
+import React from "react";
+import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Text, Block, Icon } from "galio-framework";
+import PropTypes from "prop-types";
+import commonStyles from "../style/CommonStyles";
 
 const DisplayCards = ({ name, imageSource, icon, description, color }) => {
   const navigation = useNavigation();
 
   const handleViewPress = () => {
-    if (name === 'Events') {
+    if (name === "Events") {
       navigation.navigate("Events");
     }
   };
 
   return (
-    <TouchableOpacity style={[styles.card, { backgroundColor: color }]} onPress={handleViewPress}>
+    <TouchableOpacity
+      style={[styles.card, { backgroundColor: color }]}
+      onPress={handleViewPress}
+    >
       <View style={styles.blockContainer}>
         {imageSource ? (
           <Image source={imageSource} style={styles.avatar} />
         ) : (
-          <View style={[commonStyles.flexDirectionRow, commonStyles.alignItemCenter]}>
+          <View
+            style={[
+              commonStyles.flexDirectionRow,
+              commonStyles.alignItemCenter,
+            ]}
+          >
             <Text style={[styles.text, commonStyles.headerText]}>{name}</Text>
             <Icon name={icon} family="material" style={styles.icon} />
           </View>
@@ -28,6 +37,26 @@ const DisplayCards = ({ name, imageSource, icon, description, color }) => {
       <Text style={styles.description}>{description}</Text>
     </TouchableOpacity>
   );
+};
+
+DisplayCards.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageSource: PropTypes.oneOfType([
+    PropTypes.shape({
+      uri: PropTypes.string,
+    }),
+    PropTypes.number,
+  ]),
+  icon: PropTypes.string,
+  description: PropTypes.string,
+  color: PropTypes.string,
+};
+
+DisplayCards.defaultProps = {
+  imageSource: null,
+  icon: "",
+  description: "",
+  color: "#000", // default color if not provided
 };
 
 const styles = StyleSheet.create({
@@ -44,21 +73,21 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: 25,
-    color: 'white',
-    marginLeft: 40
+    color: "white",
+    marginLeft: 40,
   },
   text: {
     marginVertical: 10,
     marginBottom: 8,
     marginLeft: 5,
-    color: 'white',
+    color: "white",
   },
   description: {
     marginBottom: 8,
     marginLeft: 5,
-    color: 'white',
-    fontSize: 14
+    color: "white",
+    fontSize: 14,
   },
-})
+});
 
 export default DisplayCards;

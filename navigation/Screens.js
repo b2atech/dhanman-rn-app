@@ -1,21 +1,13 @@
 import { Dimensions } from "react-native";
-import { Header, Icon } from "../components/";
-
-import AboutScreen from "../screens/About";
-import AgreementScreen from "../screens/Agreement";
-import CartScreen from "../screens/Cart";
-import ChatScreen from "../screens/Chat";
+import { Icon } from "../components/";
 import ComponentsScreen from "../screens/Components";
 import HomeScreen from "../screens/Home";
 import GateHomeScreen from "../screens/Gate/GateHome";
 import ServiceScreen from "../screens/Service";
-import NotificationsScreen from "../screens/NotificationSettings";
 // screens
 import OnboardingScreen from "../screens/Onboarding";
-import PrivacyScreen from "../screens/Privacy";
 import ProfileScreen from "../screens/Profile";
 import React from "react";
-import SettingsScreen from "../screens/Settings";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ViewAllScreen from "../screens/ViewAll";
@@ -24,13 +16,12 @@ import VisitorsListScreen from "../screens/VisitorsList";
 import PaymentListScreen from "../screens/PaymentList";
 import GateServiceProviderScreen from "../screens/Gate/GateServiceProvider";
 import GateVisitorsScreen from "../screens/Gate/GateVisitors";
-import CreateVisitors from "../screens/Gate/CreateVisitors"
+import CreateVisitors from "../screens/Gate/CreateVisitors";
 import CreateServiceProvider from "../screens/Gate/CreateServiceProvider";
 import EventsScreen from "../screens/Events";
 import CustomHeader from "../screens/CustomerHeader";
 import GateUpdates from "../screens/gateUpdatesComponents/GateUpdates";
 import MyHelps from "../screens/MyHelps";
-import { getVisitors } from "../api/visitors";
 
 const { width } = Dimensions.get("screen");
 
@@ -50,12 +41,12 @@ function ProfileStack(props) {
         name="Profile"
         component={ProfileScreen}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              transparent
-              title="Profile"
-              scene={scene}
-              navigation={navigation}
+          header: () => (
+            <CustomHeader
+              name={""}
+              description={""}
+              showBackButton={true}
+              showSettings={false}
             />
           ),
           headerTransparent: true,
@@ -65,12 +56,12 @@ function ProfileStack(props) {
         name="Chat"
         component={ChatScreen}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              title="Rachel Brown"
-              scene={scene}
-              navigation={navigation}
+          header: () => (
+            <CustomHeader
+              name={""}
+              description={""}
+              showBackButton={true}
+              showSettings={false}
             />
           ),
         }}
@@ -79,113 +70,12 @@ function ProfileStack(props) {
         name="Cart"
         component={CartScreen}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header back title="Cart" scene={scene} navigation={navigation} />
-          ),
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
-
-function SettingsStack(props) {
-  return (
-    <Stack.Navigator
-      initialRouteName="Settings"
-      screenOptions={{
-        mode: "card",
-        headerShown: "screen",
-      }}
-    >
-      <Stack.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Settings" scene={scene} navigation={navigation} />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Agreement"
-        component={AgreementScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              title="Agreement"
-              scene={scene}
-              navigation={navigation}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Privacy"
-        component={PrivacyScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              title="Privacy"
-              scene={scene}
-              navigation={navigation}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="About"
-        component={AboutScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              title="About us"
-              scene={scene}
-              navigation={navigation}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Notifications"
-        component={NotificationsScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              title="Notifications Settings"
-              scene={scene}
-              navigation={navigation}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Chat"
-        component={ChatScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              title="Rachel Brown"
-              navigation={navigation}
-              scene={scene}
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="Cart"
-        component={CartScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              back
-              title="Shopping Cart"
-              navigation={navigation}
-              scene={scene}
+          header: () => (
+            <CustomHeader
+              name={""}
+              description={""}
+              showBackButton={true}
+              showSettings={false}
             />
           ),
         }}
@@ -207,8 +97,13 @@ function ComponentsStack(props) {
         name="Components"
         component={ComponentsScreen}
         options={{
-          header: ({ navigation }) => (
-            <Header title="Components" navigation={navigation} />
+          header: () => (
+            <CustomHeader
+              name={""}
+              description={""}
+              showBackButton={true}
+              showSettings={false}
+            />
           ),
         }}
       />
@@ -248,7 +143,7 @@ function HomeStack(props) {
         name="Home"
         component={HomeScreen}
         options={{
-          headerShown: false, 
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
@@ -269,15 +164,13 @@ function ServiceStack(props) {
         headerShown={false}
         component={ServiceScreen}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header 
-            search
-            options 
-            title="Services" 
-            scene={scene} 
-            navigation={navigation} 
-            back={true}
-            transparent={true}/>
+          header: () => (
+            <CustomHeader
+              name={""}
+              description={""}
+              showBackButton={true}
+              showSettings={false}
+            />
           ),
         }}
       />
@@ -297,7 +190,7 @@ function GateHomeStack(props) {
         name="Home"
         component={GateHomeScreen}
         options={{
-          headerShown: false, 
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
@@ -314,14 +207,15 @@ function MainTabs() {
           tabBarIcon: ({ color }) => (
             <Icon name="home" family="font-awesome" color={color} />
           ),
-          tabBarLabel: 'Home',
-          headerTitle: () => 
-          <CustomHeader 
-          name={'Arun Patil, A101'} 
-          description={'Aspen woods Apartment'} 
-          showBackButton={false} 
-          showSettings={true}
-          />,
+          tabBarLabel: "Home",
+          headerTitle: () => (
+            <CustomHeader
+              name={"Arun Patil, A101"}
+              description={"Aspen woods Apartment"}
+              showBackButton={false}
+              showSettings={true}
+            />
+          ),
         }}
       />
       <BottomTab.Screen
@@ -350,7 +244,7 @@ function MainTabs() {
             <Icon name="handyman" family="material" color={color} />
           ),
         }}
-      /> 
+      />
       {/* <BottomTab.Screen
         name="Social"
         component={SocialStack}
@@ -408,94 +302,102 @@ function AppStack(props) {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="MainTabs" component={MainTabs}/>
-      <Stack.Screen 
-        name="ViewAll" 
-        component={ViewAllScreen} 
+      <Stack.Screen name="MainTabs" component={MainTabs} />
+      <Stack.Screen
+        name="ViewAll"
+        component={ViewAllScreen}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              search
-              options
-              title="A 101"
-              navigation={navigation}
-              scene={scene}
-              transparent={true}
+          header: () => (
+            <CustomHeader
+              name={""}
+              description={""}
+              showBackButton={true}
+              showSettings={false}
             />
           ),
-      }}/>
-      
+        }}
+      />
+
       <Stack.Screen name="MyHelps" component={MyHelps} />
       <Stack.Screen name="GateUpdates" component={GateUpdates} />
       <Stack.Screen name="VisitorsList" component={VisitorsListScreen} />
       <Stack.Screen name="MaidProfile" component={MaidProfileScreen} />
       <Stack.Screen name="PaymentList" component={PaymentListScreen} />
-      <Stack.Screen 
-      name="GateServiceProvider" 
-      component={GateServiceProviderScreen} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Service Provider'} 
-        description={'check Service Providers'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
-      <Stack.Screen 
-      name="GateVisitors" 
-      component={GateVisitorsScreen} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Visitors'} 
-        description={'check your Visitors here...'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
-      <Stack.Screen 
-      name="CreateVisitors" 
-      component={CreateVisitors} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Visitors'} 
-        description={'Add your visitors here...'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
-      <Stack.Screen 
-      name="CreateServiceProvider" 
-      component={CreateServiceProvider} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Service Provider'} 
-        description={'Add your service provider here...'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
-      <Stack.Screen 
-      name="Events" 
-      component={EventsScreen} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Events'} 
-        description={'check your events here...'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
+      <Stack.Screen
+        name="GateServiceProvider"
+        component={GateServiceProviderScreen}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Service Provider"}
+              description={"check Service Providers"}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="GateVisitors"
+        component={GateVisitorsScreen}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Visitors"}
+              description={"check your Visitors here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="CreateVisitors"
+        component={CreateVisitors}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Visitors"}
+              description={"Add your visitors here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="CreateServiceProvider"
+        component={CreateServiceProvider}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Service Provider"}
+              description={"Add your service provider here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Events"
+        component={EventsScreen}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Events"}
+              description={"check your events here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 }
-

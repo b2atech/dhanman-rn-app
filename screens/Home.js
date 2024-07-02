@@ -1,16 +1,13 @@
-import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, View } from 'react-native';
-import { Block, theme } from 'galio-framework';
-import HelpersList from './HelpersList';
-import Payments from './Payments';
-import Notifications from './Notifications';
-import Visitors from './gateUpdatesComponents/GateVisitors';
-import DisplayCards from './DisplayCards';
-import SocietyCard from './SocietyCards';
-import commonStyles from '../style/CommonStyles';
-import MyHelps from './MyHelps';
+import React from "react";
+import { StyleSheet, Dimensions, ScrollView, View } from "react-native";
+import { Block } from "galio-framework";
+import HelpersList from "./HelpersList";
+import Payments from "./Payments";
+import Notifications from "./Notifications";
+import DisplayCards from "./DisplayCards";
+import commonStyles from "../style/CommonStyles";
 
-const { width } = Dimensions.get('screen');
+const { width } = Dimensions.get("screen");
 
 export default class Home extends React.Component {
   renderProducts = () => {
@@ -28,38 +25,37 @@ export default class Home extends React.Component {
         <Block flex style={[styles.container]}>
           <Notifications />
         </Block>
-        {/* <Block flex style={[styles.container]}>
-          <MyHelps />
-        </Block> */}
         <View style={commonStyles.flexDirectionRow}>
           <ScrollView horizontal contentContainerStyle={styles.scrollView}>
             <Block flex style={[styles.displaycontainer, styles.container]}>
-              <DisplayCards name="Events" color="#23c6c8" description="check your society's events" icon="event" family="material" />
+              <DisplayCards
+                name="Events"
+                color="#23c6c8"
+                description="check your society's events"
+                icon="event"
+                family="material"
+              />
             </Block>
             <Block flex style={[styles.displaycontainer, styles.container]}>
-              <DisplayCards name="Pay Rent" color="#ED5565" description="Pay your rent/maintainance" icon="currency-rupee" family="material" />
+              <DisplayCards
+                name="Pay Rent"
+                color="#ED5565"
+                description="Pay your rent/maintainance"
+                icon="currency-rupee"
+                family="material"
+              />
             </Block>
             <Block flex style={[styles.displaycontainer, styles.container]}>
-              <DisplayCards name="Book Slot" color="#f8ac59" description="Book your next indoor game slot" icon="sports-tennis" family="material" />
+              <DisplayCards
+                name="Book Slot"
+                color="#f8ac59"
+                description="Book your next indoor game slot"
+                icon="sports-tennis"
+                family="material"
+              />
             </Block>
           </ScrollView>
         </View>
-        {/* <View style={commonStyles.flexDirectionRow}>
-          <ScrollView horizontal>
-            <Block flex style={[styles.displaycontainer, styles.container, commonStyles.shadow]}>
-              <SocietyCard imageSource={require('../assets/images/covid.jpg')} name="Covid Care" />
-            </Block>
-            <Block flex>
-              <SocietyCard imageSource={require('../assets/images/homeservice.jpg')} name="Home Service" />
-            </Block>
-            <Block flex>
-              <SocietyCard imageSource={require('../assets/images/stores.jpg')} name="Stores" />
-            </Block>
-            <Block flex>
-              <SocietyCard imageSource={require('../assets/images/homedecor.jpg')} name="Home Decor" />
-            </Block>
-          </ScrollView>
-        </View> */}
       </ScrollView>
     );
   };
@@ -86,7 +82,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#ffff',
+    backgroundColor: "#ffff",
     marginBottom: 10,
     borderRadius: 10,
     marginHorizontal: 20,

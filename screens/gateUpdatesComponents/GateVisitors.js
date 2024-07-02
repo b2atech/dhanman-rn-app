@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { Text } from "galio-framework";
 import { useNavigation } from "@react-navigation/native";
-import commonStyles from "../../style/CommonStyles";
 import { getVisitors } from "../../api/visitors";
 
 const GateVisitors = () => {
@@ -89,6 +88,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "auto",
+    borderRadius: 10,
+    padding: 5,
   },
   viewAllButton: {
     flexDirection: "row",
@@ -113,11 +114,6 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 20,
     elevation: 1,
-  },
-  header: {
-    borderRadius: 10,
-    padding: 5,
-    width: "50%",
   },
   tag: {
     color: "#fffF",
