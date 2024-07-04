@@ -3,13 +3,9 @@ import { generateNewToken } from "../api/publicUserAPI";
 
 export const getToken = async () => {
   try {
-    const accessToken = await AsyncStorage.getItem("serviceToken");
-    if (!accessToken) {
-      const token = await generateNewToken();
-      await AsyncStorage.setItem("serviceToken", token);
-      return token;
-    }
-    return accessToken;
+    const token = await generateNewToken();
+    await AsyncStorage.setItem("serviceToken", token);
+    return token;
   } catch (error) {
     console.error("Error retrieving token", error);
   }

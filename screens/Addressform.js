@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import PropTypes from "prop-types";
 import commonStyles from "../style/CommonStyles";
+import { getCountries, getStates } from "../api/address";
 
-const Addressform = ({ formData, handleInputChange, label, addressType }) => {
+const AddressForm = ({ formData, handleInputChange, label, addressType }) => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
 
   useEffect(() => {
     const fetchCountries = async () => {
-      const response = [
-        { id: "686bd9cd-1d2c-441f-b4c4-661ffb556725", name: "India" },
-      ];
-      setCountries(response);
+      try {
+        const response = await getCountries();
+        setCountries(response);
+      } catch (error) {
+        console.error("Error fetching countries", error);
+      }
     };
 
     fetchCountries();
@@ -21,22 +25,17 @@ const Addressform = ({ formData, handleInputChange, label, addressType }) => {
   useEffect(() => {
     if (formData[addressType].countryId) {
       const fetchStates = async () => {
-        let response = [];
-        if (
-          formData[addressType].countryId ===
-          "686bd9cd-1d2c-441f-b4c4-661ffb556725"
-        ) {
-          response = [
-            { id: "a56a7f6e-c0a1-4c66-868b-e1f06e3dc7df", name: "Maharashtra" },
-            { id: "77ecfca9-c41d-47ca-b050-6ddecd6bac2d", name: "Karnataka" },
-          ];
+        try {
+          const response = await getStates(formData[addressType].countryId);
+          setStates(response);
+        } catch (error) {
+          console.error("Error fetching states", error);
         }
-        setStates(response);
       };
 
       fetchStates();
     }
-  }, [formData[addressType].countryId]);
+  }, [formData[addressType]?.countryId, formData[addressType]]);
 
   return (
     <View>
@@ -99,6 +98,13 @@ const Addressform = ({ formData, handleInputChange, label, addressType }) => {
   );
 };
 
+AddressForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  addressType: PropTypes.string.isRequired,
+};
+
 const styles = StyleSheet.create({
   label: {
     marginBottom: 5,
@@ -114,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Addressform;
+export default AddressForm;

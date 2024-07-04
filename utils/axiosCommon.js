@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "./token";
 const axiosCommonServices = axios.create({
   baseURL: "https://api-dhanman-common-nonprod.azurewebsites.net/api/",
 });
@@ -7,6 +8,15 @@ const axiosCommonServices = axios.create({
 
 axiosCommonServices.interceptors.request.use(
   async (config) => {
+    try {
+      const accessToken = await getToken();
+      if (accessToken) {
+        console.log("accessToken", accessToken);
+        config.headers["Authorization"] = `Bearer ${accessToken}`;
+      }
+    } catch (error) {
+      console.error("Error retrieving", error);
+    }
     return config;
   },
   (error) => {
