@@ -24,13 +24,14 @@ import VisitorsListScreen from "../screens/VisitorsList";
 import PaymentListScreen from "../screens/PaymentList";
 import GateServiceProviderScreen from "../screens/Gate/GateServiceProvider";
 import GateVisitorsScreen from "../screens/Gate/GateVisitors";
-import CreateVisitors from "../screens/Gate/CreateVisitors"
+import CreateVisitors from "../screens/Gate/CreateVisitors";
 import CreateServiceProvider from "../screens/Gate/CreateServiceProvider";
 import EventsScreen from "../screens/Events";
 import CustomHeader from "../screens/CustomerHeader";
 import GateUpdates from "../screens/gateUpdatesComponents/GateUpdates";
 import MyHelps from "../screens/MyHelps";
 import { getVisitors } from "../api/visitors";
+import GateDeliveryScreen from "../screens/Gate/GateDelivery";
 
 const { width } = Dimensions.get("screen");
 
@@ -248,7 +249,7 @@ function HomeStack(props) {
         name="Home"
         component={HomeScreen}
         options={{
-          headerShown: false, 
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
@@ -270,14 +271,15 @@ function ServiceStack(props) {
         component={ServiceScreen}
         options={{
           header: ({ navigation, scene }) => (
-            <Header 
-            search
-            options 
-            title="Services" 
-            scene={scene} 
-            navigation={navigation} 
-            back={true}
-            transparent={true}/>
+            <Header
+              search
+              options
+              title="Services"
+              scene={scene}
+              navigation={navigation}
+              back={true}
+              transparent={true}
+            />
           ),
         }}
       />
@@ -297,7 +299,7 @@ function GateHomeStack(props) {
         name="Home"
         component={GateHomeScreen}
         options={{
-          headerShown: false, 
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
@@ -314,14 +316,15 @@ function MainTabs() {
           tabBarIcon: ({ color }) => (
             <Icon name="home" family="font-awesome" color={color} />
           ),
-          tabBarLabel: 'Home',
-          headerTitle: () => 
-          <CustomHeader 
-          name={'Arun Patil, A101'} 
-          description={'Aspen woods Apartment'} 
-          showBackButton={false} 
-          showSettings={true}
-          />,
+          tabBarLabel: "Home",
+          headerTitle: () => (
+            <CustomHeader
+              name={"Arun Patil, A101"}
+              description={"Aspen woods Apartment"}
+              showBackButton={false}
+              showSettings={true}
+            />
+          ),
         }}
       />
       <BottomTab.Screen
@@ -350,7 +353,7 @@ function MainTabs() {
             <Icon name="handyman" family="material" color={color} />
           ),
         }}
-      /> 
+      />
       {/* <BottomTab.Screen
         name="Social"
         component={SocialStack}
@@ -408,10 +411,10 @@ function AppStack(props) {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="MainTabs" component={MainTabs}/>
-      <Stack.Screen 
-        name="ViewAll" 
-        component={ViewAllScreen} 
+      <Stack.Screen name="MainTabs" component={MainTabs} />
+      <Stack.Screen
+        name="ViewAll"
+        component={ViewAllScreen}
         options={{
           header: ({ navigation, scene }) => (
             <Header
@@ -423,79 +426,104 @@ function AppStack(props) {
               transparent={true}
             />
           ),
-      }}/>
-      
+        }}
+      />
+
       <Stack.Screen name="MyHelps" component={MyHelps} />
       <Stack.Screen name="GateUpdates" component={GateUpdates} />
       <Stack.Screen name="VisitorsList" component={VisitorsListScreen} />
       <Stack.Screen name="MaidProfile" component={MaidProfileScreen} />
       <Stack.Screen name="PaymentList" component={PaymentListScreen} />
-      <Stack.Screen 
-      name="GateServiceProvider" 
-      component={GateServiceProviderScreen} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Service Provider'} 
-        description={'check Service Providers'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
-      <Stack.Screen 
-      name="GateVisitors" 
-      component={GateVisitorsScreen} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Visitors'} 
-        description={'check your Visitors here...'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
-      <Stack.Screen 
-      name="CreateVisitors" 
-      component={CreateVisitors} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Visitors'} 
-        description={'Add your visitors here...'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
-      <Stack.Screen 
-      name="CreateServiceProvider" 
-      component={CreateServiceProvider} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Service Provider'} 
-        description={'Add your service provider here...'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
-      <Stack.Screen 
-      name="Events" 
-      component={EventsScreen} 
-      options={{
-        headerShown: true,
-        header: () => 
-        <CustomHeader 
-        name={'Events'} 
-        description={'check your events here...'} 
-        showBackButton={true} 
-        showSettings={false}
-        />,
-      }}/>
+      <Stack.Screen
+        name="GateServiceProvider"
+        component={GateServiceProviderScreen}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Service Provider"}
+              description={"check Service Providers"}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="GateVisitors"
+        component={GateVisitorsScreen}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Visitors"}
+              description={"check your Visitors here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="GateDelivery"
+        component={GateDeliveryScreen}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Delivery Person"}
+              description={"check your Delivery here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="CreateVisitors"
+        component={CreateVisitors}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Visitors"}
+              description={"Add your visitors here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="CreateServiceProvider"
+        component={CreateServiceProvider}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Service Provider"}
+              description={"Add your service provider here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Events"
+        component={EventsScreen}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Events"}
+              description={"check your events here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 }
-
