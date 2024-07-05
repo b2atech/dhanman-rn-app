@@ -31,7 +31,8 @@ import CustomHeader from "../screens/CustomerHeader";
 import GateUpdates from "../screens/gateUpdatesComponents/GateUpdates";
 import MyHelps from "../screens/MyHelps";
 import { getVisitors } from "../api/visitors";
-import GateDeliveryScreen from "../screens/Gate/GateDelivery";
+import GateDeliveryScreen from "../screens/Gate/Delivery/GateDelivery";
+import DeliveryApprovalScreen from "../screens/Gate/Delivery/DeliveryApproval";
 
 const { width } = Dimensions.get("screen");
 
@@ -480,20 +481,21 @@ function AppStack(props) {
         }}
       />
       <Stack.Screen
-        name="CreateVisitors"
-        component={CreateVisitors}
+        name="DeliveryApproval"
+        component={DeliveryApprovalScreen}
         options={{
           headerShown: true,
           header: () => (
             <CustomHeader
-              name={"Visitors"}
-              description={"Add your visitors here..."}
+              name={"Delivery Person"}
+              description={"check your Delivery address here..."}
               showBackButton={true}
               showSettings={false}
             />
           ),
         }}
       />
+
       <Stack.Screen
         name="CreateServiceProvider"
         component={CreateServiceProvider}
