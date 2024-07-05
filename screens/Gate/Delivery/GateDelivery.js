@@ -115,13 +115,13 @@ export default function GateDeliveryScreen() {
         accessibilityLabel="Search Company Input"
       />
       <ScrollView>
-        {Object.keys(filteredGroupedItems).map((category, index) => (
-          <View key={index} style={styles.category}>
+        {Object.keys(filteredGroupedItems).map((category) => (
+          <View key={category} style={styles.category}>
             <Text style={styles.categoryTitle}>{category}</Text>
             <View style={styles.iconRow}>
-              {filteredGroupedItems[category].map((item, idx) => (
+              {filteredGroupedItems[category].map((item) => (
                 <TouchableOpacity
-                  key={idx}
+                  key={item.id} // Use unique identifier here
                   style={styles.iconContainer}
                   onPress={() => handleSelectCompany(item)}
                   accessibilityLabel={`Select ${item.deliveryCompanyName}`}

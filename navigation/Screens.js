@@ -30,7 +30,6 @@ import EventsScreen from "../screens/Events";
 import CustomHeader from "../screens/CustomerHeader";
 import GateUpdates from "../screens/gateUpdatesComponents/GateUpdates";
 import MyHelps from "../screens/MyHelps";
-import { getVisitors } from "../api/visitors";
 import GateDeliveryScreen from "../screens/Gate/Delivery/GateDelivery";
 import DeliveryApprovalScreen from "../screens/Gate/Delivery/DeliveryApproval";
 
