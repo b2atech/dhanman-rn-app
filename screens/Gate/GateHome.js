@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function GateHomeScreen() {
   const navigation = useNavigation();
@@ -9,7 +9,7 @@ export default function GateHomeScreen() {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('GateServiceProvider')}
+        onPress={() => navigation.navigate("GateServiceProvider")}
       >
         <View style={styles.buttonContent}>
           <Text style={styles.plusSign}>+</Text>
@@ -18,7 +18,7 @@ export default function GateHomeScreen() {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('GateVisitors')}
+        onPress={() => navigation.navigate("GateDelivery")}
       >
         <View style={styles.buttonContent}>
           <Text style={styles.plusSign}>+</Text>
@@ -27,7 +27,7 @@ export default function GateHomeScreen() {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('GateVisitors')}
+        onPress={() => navigation.navigate("GateVisitors")}
       >
         <View style={styles.buttonContent}>
           <Text style={styles.plusSign}>+</Text>
@@ -41,31 +41,31 @@ export default function GateHomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
   },
   button: {
-    backgroundColor: '#007BFF',
+    backgroundColor: "#007BFF",
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
     marginVertical: 10,
-    width: '80%',
-    alignItems: 'center',
+    width: "80%",
+    alignItems: "center",
   },
   buttonContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   plusSign: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 20,
     marginRight: 10,
   },
   buttonText: {
-    color: '#fff',
+    color: "#fff",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
