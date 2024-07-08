@@ -530,8 +530,9 @@ function AppStack(props) {
         component={EventsScreen}
         options={{
           headerShown: true,
-          header: () => (
+          header: (props) => (
             <CustomHeader
+              {...props}
               name={"Events"}
               description={"check your events here..."}
               showBackButton={true}

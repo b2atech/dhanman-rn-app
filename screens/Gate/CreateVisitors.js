@@ -14,7 +14,6 @@ import { addVisitor } from "../../api/visitors";
 import { Dropdown } from "react-native-element-dropdown";
 import { getOTP } from "../../api/otp";
 import SubmitButton from "../../components/SubmitButton";
-import { SuccessToastMessage } from "../../utils/toastUtil";
 import UnitSelection from "../common/UnitSelection";
 
 export default function AddVisitors({ navigation }) {

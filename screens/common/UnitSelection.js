@@ -32,7 +32,7 @@ const UnitSelection = ({ onSelectionComplete }) => {
 
     fetchBuildings();
   }, []);
-
+  console.log("selected Unit", selectedUnit);
   const handleBuildingSelect = async (buildingId) => {
     setSelectedBuilding(buildingId);
     try {
