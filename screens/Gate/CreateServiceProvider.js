@@ -52,13 +52,12 @@ export default function AddServiceProvider({ navigation }) {
     vehicleNumber: "",
     identityTypeId: 22,
     identityNumber: "",
-    validityDate: "",
+    validityDate: "2025-05-01",
     policeVerificationStatus: false,
     isHireable: false,
     isVisible: false,
     isFrequentVisitor: false,
-    createdBy: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    apartmentId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    apartmentId: "12fb50f0-9998-456f-8aee-bb83ab2fbbdb",
     pin: "",
   });
 
@@ -263,11 +262,11 @@ export default function AddServiceProvider({ navigation }) {
       />
 
       <Text style={[styles.label, commonStyles.headerText]}>Validity Date</Text>
-      <TextInput
+      <Text
         style={styles.input}
         value={formData.validityDate}
         onChangeText={(value) => handleInputChange("validityDate", value)}
-        placeholder="YYYY-MM-DDTHH:MM:SSZ"
+        placeholder="YYYY-MM-DD"
       />
 
       <View style={styles.switchContainer}>

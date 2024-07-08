@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from "react-native";
 import commonStyles from "../../style/CommonStyles";
 import { addVisitor } from "../../api/visitors";
@@ -81,10 +82,14 @@ export default function AddVisitors({ navigation }) {
     };
     try {
       await addVisitor(newVisitor);
-      SuccessToastMessage("Visitors added successfully");
+      Alert.alert("Visitors added successfully");
       navigation.goBack();
     } catch (error) {
       console.error("Error adding visitor:", error);
+      Alert.alert(
+        "Error",
+        "Failed to add visitor. Please check your inputs and try again."
+      );
     }
   };
 

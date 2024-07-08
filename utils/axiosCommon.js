@@ -11,7 +11,6 @@ axiosCommonServices.interceptors.request.use(
     try {
       const accessToken = await getToken();
       if (accessToken) {
-        console.log("accessToken", accessToken);
         config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
     } catch (error) {

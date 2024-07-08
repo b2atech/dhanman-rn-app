@@ -1,13 +1,13 @@
-import apiClient from "../utils/axiosCommunity";
+import { fetcher } from "../utils/axiosCommunity";
 
 export const getBuildingNames = async (apartmentId) => {
   try {
     const url = `v1/buildingNames/${apartmentId}`;
 
-    const response = await apiClient.get(url);
-    return response.data.items;
+    const response = await fetcher(url);
+    return response.items;
   } catch (error) {
-    console.error("Error fetching events", error);
+    console.error("Error fetching buildings", error);
     throw error;
   }
 };
