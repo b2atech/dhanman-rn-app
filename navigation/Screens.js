@@ -511,12 +511,28 @@ function AppStack(props) {
         }}
       />
       <Stack.Screen
-        name="Events"
-        component={EventsScreen}
+        name="CreateVisitors"
+        component={CreateVisitors}
         options={{
           headerShown: true,
           header: () => (
             <CustomHeader
+              name={"Visitors"}
+              description={"Add your visitors here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="Events"
+        component={EventsScreen}
+        options={{
+          headerShown: true,
+          header: (props) => (
+            <CustomHeader
+              {...props}
               name={"Events"}
               description={"check your events here..."}
               showBackButton={true}

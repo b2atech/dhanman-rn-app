@@ -60,9 +60,13 @@ export const fetcher = async (url, config) => {
 export const fetcherPost = async (args) => {
   const [url, config] = Array.isArray(args) ? args : [args];
 
-  const res = await axiosCommunityServices.post(url, { ...config?.data });
-
-  return res.data;
+  try {
+    const res = await axiosCommunityServices.post(url, config.data);
+    return res.data;
+  } catch (error) {
+    console.error("Fetcher Post Error:", error);
+    throw error;
+  }
 };
 
 export const fetcherPut = async (args) => {

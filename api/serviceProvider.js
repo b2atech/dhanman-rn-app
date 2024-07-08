@@ -1,9 +1,14 @@
 import { fetcher, fetcherPost } from "../utils/axiosCommunity";
 
+export const endpoints = {
+  key: "v1/serviceProviders",
+  type: "serviceProviderType",
+  subType: "serviceProviderSubType",
+};
+
 export const getServiceProviders = async () => {
   try {
-    const response = await fetcher("v1/serviceProviders");
-    console.log("Service Providers Response:", response);
+    const response = await fetcher(endpoints.key);
     return response.items;
   } catch (error) {
     console.error("Service Providers Error:", error);
@@ -13,8 +18,7 @@ export const getServiceProviders = async () => {
 
 export const getServiceProviderType = async () => {
   try {
-    const response = await fetcher("v1/serviceProviderType");
-    console.log("Service Provider Type Response:", response);
+    const response = await fetcher(endpoints.type);
     return response.items;
   } catch (error) {
     console.error("Service Provider Type Error:", error);
@@ -24,8 +28,7 @@ export const getServiceProviderType = async () => {
 
 export const getServiceProviderSubType = async () => {
   try {
-    const response = await fetcher("v1/serviceProviderSubType");
-    console.log("Service Provider SubType Response:", response);
+    const response = await fetcher(endpoints.subType);
     return response.items;
   } catch (error) {
     console.error("Service Provider SubType Error:", error);
@@ -34,14 +37,16 @@ export const getServiceProviderSubType = async () => {
 };
 
 export const addServiceProvider = async (serviceProvider) => {
+  console.log("serviceProvider", serviceProvider);
   try {
-    const response = await fetcherPost("v1/serviceProviders", {
-      data: serviceProvider,
-    });
-    console.log("Add Service Provider Response:", response);
+    const response = await fetcherPost([
+      endpoints.key,
+      { data: serviceProvider },
+    ]);
+    console.log("response", response);
     return response;
   } catch (error) {
-    console.error("Add Service Provider Error:", error);
+    console.error("Error adding Service Provider:", error);
     throw error;
   }
 };

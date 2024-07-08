@@ -1,10 +1,11 @@
-import apiClient from "../utils/axiosCommunity";
+import { fetcher } from "../utils/axiosCommunity";
 
+export const endpoints = {
+  delivery: "v1/deliveryCompanies",
+};
 export const getDeliveryCompanies = async () => {
   try {
-    const url = `v1/deliveryCompanies`;
-
-    const response = await apiClient.get(url);
+    const response = await fetcher(endpoints.delivery);
     return response.data.items;
   } catch (error) {
     console.error("Error fetching delivery companies", error);
