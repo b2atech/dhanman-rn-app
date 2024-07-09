@@ -1,4 +1,3 @@
-import { add } from "date-fns";
 import React from "react";
 import {
   View,
@@ -11,6 +10,7 @@ import {
 } from "react-native";
 import commonStyles from "../../style/CommonStyles";
 import { useNavigation } from "@react-navigation/native";
+import PropTypes from "prop-types";
 
 const IdComponent = ({
   label,
@@ -79,6 +79,35 @@ const IdComponent = ({
       </TouchableOpacity>
     </View>
   );
+};
+
+IdComponent.propTypes = {
+  label: PropTypes.string.isRequired,
+  addNew: PropTypes.string.isRequired,
+  navigate: PropTypes.func.isRequired,
+  code: PropTypes.string.isRequired,
+  handleCodeChange: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      visitingFrom: PropTypes.string,
+      contactNumber: PropTypes.string,
+      vehicleNumber: PropTypes.string,
+      identityNumber: PropTypes.string,
+    })
+  ).isRequired,
+  handlePushNotification: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  maxLength: PropTypes.number,
+};
+
+IdComponent.defaultProps = {
+  error: null,
+  maxLength: 2,
 };
 
 const styles = StyleSheet.create({
