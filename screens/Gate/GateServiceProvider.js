@@ -40,7 +40,6 @@ export default function GateServiceProviderScreen() {
   };
 
   const handlePushNotification = (item) => {
-    // Implement push notification functionality here
     alert(`Push Notification sent to ${item.firstName} ${item.lastName}`);
   };
 
@@ -56,6 +55,7 @@ export default function GateServiceProviderScreen() {
       handlePushNotification={handlePushNotification}
       error={error}
       maxLength={2}
+      emptyListMessage={"No items to display"}
     />
   );
 }

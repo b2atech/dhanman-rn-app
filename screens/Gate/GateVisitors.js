@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet } from "react-native";
 import { getVisitors } from "../../api/visitors";
 import IdComponent from "../common/IdComponent";
 
@@ -57,6 +56,7 @@ export default function GateVisitorsScreen() {
       handlePushNotification={handlePushNotification}
       error={error}
       maxLength={10}
+      emptyListMessage={"No items to display"}
     />
   );
 }

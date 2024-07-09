@@ -23,6 +23,7 @@ const IdComponent = ({
   handlePushNotification,
   error,
   maxLength,
+  emptyListMessage,
 }) => {
   const navigation = useNavigation();
   return (
@@ -66,7 +67,7 @@ const IdComponent = ({
             </View>
           )}
           ListEmptyComponent={() => (
-            <Text style={styles.emptyMessage}>No items to display</Text>
+            <Text style={styles.emptyMessage}>{emptyListMessage}</Text>
           )}
         />
       )}
