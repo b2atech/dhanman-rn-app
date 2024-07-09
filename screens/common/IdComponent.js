@@ -66,9 +66,9 @@ const IdComponent = ({
               </TouchableOpacity>
             </View>
           )}
-          ListEmptyComponent={() => (
+          ListEmptyComponent={
             <Text style={styles.emptyMessage}>{emptyListMessage}</Text>
-          )}
+          }
         />
       )}
       {error && <Text style={styles.error}>{error}</Text>}
@@ -104,6 +104,7 @@ IdComponent.propTypes = {
   handlePushNotification: PropTypes.func.isRequired,
   error: PropTypes.string,
   maxLength: PropTypes.number,
+  emptyListMessage: PropTypes.string.isRequired,
 };
 
 IdComponent.defaultProps = {
@@ -112,11 +113,6 @@ IdComponent.defaultProps = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: "#fff",
-  },
   label: {
     fontSize: 18,
     marginBottom: 10,
