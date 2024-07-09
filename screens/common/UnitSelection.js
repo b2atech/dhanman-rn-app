@@ -41,7 +41,6 @@ const UnitSelection = ({ onSelectionComplete }) => {
   }, []);
 
   const handleBuildingSelect = async (buildingId) => {
-    const building = buildings.find((b) => b.id === buildingId);
     setSelectedBuilding(buildingId);
     try {
       const floors = await getFloorName(
