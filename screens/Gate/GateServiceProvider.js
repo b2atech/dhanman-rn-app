@@ -27,7 +27,7 @@ export default function GateServiceProviderScreen() {
         const response = await getServiceProviders();
         setAllItems(response);
       } catch (error) {
-        console.error("ID not found", error);
+        console.error("PIN not found", error);
         setError("Error fetching data");
       } finally {
         setLoading(false);
@@ -41,7 +41,7 @@ export default function GateServiceProviderScreen() {
     setCode(input);
     if (input.length > 0) {
       const filteredItems = allItems.filter(
-        (item) => item.id.toString() === input
+        (item) => item.pin.toString() === input
       );
       setItems(filteredItems);
     } else {
@@ -62,14 +62,14 @@ export default function GateServiceProviderScreen() {
         value={code}
         onChangeText={handleCodeChange}
         keyboardType="numeric"
-        maxLength={2}
+        maxLength={6}
       />
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <FlatList
           data={items}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.pin.toString()}
           renderItem={({ item }) => (
             <View style={styles.itemContainer}>
               <Text style={styles.itemLabel}>First Name:</Text>
