@@ -1,3 +1,16 @@
+// src/common/UnitSelection.js
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
+import { Icon } from "galio-framework";
+import { getBuildingNames } from "../../api/building";
+import { getFloorName } from "../../api/floor";
+import { getUnitNames } from "../../api/unit";
 import React, { useState, useEffect } from "react";
 import {
   View,
@@ -17,6 +30,9 @@ const UnitSelection = ({ onSelectionComplete }) => {
   const [selectedFloor, setSelectedFloor] = useState("");
   const [selectedUnit, setSelectedUnit] = useState("");
   const [data, setData] = useState([]);
+  const [buildings, setBuildings] = useState([]);
+  const [floors, setFloors] = useState([]);
+  const [units, setUnits] = useState([]);
 
   useEffect(() => {
     const fetchBuildings = async () => {
@@ -63,8 +79,15 @@ const UnitSelection = ({ onSelectionComplete }) => {
   };
 
   const handleUnitSelect = (unitId) => {
-    setSelectedUnit(unitId);
-    onSelectionComplete(selectedBuilding, selectedFloor, unitId);
+    setSelectedUnits((prevSelectedUnits) =>
+      prevSelectedUnits.includes(unitId)
+        ? prevSelectedUnits.filter((id) => id !== unitId)
+        : [...prevSelectedUnits, unitId]
+    );
+  };
+
+  const completeSelection = () => {
+    onSelectionComplete(selectedBuilding, selectedFloor, selectedUnits);
   };
 
   const renderOptions = (options, onSelect, iconName) => {
@@ -101,6 +124,14 @@ const UnitSelection = ({ onSelectionComplete }) => {
         <View style={styles.screen}>
           <Text style={styles.header}>Select Floor in {selectedBuilding}</Text>
           {renderOptions(data, handleFloorSelect, "layers")}
+          <ScrollView
+            horizontal
+            contentContainerStyle={styles.horizontalScrollContainer}
+          >
+            {renderOptions(floors, handleFloorSelect, "layers", [
+              selectedFloor,
+            ])}
+          </ScrollView>
         </View>
       )}
       {stage === "unit" && (
@@ -108,7 +139,15 @@ const UnitSelection = ({ onSelectionComplete }) => {
           <Text style={styles.header}>
             Select Unit in {selectedBuilding} - Floor {selectedFloor}
           </Text>
-          {renderOptions(data, handleUnitSelect, "home")}
+          <View>
+            {renderOptions(units, handleUnitSelect, "home", selectedUnits)}
+          </View>
+          <TouchableOpacity
+            style={styles.completeButton}
+            onPress={completeSelection}
+          >
+            <Text style={styles.completeButtonText}>Add flat</Text>
+          </TouchableOpacity>
         </View>
       )}
     </ScrollView>
@@ -117,6 +156,8 @@ const UnitSelection = ({ onSelectionComplete }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#fff",
+    flexGrow: 1,
     padding: 20,
     backgroundColor: "#fff",
   },
@@ -142,6 +183,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     elevation: 3,
+  },
+  selectedOption: {
+    borderColor: "#007bff",
+    borderWidth: 2,
+  },
+  completeButton: {
+    backgroundColor: "#28a745",
+    padding: 10,
+    borderRadius: 5,
+    alignItems: "center",
+    marginTop: 20,
+  },
+  completeButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 
