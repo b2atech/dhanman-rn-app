@@ -1,31 +1,31 @@
 // commonStyles.js
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from "react-native";
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 const commonStyles = StyleSheet.create({
   alignItemCenter: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   alignItemLeft: {
-    alignItems: 'left',
+    alignItems: "left",
   },
   alignItemRight: {
-    alignItems: 'right',
+    alignItems: "right",
   },
   flexDirectionRow: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   flexDirectionColumn: {
-    flexDirection: 'column',
+    flexDirection: "column",
   },
   home: {
     width: width,
-    paddingVertical: '10%',
-    justifyContent: 'center',
+    paddingVertical: "10%",
+    justifyContent: "center",
   },
   mainPage: {
-    width: width,    
+    width: width,
   },
   widthHeight: {
     width: 50,
@@ -36,15 +36,15 @@ const commonStyles = StyleSheet.create({
   },
   icon: {
     fontSize: 25,
-    alignItems: 'left',
-    color: '#007AFF',
+    alignItems: "left",
+    color: "#007AFF",
   },
   dotCircle: {
     width: 100,
     height: 100,
     borderRadius: 100,
-    backgroundColor: '#F8F9F9',
-    justifyContent: 'center',
+    backgroundColor: "#F8F9F9",
+    justifyContent: "center",
   },
   headerText: {
     fontSize: 18,
@@ -53,8 +53,13 @@ const commonStyles = StyleSheet.create({
   descriptionText: {
     fontSize: 14,
     fontFamily: "sans-serif",
-    color: 'rgb(103, 106, 108)'
-  }
+    color: "rgb(103, 106, 108)",
+  },
+  container: {
+    flexGrow: 1,
+    padding: 10,
+    backgroundColor: "#fff",
+  },
 });
 
 export default commonStyles;

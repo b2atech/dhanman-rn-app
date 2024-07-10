@@ -33,7 +33,7 @@ export default function AddVisitors({ navigation }) {
 
   const [selectedBuilding, setSelectedBuilding] = useState("");
   const [selectedFloor, setSelectedFloor] = useState("");
-  const [selectedUnit, setSelectedUnit] = useState("");
+  const [selectedUnit, setSelectedUnit] = useState([]);
 
   const visitorTypes = [
     { label: "Guest", value: "0" },
@@ -99,11 +99,10 @@ export default function AddVisitors({ navigation }) {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {!selectedUnit && (
+    <ScrollView contentContainerStyle={commonStyles.container}>
+      {selectedUnit.length === 0 ? (
         <UnitSelection onSelectionComplete={handleSelectionComplete} />
-      )}
-      {selectedUnit && (
+      ) : (
         <>
           <Text style={[styles.label, commonStyles.headerText]}>
             Building: {selectedBuilding}
@@ -112,7 +111,7 @@ export default function AddVisitors({ navigation }) {
             Floor: {selectedFloor}
           </Text>
           <Text style={[styles.label, commonStyles.headerText]}>
-            Unit: {selectedUnit}
+            Unit: {selectedUnit.join(", ")}
           </Text>
 
           {!isOtpVerified && (
@@ -253,10 +252,6 @@ export default function AddVisitors({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: "#fff",
-  },
   label: {
     marginBottom: 5,
   },
