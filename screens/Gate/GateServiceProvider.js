@@ -54,8 +54,9 @@ export default function GateServiceProviderScreen() {
       items={items}
       handlePushNotification={handlePushNotification}
       error={error}
-      maxLength={2}
+      maxLength={6}
       emptyListMessage={"No items to display"}
+      id={items.pin}
     />
   );
 }

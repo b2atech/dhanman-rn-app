@@ -24,6 +24,7 @@ const IdComponent = ({
   error,
   maxLength,
   emptyListMessage,
+  id,
 }) => {
   const navigation = useNavigation();
   return (
@@ -41,7 +42,7 @@ const IdComponent = ({
       ) : (
         <FlatList
           data={items}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={() => id}
           renderItem={({ item }) => (
             <View style={styles.itemContainer}>
               <Text style={styles.itemLabel}>First Name:</Text>
