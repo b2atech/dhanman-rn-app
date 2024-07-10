@@ -17,7 +17,7 @@ export default function GateServiceProviderScreen() {
         const response = await getServiceProviders();
         setAllItems(response);
       } catch (error) {
-        console.error("ID not found", error);
+        console.error("PIN not found", error);
         setError("Error fetching data");
       } finally {
         setLoading(false);
@@ -31,7 +31,7 @@ export default function GateServiceProviderScreen() {
     setCode(input);
     if (input.length > 0) {
       const filteredItems = allItems.filter(
-        (item) => item.id.toString() === input
+        (item) => item.pin.toString() === input
       );
       setItems(filteredItems);
     } else {
