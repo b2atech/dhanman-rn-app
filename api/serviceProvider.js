@@ -2,8 +2,8 @@ import { fetcher, fetcherPost } from "../utils/axiosCommunity";
 
 export const endpoints = {
   key: "v1/serviceProviders",
-  type: "serviceProviderType",
-  subType: "serviceProviderSubType",
+  type: "v1/serviceProviderType",
+  subType: "v1/serviceProviderSubType",
 };
 
 export const getServiceProviders = async () => {

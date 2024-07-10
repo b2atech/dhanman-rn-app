@@ -6,7 +6,7 @@ export const endpoints = {
 export const getDeliveryCompanies = async () => {
   try {
     const response = await fetcher(endpoints.delivery);
-    return response.data.items;
+    return response.items;
   } catch (error) {
     console.error("Error fetching delivery companies", error);
     throw error;
