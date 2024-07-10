@@ -121,7 +121,7 @@ export default function GateDeliveryScreen() {
             <View style={styles.iconRow}>
               {filteredGroupedItems[category].map((item) => (
                 <TouchableOpacity
-                  key={item.id} // Use unique identifier here
+                  key={item.id}
                   style={styles.iconContainer}
                   onPress={() => handleSelectCompany(item)}
                   accessibilityLabel={`Select ${item.deliveryCompanyName}`}
