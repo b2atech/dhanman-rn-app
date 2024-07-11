@@ -167,7 +167,6 @@ const UnitSelection = ({ onSelectionComplete }) => {
             horizontal
             contentContainerStyle={styles.selectedUnitsScrollContainer}
           >
-            {console.log("selectedUnits", selectedUnits)}
             {selectedUnits.map((unit) => (
               <View key={unit} style={styles.selectedUnit}>
                 <Text style={styles.selectedUnitText}>{unit}</Text>
