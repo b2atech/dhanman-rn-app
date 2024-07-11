@@ -43,14 +43,12 @@ export default function GateDeliveryScreen() {
       return;
     }
 
-    console.log("Delivery Man Name:", deliveryManName);
-    console.log("Selected Company:", selectedCompany);
-
-    setDeliveryManName("");
-    setSelectedCompany(null);
     setModalVisible(false);
 
-    navigation.navigate("DeliveryApproval");
+    navigation.navigate("DeliveryApproval", {
+      deliveryManName,
+      selectedCompany,
+    });
   };
 
   useEffect(() => {

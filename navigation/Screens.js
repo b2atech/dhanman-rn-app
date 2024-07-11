@@ -32,6 +32,7 @@ import GateUpdates from "../screens/gateUpdatesComponents/GateUpdates";
 import MyHelps from "../screens/MyHelps";
 import GateDeliveryScreen from "../screens/Gate/Delivery/GateDelivery";
 import DeliveryApprovalScreen from "../screens/Gate/Delivery/DeliveryApproval";
+import DeliveryWaitingScreen from "../screens/Gate/Delivery/DeliveryWaiting";
 
 const { width } = Dimensions.get("screen");
 
@@ -319,7 +320,7 @@ function MainTabs() {
           tabBarLabel: "Home",
           headerTitle: () => (
             <CustomHeader
-              name={"Arun Patil, A101"}
+              name={"Main Gate"}
               description={"Aspen woods Apartment"}
               showBackButton={false}
               showSettings={true}
@@ -328,77 +329,37 @@ function MainTabs() {
         }}
       />
       <BottomTab.Screen
-        name="My Units"
-        component={ProfileStack}
+        name="Delivery"
+        component={DeliveryWaitingScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon name="person" family="material" color={color} />
+            <Icon
+              name="electric-moped"
+              family="material"
+              color={color}
+              margtop={2}
+            />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Community"
-        component={ComponentsStack}
+        name="Regular"
+        component={GateServiceProviderScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon name="apartment" family="material" color={color} />
+            <Icon name="restart-alt" family="material" color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name="Services"
+        name="More"
         component={ServiceStack}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon name="handyman" family="material" color={color} />
+            <Icon name="add" family="material" color={color} />
           ),
         }}
       />
-      {/* <BottomTab.Screen
-        name="Social"
-        component={SocialStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="groups" family="material" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Buy & Sell"
-        component={ProfileStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="handshake" family="material" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Services"
-        component={ServiceStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="handyman" family="material" color={color} />
-          ),
-        }}
-      /> */}
-      {/* <BottomTab.Screen
-        name="Buy & Sell"
-        component={ProfileStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="handshake" family="material" color={color} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Services"
-        component={ServiceStack}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Icon name="handyman" family="material" color={color} />
-          ),
-        }}
-      /> */}
     </BottomTab.Navigator>
   );
 }
@@ -494,7 +455,21 @@ function AppStack(props) {
           ),
         }}
       />
-
+      <Stack.Screen
+        name="DeliveryWaiting"
+        component={DeliveryWaitingScreen}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Delivery Waiting"}
+              description={"check your Delivery man here..."}
+              showBackButton={false}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
       <Stack.Screen
         name="CreateServiceProvider"
         component={CreateServiceProvider}

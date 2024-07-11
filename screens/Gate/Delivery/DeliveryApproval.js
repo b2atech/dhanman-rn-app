@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, Button } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import UnitSelection from "../../common/UnitSelection";
 
 export default function DeliveryApprovalScreen() {
+  const navigation = useNavigation();
+  const route = useRoute();
+  const { deliveryManName, selectedCompany } = route.params;
+
   const [selection, setSelection] = useState({
     building: "",
     floor: "",
@@ -11,6 +16,14 @@ export default function DeliveryApprovalScreen() {
 
   const handleSelectionComplete = (building, floor, unit) => {
     setSelection({ building, floor, unit });
+  };
+
+  const handleApproval = () => {
+    navigation.navigate("DeliveryWaiting", {
+      deliveryManName,
+      selectedCompany,
+      unitDetails: selection,
+    });
   };
 
   return (
@@ -22,6 +35,7 @@ export default function DeliveryApprovalScreen() {
         <Text>Selected Floor: {selection.floor}</Text>
         <Text>Selected Unit: {selection.unit}</Text>
       </View>
+      <Button title="Approve Delivery" onPress={handleApproval} />
     </SafeAreaView>
   );
 }
