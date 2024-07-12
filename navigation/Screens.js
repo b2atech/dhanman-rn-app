@@ -39,6 +39,34 @@ const { width } = Dimensions.get("screen");
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
+const getScreenOptions = (route) => ({
+  tabBarIcon: ({ focused, color }) => {
+    let iconName;
+    let iconSize = focused ? 30 : 20;
+    if (route.name === "Home") {
+      iconName = "home";
+    }
+    return (
+      <Icon
+        name={iconName}
+        size={iconSize}
+        color={color}
+        style={styles.tabBarIcon}
+      />
+    );
+  },
+  tabBarStyle: {
+    backgroundColor: "#ffffff",
+    borderTopWidth: 0,
+    elevation: 0,
+    height: 60,
+  },
+  tabBarLabelStyle: {
+    fontSize: 12,
+    fontWeight: "bold",
+  },
+});
+
 function ProfileStack(props) {
   return (
     <Stack.Navigator
@@ -309,15 +337,14 @@ function GateHomeStack(props) {
 
 function MainTabs() {
   return (
-    <BottomTab.Navigator>
+    <BottomTab.Navigator screenOptions={({ route }) => getScreenOptions(route)}>
       <BottomTab.Screen
         name="Home"
         component={GateHomeStack}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon name="home" family="font-awesome" color={color} />
+            <Icon name="home" family="material" color={color} margtop={2} />
           ),
-          tabBarLabel: "Home",
           headerTitle: () => (
             <CustomHeader
               name={"Main Gate"}
@@ -333,12 +360,7 @@ function MainTabs() {
         component={DeliveryWaitingScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Icon
-              name="electric-moped"
-              family="material"
-              color={color}
-              margtop={2}
-            />
+            <Icon name="electric-moped" family="material" color={color} />
           ),
         }}
       />

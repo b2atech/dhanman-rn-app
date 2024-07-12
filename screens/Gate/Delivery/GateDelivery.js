@@ -15,8 +15,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { getDeliveryCompanies } from "../../../api/delivery";
+import commonStyles from "../../../style/CommonStyles";
 
-const defaultIcon = require("../../../assets/images/default_delivery.jpg");
+const defaultIcon = require("../../../assets/images/delivery.jpg");
 const defaultUserIcon = require("../../../assets/images/user_icon.png");
 
 export default function GateDeliveryScreen() {
@@ -103,8 +104,8 @@ export default function GateDeliveryScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.header}>Company Name/From</Text>
+    <SafeAreaView style={commonStyles.container}>
+      <Text style={commonStyles.headerText}>Company Name/From</Text>
       <TextInput
         style={styles.searchBar}
         placeholder="Search Company"
@@ -115,7 +116,7 @@ export default function GateDeliveryScreen() {
       <ScrollView>
         {Object.keys(filteredGroupedItems).map((category) => (
           <View key={category} style={styles.category}>
-            <Text style={styles.categoryTitle}>{category}</Text>
+            <Text style={commonStyles.headerText}>{category}</Text>
             <View style={styles.iconRow}>
               {filteredGroupedItems[category].map((item) => (
                 <TouchableOpacity
@@ -147,11 +148,8 @@ export default function GateDeliveryScreen() {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalHeader}>
-              Delivery Person's Name & Photo
-            </Text>
             <Image source={defaultUserIcon} style={styles.defaultUserIcon} />
-            <Text style={styles.label}>Delivery Person Name</Text>
+            <Text style={commonStyles.headerText}>Delivery Person Name</Text>
             <TextInput
               style={styles.input}
               placeholder="Enter Name"
@@ -159,7 +157,11 @@ export default function GateDeliveryScreen() {
               onChangeText={setDeliveryManName}
               accessibilityLabel="Delivery Person Name Input"
             />
-            <Button title="Submit" onPress={handleSubmit} />
+            <Button
+              title="Submit"
+              onPress={handleSubmit}
+              style={styles.submitButton}
+            />
           </View>
         </View>
       </Modal>
@@ -168,17 +170,6 @@ export default function GateDeliveryScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 5,
-    backgroundColor: "#ffffff",
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-    marginLeft: 10,
-  },
   searchBar: {
     borderWidth: 1,
     borderColor: "#ccc",
@@ -207,7 +198,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   icon: {
-    width: 60,
+    width: 80,
     height: 60,
     marginBottom: 5,
   },
@@ -254,5 +245,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  submitButton: {
+    backgroundColor: "#007BFF",
+    paddingVertical: 15,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 3,
+    marginTop: 20,
+    width: "30%",
   },
 });

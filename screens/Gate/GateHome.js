@@ -8,7 +8,7 @@ export default function GateHomeScreen() {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.card, styles.serviceProviderCard]}
         onPress={() => navigation.navigate("GateServiceProvider")}
       >
         <View style={styles.buttonContent}>
@@ -17,7 +17,7 @@ export default function GateHomeScreen() {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.card, styles.deliveryCard]}
         onPress={() => navigation.navigate("GateDelivery")}
       >
         <View style={styles.buttonContent}>
@@ -26,7 +26,7 @@ export default function GateHomeScreen() {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.card, styles.visitorsCard]}
         onPress={() => navigation.navigate("GateVisitors")}
       >
         <View style={styles.buttonContent}>
@@ -40,23 +40,25 @@ export default function GateHomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
+    backgroundColor: "#fff",
   },
-  button: {
-    backgroundColor: "#007BFF",
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    borderRadius: 10,
+  card: {
+    borderRadius: 15,
+    paddingVertical: 20,
+    paddingHorizontal: 25,
     marginVertical: 10,
-    width: "80%",
-    alignItems: "center",
+    width: "90%",
+    height: "15%",
+    alignItems: "flex-start",
   },
   buttonContent: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
   },
   plusSign: {
     color: "#fff",
@@ -67,5 +69,52 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  serviceProviderCard: {
+    backgroundColor: "#f8ac59",
+  },
+  deliveryCard: {
+    backgroundColor: "#1c84c6",
+  },
+  visitorsCard: {
+    backgroundColor: "#ED5565",
+  },
+  cardContent: {
+    width: "100%",
+  },
+  cardTitle: {
+    color: "#333",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  cardSubtitle: {
+    color: "#666",
+    fontSize: 14,
+    marginVertical: 5,
+  },
+  cardFooter: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    marginTop: 15,
+  },
+  cardFooterText: {
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    color: "#F44336",
+    fontWeight: "bold",
+    fontSize: 12,
+  },
+  goText: {
+    color: "#fff",
+    backgroundColor: "#FF9800",
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 15,
+    fontWeight: "bold",
+    fontSize: 12,
   },
 });
