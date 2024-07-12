@@ -11,9 +11,7 @@ axiosCommunityServices.interceptors.request.use(
     try {
       const accessToken = await getToken();
       if (accessToken) {
-        config.headers[
-          "Authorization"
-        ] = `Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IloxenFhbmlBZWowRWlyN1ZVZ281VCJ9.eyJkaGFubWFuX2lkIjoiNzQ0NWYwNzMtYmJiMS00NmYxLWIyZDEtNDIxNThlOGM2NzQzIiwiZGhhbm1hbl9jb21wYW55Ijp7ImRlc2NyaXB0aW9uIjoiQXBhcnRtZW50IE15SG9tZSAiLCJnc3RJbiI6IjI3RkdISUo1Njc4SzNMOCIsImlkIjoiMTJmYjUwZjAtOTk5OC00NTZmLThhZWUtYmI4M2FiMmZiYmRiIiwiaXNBcGFydG1lbnQiOnRydWUsIm5hbWUiOiJBc3BlbiBXb29kcyBBcGFydG1lbnQiLCJvcmdhbml6YXRpb25JZCI6IjM3NDM3ZTE3LWMwZTItNGU5Ny04MTY3LTEyMWI4NTRmZTkwYiJ9LCJpc3MiOiJodHRwczovL2Rldi1kaGFubWFuLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwNjM3Mjc4MTU2NDU2Njc5Mzg4OSIsImF1ZCI6WyJkZXYtZGhhbm1hbi1hcGkiLCJodHRwczovL2Rldi1kaGFubWFuLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE3MjA3MDI4NTMsImV4cCI6MTcyMDc4OTI1Mywic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsImF6cCI6IjJhWmJzVUN1U0s1M1hCN3NkT0tUaEYwY0NoVkRYeDI4In0.qlSzBiWnQcnv4tOa2_wCYp3G5l5-LCLuM5YoRC-QR6mICuZhIHbtdmKDj8CxW7xDX3iaf26zhJqjGAMR0deyWpPzMZT-aosAPCHSbjfMM49Iya2bzkNnINll70KGi-pDaV6lIK0IB3mlcvgoUeON4U-Vma_x3pw4jrwG8TVW4pDJ2BG-KU1I-TSNxdy_LIGSFN2dGh993puuAyxNic6LIeffAclH_tR3f2lixN4jg30PeuaFCxyYHV50hvOWzv1n3eJRtoWWtJVlu100fXZGx94cxJkTxOIzFE98LftOjQqqk_EEAD6CkgqDqJXUoYhtW8v_h0C4gQYsX8yYDdUpTg`;
+        config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
     } catch (error) {
       console.error("Error retrieving", error);

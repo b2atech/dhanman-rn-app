@@ -15,7 +15,7 @@ export const generateNewToken = async () => {
     const response = await api.post(endpoint, data);
     return response.data.access_token;
   } catch (error) {
-    console.error("Error posting data:", error);
+    console.error("Error posting token:", error);
     throw error;
   }
 };
