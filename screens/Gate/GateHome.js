@@ -1,50 +1,68 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import commonStyles from "../../style/CommonStyles";
 
 export default function GateHomeScreen() {
   const navigation = useNavigation();
 
+  const cards = [
+    {
+      label: "Service Provider",
+      color: styles.serviceProviderCard,
+      route: "GateServiceProvider",
+      icon: "build",
+    },
+    {
+      label: "Delivery Person",
+      color: styles.deliveryCard,
+      route: "GateDelivery",
+      icon: "local-shipping",
+    },
+    {
+      label: "Visitors",
+      color: styles.visitorsCard,
+      route: "GateVisitors",
+      icon: "group",
+    },
+  ];
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={[styles.card, styles.serviceProviderCard]}
-        onPress={() => navigation.navigate("GateServiceProvider")}
-      >
-        <View style={styles.buttonContent}>
-          <Text style={styles.plusSign}>+</Text>
-          <Text style={styles.buttonText}>Service Provider</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.card, styles.deliveryCard]}
-        onPress={() => navigation.navigate("GateDelivery")}
-      >
-        <View style={styles.buttonContent}>
-          <Text style={styles.plusSign}>+</Text>
-          <Text style={styles.buttonText}>Delivery Person</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.card, styles.visitorsCard]}
-        onPress={() => navigation.navigate("GateVisitors")}
-      >
-        <View style={styles.buttonContent}>
-          <Text style={styles.plusSign}>+</Text>
-          <Text style={styles.buttonText}>Visitors</Text>
-        </View>
-      </TouchableOpacity>
+    <View style={commonStyles.container}>
+      {cards.map((card, index) => (
+        <TouchableOpacity
+          key={index}
+          style={[styles.card, card.color, styles.shadow]}
+          onPress={() => navigation.navigate(card.route)}
+        >
+          <View style={styles.buttonContent}>
+            <Icon name={card.icon} size={20} color="#fff" style={styles.icon} />
+            <Text style={[commonStyles.headerText, styles.header]}>
+              {card.label}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: "center",
+  header: {
+    marginBottom: 30,
     alignItems: "center",
-    padding: 20,
-    backgroundColor: "#fff",
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    fontFamily: "Poppins-Bold",
+    color: "#333", // Darker color for the title
+  },
+  headerSubtitle: {
+    fontSize: 16,
+    fontFamily: "Poppins-Regular",
+    color: "#666", // Lighter color for the subtitle
   },
   card: {
     borderRadius: 15,
@@ -52,69 +70,41 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     marginVertical: 10,
     width: "90%",
-    height: "15%",
-    alignItems: "flex-start",
+    alignItems: "center",
+    alignSelf: "center",
+    backgroundColor: "#fff", // White background for cards
   },
   buttonContent: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
-  plusSign: {
-    color: "#fff",
-    fontSize: 20,
+  icon: {
     marginRight: 10,
   },
-  buttonText: {
+  header: {
     color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
   },
-  serviceProviderCard: {
-    backgroundColor: "#f8ac59",
-  },
-  deliveryCard: {
-    backgroundColor: "#1c84c6",
-  },
-  visitorsCard: {
-    backgroundColor: "#ED5565",
-  },
-  cardContent: {
-    width: "100%",
-  },
-  cardTitle: {
+  buttonText: {
     color: "#333",
     fontSize: 18,
     fontWeight: "bold",
+    fontFamily: "Poppins-Bold", // Ensure the font is used here
   },
-  cardSubtitle: {
-    color: "#666",
-    fontSize: 14,
-    marginVertical: 5,
+  serviceProviderCard: {
+    backgroundColor: "#ccbcbc", // Light blue
   },
-  cardFooter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "100%",
-    marginTop: 15,
+  deliveryCard: {
+    backgroundColor: "#bb9bb0", // Light green
   },
-  cardFooterText: {
-    backgroundColor: "#fff",
-    borderRadius: 15,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    color: "#F44336",
-    fontWeight: "bold",
-    fontSize: 12,
+  visitorsCard: {
+    backgroundColor: "#a288a6", // Light pink
   },
-  goText: {
-    color: "#fff",
-    backgroundColor: "#FF9800",
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-    borderRadius: 15,
-    fontWeight: "bold",
-    fontSize: 12,
+  shadow: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
 });

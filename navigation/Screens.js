@@ -33,6 +33,8 @@ import MyHelps from "../screens/MyHelps";
 import GateDeliveryScreen from "../screens/Gate/Delivery/GateDelivery";
 import DeliveryApprovalScreen from "../screens/Gate/Delivery/DeliveryApproval";
 import DeliveryWaitingScreen from "../screens/Gate/Delivery/DeliveryWaiting";
+import UnitSelection from "../screens/common/UnitSelection";
+import VisitorLogScreen from "../screens/Gate/Visitorlog";
 
 const { width } = Dimensions.get("screen");
 
@@ -417,6 +419,7 @@ function AppStack(props) {
       <Stack.Screen name="VisitorsList" component={VisitorsListScreen} />
       <Stack.Screen name="MaidProfile" component={MaidProfileScreen} />
       <Stack.Screen name="PaymentList" component={PaymentListScreen} />
+      <Stack.Screen name="UnitSelection" component={UnitSelection} />
       <Stack.Screen
         name="GateServiceProvider"
         component={GateServiceProviderScreen}
@@ -532,6 +535,21 @@ function AppStack(props) {
               {...props}
               name={"Events"}
               description={"check your events here..."}
+              showBackButton={true}
+              showSettings={false}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="VisitorLogScreen"
+        component={VisitorLogScreen}
+        options={{
+          headerShown: true,
+          header: () => (
+            <CustomHeader
+              name={"Visitor logs"}
+              description={"check Visiors logs"}
               showBackButton={true}
               showSettings={false}
             />

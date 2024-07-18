@@ -1,67 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   TextInput,
+  Button,
   FlatList,
   TouchableOpacity,
   StyleSheet,
   Image,
+  Alert,
 } from "react-native";
+import { Dropdown } from "react-native-element-dropdown";
 import { useRoute } from "@react-navigation/native";
 import commonStyles from "../../../style/CommonStyles";
+import { getVisitorsLog } from "../../../api/visitorLog";
+import { getVisitors } from "../../../api/visitors";
 
 const defaultUserIcon = require("../../../assets/images/user_icon.png");
 
 const DeliveryWaitingScreen = () => {
   const route = useRoute();
-  const {
-    deliveryManName = "Manjunath B",
-    selectedCompany = { deliveryCompanyName: "Amazon" },
-    unitDetails = { building: "A", unit: "701" },
-  } = route.params || {};
-
-  const [searchText, setSearchText] = useState("");
+  const [visitorName, setVisitorName] = useState("");
+  const [selectedCompany, setSelectedCompany] = useState("");
+  const [insideData, setInsideData] = useState([]);
+  const [waitingData, setWaitingData] = useState([]);
   const [activeTab, setActiveTab] = useState("inside");
 
-  const insideData = [
-    {
-      id: "1",
-      name: deliveryManName,
-      service: selectedCompany.deliveryCompanyName,
-      flat: `${unitDetails.building} ${unitDetails.unit}`,
-      time: "6 min",
-    },
-    {
-      id: "2",
-      name: "Aman Singh",
-      service: "Fast Delivery Co.",
-      flat: "A 403",
-      time: "10 min",
-    },
-    {
-      id: "3",
-      name: "Arun Naik",
-      service: "Quick Express",
-      flat: "B 602",
-      time: "15 min",
-    },
+  const visitorTypes = [
+    { label: "Delivery", value: 2 },
+    { label: "Guest", value: 3 },
+    { label: "Service Provider", value: 1 },
   ];
 
-  const waitingData = [];
+  const calculateTimeDifference = (entryTime) => {
+    const entryDate = new Date(entryTime);
+    const currentDate = new Date();
+    const diffMs = currentDate - entryDate;
+    const diffMins = Math.floor(diffMs / 60000);
+    return `${diffMins} mins`;
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const visitors = await getVisitors();
+      const visitor = visitors.find((x) => x.firstName === visitorName);
+      console.log(visitor);
+      if (!visitor) {
+        Alert.alert("Error", "Visitor not found");
+        return;
+      }
+      const data = await getVisitorsLog(
+        "12fb50f0-9998-456f-8aee-bb83ab2fbbdb",
+        visitor.id,
+        selectedCompany
+      );
+      console.log(data);
+      setInsideData(data);
+      setWaitingData(data.waiting);
+    } catch (error) {
+      console.error("Error fetching visitor data:", error);
+      Alert.alert("Error", "Failed to fetch visitor data");
+    }
+  };
 
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
       <Image source={defaultUserIcon} style={styles.image} />
       <View style={styles.textContainer}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.service}>{item.service}</Text>
-        <Text style={styles.flat}>{"Flat: " + item.flat}</Text>
+        <Text style={commonStyles.headerText}>{item.visitorName}</Text>
+        <Text style={commonStyles.descriptionText}>{item.visitorTypeName}</Text>
+        <Text style={commonStyles.descriptionText}>
+          {calculateTimeDifference(item.entryTime)}
+        </Text>
       </View>
-      <View style={styles.rightContainer}>
-        <Text style={styles.time}>{item.time}</Text>
+      <View style={commonStyles.alignItemRight}>
+        <Text style={commonStyles.descriptionText}>{item.time}</Text>
         <TouchableOpacity style={styles.outButton}>
-          <Text style={styles.outButtonText}>OUT</Text>
+          <Text style={styles.outButtonText}>IN</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -70,17 +85,27 @@ const DeliveryWaitingScreen = () => {
   return (
     <View style={commonStyles.container}>
       <TextInput
-        style={styles.searchBar}
-        placeholder="Search"
-        value={searchText}
-        onChangeText={setSearchText}
+        style={commonStyles.searchBar}
+        placeholder="Visitor's Name"
+        value={visitorName}
+        onChangeText={setVisitorName}
       />
+      <Dropdown
+        style={commonStyles.dropdown}
+        data={visitorTypes}
+        labelField="label"
+        valueField="value"
+        placeholder="Select visitor type"
+        value={selectedCompany}
+        onChange={(item) => setSelectedCompany(item.value)}
+      />
+      <Button title="Submit" onPress={handleSubmit} />
       <View style={styles.tabContainer}>
         <TouchableOpacity
           style={[styles.tabButton, activeTab === "inside" && styles.activeTab]}
           onPress={() => setActiveTab("inside")}
         >
-          <Text style={styles.tabText}>Inside</Text>
+          <Text style={commonStyles.headerBoldText}>Inside</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[
@@ -89,27 +114,19 @@ const DeliveryWaitingScreen = () => {
           ]}
           onPress={() => setActiveTab("waiting")}
         >
-          <Text style={styles.tabText}>Waiting</Text>
+          <Text style={commonStyles.headerBoldText}>Waiting</Text>
         </TouchableOpacity>
       </View>
       <FlatList
         data={activeTab === "inside" ? insideData : waitingData}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  searchBar: {
-    height: 40,
-    borderColor: "#ddd",
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
   tabContainer: {
     flexDirection: "row",
     marginBottom: 10,
@@ -124,19 +141,20 @@ const styles = StyleSheet.create({
   activeTab: {
     borderBottomColor: "#000",
   },
-  tabText: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
   itemContainer: {
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
     backgroundColor: "#fff",
-    borderRadius: 5,
+    borderRadius: 10,
     marginBottom: 10,
     borderWidth: 1,
     borderColor: "#ddd",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
   image: {
     width: 40,
@@ -147,27 +165,8 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
   },
-  name: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  service: {
-    fontSize: 14,
-    color: "#555",
-  },
-  flat: {
-    fontSize: 14,
-    color: "#555",
-  },
-  rightContainer: {
-    alignItems: "flex-end",
-  },
-  time: {
-    fontSize: 14,
-    color: "#555",
-  },
   outButton: {
-    backgroundColor: "#e74c3c",
+    backgroundColor: "#1ab394",
     padding: 5,
     borderRadius: 5,
     marginTop: 5,
@@ -177,6 +176,7 @@ const styles = StyleSheet.create({
   outButtonText: {
     color: "#fff",
     fontSize: 14,
+    fontFamily: "Poppins-Bold",
   },
 });
 

@@ -17,6 +17,7 @@ const UnitSelection = ({ onSelectionComplete }) => {
   const [selectedBuilding, setSelectedBuilding] = useState("");
   const [selectedFloor, setSelectedFloor] = useState("");
   const [selectedUnits, setSelectedUnits] = useState([]);
+  const [selectedUnitsId, setSelectedUnitsId] = useState([]);
   const [buildings, setBuildings] = useState([]);
   const [floors, setFloors] = useState([]);
   const [units, setUnits] = useState([]);
@@ -70,6 +71,11 @@ const UnitSelection = ({ onSelectionComplete }) => {
   };
 
   const handleUnitSelect = (unitId) => {
+    setSelectedUnitsId((prevSelectedUnitsId) =>
+      prevSelectedUnitsId.includes(unitId)
+        ? prevSelectedUnitsId.filter((id) => id !== unitId)
+        : [...prevSelectedUnitsId, unitId]
+    );
     const unit = units.find((u) => u.id === unitId);
     const unitLabel = `${unit ? unit.name : unitId}`;
     setSelectedUnits((prevSelectedUnits) =>
@@ -80,7 +86,12 @@ const UnitSelection = ({ onSelectionComplete }) => {
   };
 
   const completeSelection = () => {
-    onSelectionComplete(selectedBuilding, selectedFloor, selectedUnits);
+    onSelectionComplete(
+      selectedBuilding,
+      selectedFloor,
+      selectedUnits,
+      selectedUnitsId
+    );
   };
 
   const renderOptions = (

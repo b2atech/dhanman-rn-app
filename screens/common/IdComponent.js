@@ -29,9 +29,9 @@ const IdComponent = ({
   const navigation = useNavigation();
   return (
     <View style={commonStyles.container}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={commonStyles.headerBoldText}>{label}</Text>
       <TextInput
-        style={styles.input}
+        style={commonStyles.input}
         value={code}
         onChangeText={handleCodeChange}
         keyboardType="numeric"
@@ -42,7 +42,7 @@ const IdComponent = ({
       ) : (
         <FlatList
           data={items}
-          keyExtractor={() => id}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <View style={styles.itemContainer}>
               <Text style={styles.itemLabel}>First Name:</Text>
@@ -118,35 +118,36 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
     fontWeight: "bold",
-  },
-  input: {
-    height: 40,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    marginBottom: 20,
-    borderRadius: 5,
-    backgroundColor: "#f9f9f9",
+    fontFamily: "Poppins-Bold", // Apply Poppins font
   },
   itemContainer: {
     padding: 15,
     marginVertical: 8,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#fff",
     borderRadius: 10,
     marginBottom: 20,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
   itemLabel: {
     fontSize: 14,
     fontWeight: "bold",
     color: "#333",
+    fontFamily: "Poppins-ExtraLight", // Apply Poppins font
   },
   itemValue: {
     fontSize: 14,
     marginBottom: 15,
     color: "#555",
+    fontFamily: "Poppins-ExtraLight", // Apply Poppins font
   },
   pushButton: {
-    backgroundColor: "#ff5722",
+    backgroundColor: "#1ab394",
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 5,
@@ -157,16 +158,19 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
+    fontFamily: "Poppins-Bold", // Apply Poppins font
   },
   emptyMessage: {
     textAlign: "center",
     marginTop: 20,
     fontSize: 16,
     color: "#666",
+    fontFamily: "Poppins-Regular", // Apply Poppins font
   },
   error: {
     color: "red",
     marginTop: 10,
+    fontFamily: "Poppins-Regular", // Apply Poppins font
   },
   addButton: {
     position: "absolute",
@@ -182,8 +186,9 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
+    fontFamily: "Poppins-Bold", // Apply Poppins font
   },
 });
 

@@ -26,14 +26,6 @@ const assetImages = [
   Images.Products["Harley-Davidson"],
 ];
 
-// cache product images
-// products.map(product => assetImages.push(product.image));
-
-// cache categories images
-// Object.keys(categories).map(key => {
-//   categories[key].map(category => assetImages.push(category.image));
-// });
-
 function cacheImages(images) {
   return images.map((image) => {
     if (typeof image === "string") {

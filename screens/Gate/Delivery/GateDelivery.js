@@ -107,7 +107,7 @@ export default function GateDeliveryScreen() {
     <SafeAreaView style={commonStyles.container}>
       <Text style={commonStyles.headerText}>Company Name/From</Text>
       <TextInput
-        style={styles.searchBar}
+        style={commonStyles.searchBar}
         placeholder="Search Company"
         value={searchQuery}
         onChangeText={handleSearchChange}
@@ -151,7 +151,7 @@ export default function GateDeliveryScreen() {
             <Image source={defaultUserIcon} style={styles.defaultUserIcon} />
             <Text style={commonStyles.headerText}>Delivery Person Name</Text>
             <TextInput
-              style={styles.input}
+              style={commonStyles.input}
               placeholder="Enter Name"
               value={deliveryManName}
               onChangeText={setDeliveryManName}
@@ -170,14 +170,6 @@ export default function GateDeliveryScreen() {
 }
 
 const styles = StyleSheet.create({
-  searchBar: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 20,
-    marginLeft: 10,
-  },
   category: {
     marginBottom: 20,
     marginLeft: 10,
@@ -230,16 +222,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   label: {
-    fontSize: 16,
     marginBottom: 10,
-  },
-  input: {
-    width: "100%",
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 20,
   },
   loadingContainer: {
     flex: 1,
