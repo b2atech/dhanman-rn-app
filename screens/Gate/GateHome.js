@@ -9,18 +9,21 @@ export default function GateHomeScreen() {
 
   const cards = [
     {
+      id: 1,
       label: "Service Provider",
       color: styles.serviceProviderCard,
       route: "GateServiceProvider",
       icon: "build",
     },
     {
+      id: 2,
       label: "Delivery Person",
       color: styles.deliveryCard,
       route: "GateDelivery",
       icon: "local-shipping",
     },
     {
+      id: 3,
       label: "Visitors",
       color: styles.visitorsCard,
       route: "GateVisitors",
@@ -32,7 +35,7 @@ export default function GateHomeScreen() {
     <View style={commonStyles.container}>
       {cards.map((card, index) => (
         <TouchableOpacity
-          key={index}
+          key={card.id}
           style={[styles.card, card.color, styles.shadow]}
           onPress={() => navigation.navigate(card.route)}
         >
@@ -52,17 +55,18 @@ const styles = StyleSheet.create({
   header: {
     marginBottom: 30,
     alignItems: "center",
+    color: "#fff",
   },
   headerTitle: {
     fontSize: 24,
     fontWeight: "bold",
     fontFamily: "Poppins-Bold",
-    color: "#333", // Darker color for the title
+    color: "#333",
   },
   headerSubtitle: {
     fontSize: 16,
     fontFamily: "Poppins-Regular",
-    color: "#666", // Lighter color for the subtitle
+    color: "#666",
   },
   card: {
     borderRadius: 15,
@@ -72,7 +76,7 @@ const styles = StyleSheet.create({
     width: "90%",
     alignItems: "center",
     alignSelf: "center",
-    backgroundColor: "#fff", // White background for cards
+    backgroundColor: "#fff",
   },
   buttonContent: {
     flexDirection: "row",
@@ -82,23 +86,20 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 10,
   },
-  header: {
-    color: "#fff",
-  },
   buttonText: {
     color: "#333",
     fontSize: 18,
     fontWeight: "bold",
-    fontFamily: "Poppins-Bold", // Ensure the font is used here
+    fontFamily: "Poppins-Bold",
   },
   serviceProviderCard: {
-    backgroundColor: "#ccbcbc", // Light blue
+    backgroundColor: "#ccbcbc",
   },
   deliveryCard: {
-    backgroundColor: "#bb9bb0", // Light green
+    backgroundColor: "#bb9bb0",
   },
   visitorsCard: {
-    backgroundColor: "#a288a6", // Light pink
+    backgroundColor: "#a288a6",
   },
   shadow: {
     shadowColor: "#000",

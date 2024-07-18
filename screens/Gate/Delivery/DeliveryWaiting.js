@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -11,7 +11,6 @@ import {
   Alert,
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import { useRoute } from "@react-navigation/native";
 import commonStyles from "../../../style/CommonStyles";
 import { getVisitorsLog } from "../../../api/visitorLog";
 import { getVisitors } from "../../../api/visitors";
@@ -19,7 +18,6 @@ import { getVisitors } from "../../../api/visitors";
 const defaultUserIcon = require("../../../assets/images/user_icon.png");
 
 const DeliveryWaitingScreen = () => {
-  const route = useRoute();
   const [visitorName, setVisitorName] = useState("");
   const [selectedCompany, setSelectedCompany] = useState("");
   const [insideData, setInsideData] = useState([]);

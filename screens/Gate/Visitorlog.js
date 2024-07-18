@@ -1,20 +1,10 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  StyleSheet,
-  Button,
-  Alert,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, Button, Alert } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import commonStyles from "../../style/CommonStyles";
 import { addVisitorLog } from "../../api/visitorLog";
 import UnitSelection from "../common/UnitSelection";
-import GateHomeScreen from "./GateHome";
-//import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function VisitorLogScreen() {
   const navigation = useNavigation();
@@ -24,10 +14,6 @@ export default function VisitorLogScreen() {
   const [entryTime, setEntryTime] = useState(new Date());
   const route = useRoute();
   const { id } = route.params;
-  const handleTimeChange = (event, selectedDate) => {
-    const currentDate = selectedDate || entryTime;
-    setEntryTime(currentDate);
-  };
 
   const handleSelectionComplete = (building, floor, unit, unitId) => {
     console.log(building, floor, unit, unitId);
