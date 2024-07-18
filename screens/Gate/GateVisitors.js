@@ -39,10 +39,7 @@ export default function GateVisitorsScreen() {
     }
   };
 
-  const handlePushNotification = (item) => {
-    // Implement push notification functionality here
-    alert(`Push Notification sent to ${item.firstName} ${item.lastName}`);
-  };
+  const handlePushNotification = async () => {};
 
   return (
     <IdComponent

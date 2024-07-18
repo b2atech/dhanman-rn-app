@@ -1,4 +1,3 @@
-// commonStyles.js
 import { StyleSheet, Dimensions } from "react-native";
 
 const { width } = Dimensions.get("window");
@@ -8,10 +7,10 @@ const commonStyles = StyleSheet.create({
     alignItems: "center",
   },
   alignItemLeft: {
-    alignItems: "left",
+    alignItems: "flex-start",
   },
   alignItemRight: {
-    alignItems: "right",
+    alignItems: "flex-end",
   },
   flexDirectionRow: {
     flexDirection: "row",
@@ -19,46 +18,67 @@ const commonStyles = StyleSheet.create({
   flexDirectionColumn: {
     flexDirection: "column",
   },
-  home: {
-    width: width,
-    paddingVertical: "10%",
-    justifyContent: "center",
-  },
-  mainPage: {
-    width: width,
-  },
-  widthHeight: {
-    width: 50,
-    height: 50,
-  },
-  marginBottom2: {
-    marginBottom: 2,
-  },
-  icon: {
-    fontSize: 25,
-    alignItems: "left",
-    color: "#007AFF",
-  },
-  dotCircle: {
-    width: 100,
-    height: 100,
-    borderRadius: 100,
-    backgroundColor: "#F8F9F9",
-    justifyContent: "center",
-  },
   headerText: {
-    fontSize: 18,
-    fontFamily: "sans-serif",
+    fontSize: 16,
+    fontFamily: "Poppins-ExtraLight",
+  },
+  headerBoldText: {
+    fontSize: 16,
+    fontWeight: "condensedBold",
+    fontFamily: "Poppins-ExtraLight",
   },
   descriptionText: {
     fontSize: 14,
-    fontFamily: "sans-serif",
-    color: "rgb(103, 106, 108)",
+    color: "#555",
+    fontFamily: "Poppins-Regular",
+  },
+  input: {
+    height: 40,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    borderRadius: 10,
+    backgroundColor: "#fff",
+    fontFamily: "Poppins-Regular",
   },
   container: {
     flexGrow: 1,
-    padding: 10,
+    padding: 20,
+    backgroundColor: "#F5F5F5",
+  },
+  searchBar: {
+    height: 40,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    borderRadius: 10,
+    marginBottom: 10,
+    paddingHorizontal: 10,
     backgroundColor: "#fff",
+    fontFamily: "Poppins-Regular",
+  },
+  dropdown: {
+    height: 40,
+    borderColor: "#ddd",
+    borderWidth: 1,
+    borderRadius: 10,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    backgroundColor: "#fff",
+    fontFamily: "Poppins-Regular",
+  },
+  shadow: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 2,
+  },
+  rounded: {
+    borderRadius: 15,
+  },
+  fontPoppins: {
+    fontFamily: "Poppins-Regular",
   },
 });
 

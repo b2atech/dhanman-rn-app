@@ -147,24 +147,24 @@ export default function AddServiceProvider({ navigation }) {
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={commonStyles.container}>
       <Text style={[styles.label, commonStyles.headerText]}>First Name</Text>
       <TextInput
-        style={styles.input}
+        style={commonStyles.input}
         value={formData.firstName}
         onChangeText={(value) => handleInputChange("firstName", value)}
       />
 
       <Text style={[styles.label, commonStyles.headerText]}>Last Name</Text>
       <TextInput
-        style={styles.input}
+        style={commonStyles.input}
         value={formData.lastName}
         onChangeText={(value) => handleInputChange("lastName", value)}
       />
 
       <Text style={[styles.label, commonStyles.headerText]}>Email</Text>
       <TextInput
-        style={styles.input}
+        style={commonStyles.input}
         value={formData.email}
         onChangeText={(value) => handleInputChange("email", value)}
         keyboardType="email-address"
@@ -172,7 +172,7 @@ export default function AddServiceProvider({ navigation }) {
 
       <Text style={[styles.label, commonStyles.headerText]}>Visiting From</Text>
       <TextInput
-        style={styles.input}
+        style={commonStyles.input}
         value={formData.visitingFrom}
         onChangeText={(value) => handleInputChange("visitingFrom", value)}
       />
@@ -181,7 +181,7 @@ export default function AddServiceProvider({ navigation }) {
         Contact Number
       </Text>
       <TextInput
-        style={styles.input}
+        style={commonStyles.input}
         value={formData.contactNumber}
         onChangeText={(value) => handleInputChange("contactNumber", value)}
         keyboardType="phone-pad"
@@ -211,7 +211,7 @@ export default function AddServiceProvider({ navigation }) {
         valueField="id"
         value={formData.serviceProviderTypeId}
         onChange={(item) => handleInputChange("serviceProviderTypeId", item.id)}
-        style={styles.dropdown}
+        style={commonStyles.dropdown}
       />
 
       <Text style={[styles.label, commonStyles.headerText]}>
@@ -225,14 +225,14 @@ export default function AddServiceProvider({ navigation }) {
         onChange={(item) =>
           handleInputChange("serviceProviderSubTypeId", item.id)
         }
-        style={styles.dropdown}
+        style={commonStyles.dropdown}
       />
 
       <Text style={[styles.label, commonStyles.headerText]}>
         Vehicle Number
       </Text>
       <TextInput
-        style={styles.input}
+        style={commonStyles.input}
         value={formData.vehicleNumber}
         onChangeText={(value) => handleInputChange("vehicleNumber", value)}
       />
@@ -241,7 +241,7 @@ export default function AddServiceProvider({ navigation }) {
         Identity Type ID
       </Text>
       <Dropdown
-        style={styles.dropdown}
+        style={commonStyles.dropdown}
         data={identityTypes}
         labelField="label"
         valueField="value"
@@ -256,14 +256,14 @@ export default function AddServiceProvider({ navigation }) {
         Identity Number
       </Text>
       <TextInput
-        style={styles.input}
+        style={commonStyles.input}
         value={formData.identityNumber}
         onChangeText={(value) => handleInputChange("identityNumber", value)}
       />
 
       <Text style={[styles.label, commonStyles.headerText]}>Validity Date</Text>
       <Text
-        style={styles.input}
+        style={commonStyles.input}
         value={formData.validityDate}
         onChangeText={(value) => handleInputChange("validityDate", value)}
         placeholder="YYYY-MM-DD"
@@ -319,46 +319,12 @@ export default function AddServiceProvider({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: "#fff",
-  },
   label: {
     marginBottom: 5,
-  },
-  input: {
-    height: 40,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-    borderRadius: 5,
-    backgroundColor: "#f9f9f9",
   },
   switchContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginTop: 10,
-  },
-  submitButton: {
-    backgroundColor: "#007BFF",
-    paddingVertical: 15,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    elevation: 3,
-    marginTop: 20,
-  },
-  submitButtonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  dropdown: {
-    height: 50,
-    borderColor: "gray",
-    borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 8,
   },
 });

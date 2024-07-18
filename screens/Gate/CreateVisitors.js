@@ -120,7 +120,7 @@ export default function AddVisitors({ navigation }) {
                 First Name
               </Text>
               <TextInput
-                style={styles.input}
+                style={commonStyles.input}
                 value={firstName}
                 onChangeText={setFirstName}
               />
@@ -129,7 +129,7 @@ export default function AddVisitors({ navigation }) {
                 Last Name
               </Text>
               <TextInput
-                style={styles.input}
+                style={commonStyles.input}
                 value={lastName}
                 onChangeText={setLastName}
               />
@@ -138,7 +138,7 @@ export default function AddVisitors({ navigation }) {
                 Contact Number
               </Text>
               <TextInput
-                style={styles.input}
+                style={commonStyles.input}
                 value={contactNumber}
                 onChangeText={setContactNumber}
                 keyboardType="phone-pad"
@@ -158,7 +158,7 @@ export default function AddVisitors({ navigation }) {
                     Enter OTP
                   </Text>
                   <TextInput
-                    style={styles.input}
+                    style={commonStyles.input}
                     value={otp}
                     onChangeText={setOtp}
                     keyboardType="numeric"
@@ -179,7 +179,7 @@ export default function AddVisitors({ navigation }) {
             <>
               <Text style={[styles.label, commonStyles.headerText]}>Email</Text>
               <TextInput
-                style={styles.input}
+                style={commonStyles.input}
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
@@ -189,7 +189,7 @@ export default function AddVisitors({ navigation }) {
                 Visiting From
               </Text>
               <TextInput
-                style={styles.input}
+                style={commonStyles.input}
                 value={visitingFrom}
                 onChangeText={setVisitingFrom}
               />
@@ -198,7 +198,7 @@ export default function AddVisitors({ navigation }) {
                 Visitor Type
               </Text>
               <Dropdown
-                style={styles.dropdown}
+                style={commonStyles.dropdown}
                 data={visitorTypes}
                 labelField="label"
                 valueField="value"
@@ -213,7 +213,7 @@ export default function AddVisitors({ navigation }) {
                 Vehicle Number
               </Text>
               <TextInput
-                style={styles.input}
+                style={commonStyles.input}
                 value={vehicleNumber}
                 onChangeText={setVehicleNumber}
               />
@@ -222,7 +222,7 @@ export default function AddVisitors({ navigation }) {
                 Identity Type
               </Text>
               <Dropdown
-                style={styles.dropdown}
+                style={commonStyles.dropdown}
                 data={identityTypes}
                 labelField="label"
                 valueField="value"
@@ -237,7 +237,7 @@ export default function AddVisitors({ navigation }) {
                 Identity Number
               </Text>
               <TextInput
-                style={styles.input}
+                style={commonStyles.input}
                 value={identityNumber}
                 onChangeText={setIdentityNumber}
               />
@@ -254,24 +254,6 @@ export default function AddVisitors({ navigation }) {
 const styles = StyleSheet.create({
   label: {
     marginBottom: 5,
-  },
-  input: {
-    height: 40,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-    borderRadius: 5,
-    backgroundColor: "#f9f9f9",
-  },
-  dropdown: {
-    height: 40,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-    borderRadius: 5,
-    backgroundColor: "#f9f9f9",
   },
   sendOtpButton: {
     backgroundColor: "#007BFF",

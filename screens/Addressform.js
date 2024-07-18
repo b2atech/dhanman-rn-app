@@ -57,7 +57,7 @@ const AddressForm = ({ formData, handleInputChange, label, addressType }) => {
         placeholder="Address Line 2"
       />
       <Dropdown
-        style={styles.input}
+        style={commonStyles.dropdown}
         data={countries}
         labelField="name"
         valueField="id"
@@ -75,7 +75,7 @@ const AddressForm = ({ formData, handleInputChange, label, addressType }) => {
         onChange={(item) =>
           handleInputChange("stateId", item.id, true, addressType)
         }
-        style={styles.input}
+        style={commonStyles.dropdown}
         placeholder="Select State"
       />
       <TextInput
